@@ -1,0 +1,76 @@
+<div
+        th:fragment="footer"
+        x-data="{ showFooter: false }"
+        x-init="setTimeout(() => showFooter = true, 100)"
+        x-show="showFooter"
+        x-transition:enter="transition ease-out duration-700"
+        x-transition:enter-start="opacity-0 translate-y-4"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="bg-slate-900 text-slate-200"
+        xmlns:x-transition="http://www.w3.org/1999/xhtml"
+>
+    <div class="max-w-7xl mx-auto px-4 py-12">
+
+        <div class="flex flex-wrap -mx-4 mb-10">
+            <!-- Contact -->
+            <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-8 lg:mb-0">
+                <h4 class="text-lg font-semibold text-orange-400 mb-2">Contact</h4>
+                <span class="block h-1 w-12 bg-orange-500 rounded mb-4"></span>
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li>📍 Strada Balta Albina, nr. 8,<br>Sector 3, București</li>
+                    <li>📞 <a href="tel:0731348340" class="underline underline-offset-2 decoration-orange-500 hover:text-white">0731 348 340</a></li>
+                    <li>✉️ <a href="mailto:contact@serviceCSM Auto.ro" class="underline underline-offset-2 decoration-orange-500 hover:text-white">contact@serviceCSM Auto.ro</a></li>
+                </ul>
+            </div>
+
+            <!-- Program -->
+            <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-8 lg:mb-0">
+                <h4 class="text-lg font-semibold text-orange-400 mb-2">Program</h4>
+                <span class="block h-1 w-12 bg-orange-500 rounded mb-4"></span>
+                <ul class="space-y-2 text-sm">
+                    <li><span class="font-semibold text-slate-100">Luni – Vineri:</span> 8:00AM – 17:00PM</li>
+                    <li><span class="font-semibold text-slate-100">Sâmbătă – Duminică:</span> Închis</li>
+                </ul>
+            </div>
+
+            <!-- Despre Noi -->
+            <div class="w-full lg:w-1/3 px-4">
+                <h4 class="text-lg font-semibold text-orange-400 mb-2">Despre Noi</h4>
+                <span class="block h-1 w-12 bg-orange-500 rounded mb-4"></span>
+                <p class="text-sm leading-relaxed text-slate-300">
+                    Service CSM Auto oferă servicii profesionale pentru repararea și întreținerea vehiculelor.
+                    Folosim tehnologii de ultimă generație și asigurăm servicii rapide și eficiente.
+                </p>
+            </div>
+        </div>
+
+        <!-- Parteneri -->
+        <div class="text-center mb-10">
+            <h4 class="text-lg font-semibold text-orange-400">Partenerii noștri</h4>
+            <span class="mx-auto mt-2 mb-6 block h-1 w-16 bg-orange-500 rounded"></span>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <img src="/image/parteneri-auto/vw.marca.png" alt="VW"
+                     class="w-24 h-12 object-contain bg-white/95 p-1 rounded-md ring-1 ring-slate-200 shadow-sm transition
+                    hover:brightness-110">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW"
+                     class="w-24 h-12 object-contain bg-white/95 p-1 rounded-md ring-1 ring-slate-200 shadow-sm transition
+                    hover:brightness-110">
+                <img src="/image/parteneri-auto/dacia.png" alt="Dacia"
+                     class="w-24 h-12 object-contain bg-white/95 p-1 rounded-md ring-1 ring-slate-200 shadow-sm transition
+                    hover:brightness-110">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg" alt="Ford"
+                     class="w-24 h-12 object-contain bg-white/95 p-1 rounded-md ring-1 ring-slate-200 shadow-sm transition
+                    hover:brightness-110">
+                <img src="/image/parteneri-auto/renault.png" alt="Renault"
+                     class="w-24 h-12 object-contain bg-white/95 p-1 rounded-md ring-1 ring-slate-200 shadow-sm transition
+                    hover:brightness-110">
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="border-t border-slate-700 pt-5 text-center text-xs text-slate-400">
+            © 2025 Service CSM Auto. Toate drepturile rezervate.
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ro" th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Acces respins</title>
+    <link rel="stylesheet" href="/styles/header.css">
+</head>
+<body class="bg-white">
+<section x-data="{ showContent:false, busy:false }"
+         x-init="setTimeout(()=>showContent=true,100)">
+    <main class="px-6 py-16">
+        <div class="mx-auto max-w-xl text-center">
+            <p class="text-7xl font-extrabold tracking-tight">403</p>
+            <h1 class="mt-4 text-3xl font-bold">Nu ai acces la această resursă</h1>
+            <p class="mt-2 text-gray-600">
+                Contul tău este autentificat, dar nu are permisiunile necesare.
+            </p>
+
+            <div class="mt-8 flex items-center justify-center gap-3">
+                <a th:href="@{/}"
+                   class="inline-flex items-center rounded-xl px-5 py-3 text-sm font-medium ring-1 ring-gray-300 hover:bg-gray-100">
+                    ← Înapoi la acasă
+                </a>
+                <a th:href="@{/contact}"
+                   class="inline-flex items-center rounded-xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800">
+                    Contactează-ne
+                </a>
+            </div>
+
+            <div class="mt-10 rounded-2xl bg-white p-5 shadow">
+                <p class="text-left text-sm text-gray-500">
+                    Dacă crezi că e o eroare, încearcă să te deloghezi și să te autentifici din nou
+                    sau cere acces unui administrator.
+                </p>
+            </div>
+        </div>
+    </main>
+</section>
+</body>
+</html>

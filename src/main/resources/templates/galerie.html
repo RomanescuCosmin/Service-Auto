@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ro" th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}"
+      xmlns:x-transition="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Galerie</title>
+  <link rel="stylesheet" href="/styles/header.css">
+  <style>
+    /* stil mic pt. slider înainte/după */
+    input[type="range"].ba-range{ accent-color:#f97316; }
+    .ba-range{ width:100%; }
+  </style>
+</head>
+<body class="bg-white">
+<section
+        x-data="{
+    showContent:false,
+    cat:'toate',
+    lightboxOpen:false,
+    lightboxSrc:'',
+    lightboxAlt:'',
+    openLightbox(src, alt){ this.lightboxSrc=src; this.lightboxAlt=alt; this.lightboxOpen=true; document.body.style.overflow='hidden' },
+    closeLightbox(){ this.lightboxOpen=false; document.body.style.overflow='' }
+  }"
+        x-init="setTimeout(()=>showContent=true,100)"
+>
+  <!-- HERO -->
+  <header class="relative">
+    <div class="max-w-7xl mx-auto px-6 pt-10 pb-8">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Galerie</h1>
+          <p class="mt-1 text-slate-600">Câteva imagini din service + reparații înainte/după.</p>
+        </div>
+        <a th:href="@{/programare}"
+           class="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2.5 font-semibold text-white hover:bg-orange-600 transition">
+          Programează-te
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- FILTRE -->
+      <div class="mt-6 flex flex-wrap gap-2">
+        <button @click="cat='toate'"
+                class="rounded-full px-3 py-1.5 text-sm font-semibold transition"
+                :class="cat==='toate' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'">Toate</button>
+        <button @click="cat='mecanica'"
+                class="rounded-full px-3 py-1.5 text-sm font-semibold transition"
+                :class="cat==='mecanica' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'">Mecanică</button>
+        <button @click="cat='diagnoza'"
+                class="rounded-full px-3 py-1.5 text-sm font-semibold transition"
+                :class="cat==='diagnoza' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'">Diagnoză</button>
+        <button @click="cat='caroserie'"
+                class="rounded-full px-3 py-1.5 text-sm font-semibold transition"
+                :class="cat==='caroserie' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'">Caroserie</button>
+        <button @click="cat='vopsitorie'"
+                class="rounded-full px-3 py-1.5 text-sm font-semibold transition"
+                :class="cat==='vopsitorie' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'">Vopsitorie</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- GRID IMAGINI -->
+  <div x-show="showContent"
+       x-transition:enter="transition ease-out duration-700"
+       x-transition:enter-start="opacity-0 translate-y-4"
+       x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="max-w-7xl mx-auto px-6 pb-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Item -->
+        <figure x-show="cat==='toate' || cat==='mecanica'"
+                class="relative overflow-hidden rounded-xl ring-1 ring-slate-200 group cursor-zoom-in">
+          <img src="/image/despre-noi/verificare.png" alt="Revizie & verificări"
+               class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold text-white
+                             bg-gradient-to-t from-slate-900/70 via-slate-900/30 to-transparent">
+            Revizie & verificări
+          </figcaption>
+          <button @click="openLightbox('/image/despre-noi/verificare.png','Revizie & verificări')"
+                  class="absolute inset-0"></button>
+        </figure>
+
+        <figure x-show="cat==='toate' || cat==='diagnoza'"
+                class="relative overflow-hidden rounded-xl ring-1 ring-slate-200 group cursor-zoom-in">
+          <img src="/image/servicii/diagnoza-auto1.png" alt="Diagnoză OBD"
+               class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold text-white
+                             bg-gradient-to-t from-slate-900/70 via-slate-900/30 to-transparent">
+            Diagnoză OBD
+          </figcaption>
+          <button @click="openLightbox('/image/servicii/diagnoza-auto1.png','Diagnoză OBD')"
+                  class="absolute inset-0"></button>
+        </figure>
+
+        <figure x-show="cat==='toate' || cat==='vopsitorie'"
+                class="relative overflow-hidden rounded-xl ring-1 ring-slate-200 group cursor-zoom-in">
+          <img src="/image/servicii/diagnoza-auto.png" alt="Pregătire vopsitorie"
+               class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold text-white
+                             bg-gradient-to-t from-slate-900/70 via-slate-900/30 to-transparent">
+            Pregătire vopsitorie
+          </figcaption>
+          <button @click="openLightbox('/image/servicii/diagnoza-auto.png','Pregătire vopsitorie')"
+                  class="absolute inset-0"></button>
+        </figure>
+
+        <figure x-show="cat==='toate' || cat==='caroserie'"
+                class="relative overflow-hidden rounded-xl ring-1 ring-slate-200 group cursor-zoom-in">
+          <img src="/image/despre-noi/consultare.png" alt="Caroserie & consultare"
+               class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold text-white
+                             bg-gradient-to-t from-slate-900/70 via-slate-900/30 to-transparent">
+            Caroserie & consultare
+          </figcaption>
+          <button @click="openLightbox('/image/despre-noi/consultare.png','Caroserie & consultare')"
+                  class="absolute inset-0"></button>
+        </figure>
+
+        <figure x-show="cat==='toate' || cat==='mecanica'"
+                class="relative overflow-hidden rounded-xl ring-1 ring-slate-200 group cursor-zoom-in">
+          <img src="/image/cheie.png" alt="Mecanică generală"
+               class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold text-white
+                             bg-gradient-to-t from-slate-900/70 via-slate-900/30 to-transparent">
+            Mecanică generală
+          </figcaption>
+          <button @click="openLightbox('/image/cheie.png','Mecanică generală')"
+                  class="absolute inset-0"></button>
+        </figure>
+
+        <figure x-show="cat==='toate' || cat==='caroserie' || cat==='vopsitorie'"
+                class="relative overflow-hidden rounded-xl ring-1 ring-slate-200 group cursor-zoom-in">
+          <img src="/image/img.png" alt="Stand & cabină"
+               class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold text-white
+                             bg-gradient-to-t from-slate-900/70 via-slate-900/30 to-transparent">
+            Stand & cabină vopsit
+          </figcaption>
+          <button @click="openLightbox('/image/img.png','Stand & cabină vopsit')"
+                  class="absolute inset-0"></button>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- ÎNAINTE / DUPĂ -->
+    <div class="border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <h2 class="text-2xl font-bold text-slate-900">Înainte / După</h2>
+        <p class="text-slate-600 mt-1 mb-6">Exemple de reparații și vopsitorie.</p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Slider 1 -->
+          <div x-data="{ val:50 }" class="rounded-xl ring-1 ring-slate-200 overflow-hidden relative bg-slate-100">
+            <div class="relative w-full h-64">
+              <!-- before -->
+              <img src="/image/galerie/before-1.jpg" alt="Înainte – aripă"
+                   class="absolute inset-0 h-full w-full object-cover">
+              <!-- after -->
+              <div class="absolute inset-y-0 left-0 overflow-hidden" :style="`width:${val}%`">
+                <img src="/image/galerie/after-1.jpg" alt="După – aripă"
+                     class="h-full w-full object-cover">
+              </div>
+              <!-- handle -->
+              <span class="absolute top-1/2 -translate-y-1/2"
+                    :style="`left: calc(${val}% - 14px)`">
+                <span class="grid place-items-center h-7 w-7 rounded-full bg-orange-500 text-white shadow-md ring-2 ring-white">↔</span>
+              </span>
+            </div>
+            <div class="p-3">
+              <input type="range" min="0" max="100" x-model="val" class="ba-range">
+            </div>
+          </div>
+
+          <!-- Slider 2 -->
+          <div x-data="{ val:50 }" class="rounded-xl ring-1 ring-slate-200 overflow-hidden relative bg-slate-100">
+            <div class="relative w-full h-64">
+              <img src="/image/galerie/before-2.jpg" alt="Înainte – bară spate"
+                   class="absolute inset-0 h-full w-full object-cover">
+              <div class="absolute inset-y-0 left-0 overflow-hidden" :style="`width:${val}%`">
+                <img src="/image/galerie/after-2.jpg" alt="După – bară spate"
+                     class="h-full w-full object-cover">
+              </div>
+              <span class="absolute top-1/2 -translate-y-1/2"
+                    :style="`left: calc(${val}% - 14px)`">
+                <span class="grid place-items-center h-7 w-7 rounded-full bg-orange-500 text-white shadow-md ring-2 ring-white">↔</span>
+              </span>
+            </div>
+            <div class="p-3">
+              <input type="range" min="0" max="100" x-model="val" class="ba-range">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+      <div class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">Îți place ce vezi?</h3>
+          <p class="text-slate-600">Scrie-ne sau fă o programare online. Răspundem rapid.</p>
+        </div>
+        <div class="flex gap-3">
+          <a href="tel:0731348340" class="rounded-lg ring-1 ring-slate-200 px-5 py-2.5 font-semibold text-slate-900 hover:bg-white transition">📞 0731 348 340</a>
+          <a th:href="@{/programare}" class="rounded-lg bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600 transition">Programare</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div x-show="lightboxOpen"
+       x-transition.opacity
+       class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm p-4 md:p-8"
+       @keydown.escape.window="closeLightbox" @click.self="closeLightbox" aria-modal="true" role="dialog">
+    <div class="mx-auto max-w-5xl h-full flex items-center justify-center">
+      <div class="relative w-full">
+        <button @click="closeLightbox"
+                class="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-10 rounded-full bg-white/90 text-slate-900 p-2 shadow ring-1 ring-slate-200 hover:bg-white">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <img :src="lightboxSrc" :alt="lightboxAlt" class="w-full max-h-[80vh] object-contain rounded-xl ring-1 ring-white/20 shadow-2xl">
+        <div class="mt-3 text-center text-sm text-white/80" x-text="lightboxAlt"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+</body>
+</html>
