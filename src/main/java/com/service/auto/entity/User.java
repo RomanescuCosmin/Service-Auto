@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users") // <- schimbat din "user" în "users"
+@Table(name = "users")
 @Getter
 @Setter
 @SequenceGenerator(name = "users_seq", sequenceName = "users_seq", allocationSize = 1)
