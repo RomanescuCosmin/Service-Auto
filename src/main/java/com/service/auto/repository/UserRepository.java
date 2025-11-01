@@ -10,12 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UserRepository extends BaseRepository<User> implements InitializingBean {
-
-    @Override
-    public void afterPropertiesSet() {
-        this.setClazz(User.class);
-    }
+public class UserRepository extends BaseRepository<User> {
 
     public Optional<User> findByEmail(String email) {
         if (StringUtils.isBlank(email)) {

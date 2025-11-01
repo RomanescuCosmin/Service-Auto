@@ -13,7 +13,7 @@ import lombok.*;
 @Table(name = "contact")
 @Builder
 @Entity
-public class Contact {
+public class Contact implements BaseEntity{
 
     @Id
     @NotNull

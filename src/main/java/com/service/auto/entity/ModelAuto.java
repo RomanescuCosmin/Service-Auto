@@ -14,7 +14,7 @@ import static com.service.auto.util.DataBaseConstant.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = MODEL_TABLE)
-public class Model {
+public class ModelAuto implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "model_seq")

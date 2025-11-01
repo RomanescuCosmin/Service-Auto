@@ -18,7 +18,7 @@ import java.util.Set;
 @SequenceGenerator(name = "users_seq", sequenceName = "users_seq", allocationSize = 1)
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
