@@ -1,7 +1,7 @@
 package com.service.auto.service;
 
-import com.service.auto.mapper.ContactMapper;
 import com.service.auto.repository.ContactRepository;
+import com.service.auto.repository.ProgramareRepository;
 import com.service.auto.repository.RoleRepository;
 import com.service.auto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +18,6 @@ public class BaseService {
     protected ContactRepository contactRepository;
 
     @Autowired
-    protected ContactMapper contactMapper;
+    protected ProgramareRepository programareRepository;
+
 }

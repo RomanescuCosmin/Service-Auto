@@ -17,7 +17,7 @@ import static com.service.auto.util.DataBaseConstant.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = PROGRAMARE_TABLE)
-public class Programare {
+public class Programare implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "programare_seq")
@@ -39,7 +39,7 @@ public class Programare {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = PROGRAMARE_FK_MODEL, nullable = false)
-    private Model model;
+    private ModelAuto modelAuto;
 
     @NotNull
     @DateTimeFormat(pattern = DATE_PATTERN)

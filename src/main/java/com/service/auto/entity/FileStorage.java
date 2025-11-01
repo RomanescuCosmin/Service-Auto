@@ -20,7 +20,7 @@ import static com.service.auto.util.DataBaseConstant.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = FILE_STORAGE_TABLE)
-public class FileStorage {
+public class FileStorage implements BaseEntity {
 
     @Id
     @NotNull

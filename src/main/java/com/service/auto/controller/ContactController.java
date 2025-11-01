@@ -43,7 +43,7 @@ public class ContactController extends BaseController {
         try {
 
             if (bindingResult.hasErrors()) {
-                log.error("Nu s-a putut adaugat inregistrarea", bindingResult.getAllErrors());
+                log.error("Nu s-a putut adauga inregistrarea", bindingResult.getAllErrors());
                 throw new InvalidInputException("Parametri invalizi");
             }
 
