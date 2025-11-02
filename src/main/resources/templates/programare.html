@@ -54,7 +54,7 @@
         </header>
 
         <div class="max-w-7xl mx-auto px-6 py-10">
-            <form th:action="@{/programare/list}"
+            <form th:action="@{/programare}"
                   th:object="${programareDto}"
                   method="post"
                   enctype="multipart/form-data" class="space-y-8">
@@ -159,7 +159,7 @@
                                 <label class="block" x-data="{
                                             combined: '',
                                             init() {
-                                              // pre-populează din valorile deja setate în DTO (dacă vin din server)
+
                                               const h = this.$refs.h.value;
                                               const m = this.$refs.m.value;
                                               if (h || m) {
@@ -173,7 +173,7 @@
                                                 return;
                                               }
                                               const [hh, mm] = this.combined.split(':');
-                                              // setăm în hidden; Spring va binda în Integer/Long fără probleme
+
                                               this.$refs.h.value = parseInt(hh ?? '0', 10);
                                               this.$refs.m.value = parseInt(mm ?? '0', 10);
                                             }
