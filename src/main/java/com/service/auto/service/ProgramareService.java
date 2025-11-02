@@ -14,9 +14,9 @@ public class ProgramareService extends BaseService {
 
     private final Logger logger = LoggerFactory.getLogger(ProgramareService.class);
 
-    public Programare create(ProgramareDto programareDto) {
+    public Programare create(ProgramareDto programareDto, Long userId) {
         logger.info("creare programare cu parametrii: ", programareDto);
-        Programare programare = ProgramareMapper.toEntity(programareDto);
+        Programare programare = ProgramareMapper.toEntity(programareDto, userId);
         return programareRepository.merge(programare);
     }
 }

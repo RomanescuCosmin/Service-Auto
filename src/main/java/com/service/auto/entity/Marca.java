@@ -14,6 +14,7 @@ import static com.service.auto.util.DataBaseConstant.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = MARCA_TABLE)
+@SequenceGenerator(name = "marca_seq", sequenceName = "marca_seq", allocationSize = 1)
 public class Marca implements BaseEntity {
 
     @Id

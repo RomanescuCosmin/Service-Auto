@@ -17,6 +17,7 @@ import static com.service.auto.util.DataBaseConstant.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = PROGRAMARE_TABLE)
+@SequenceGenerator(name = "programare_seq", sequenceName = "programare_seq", allocationSize = 1)
 public class Programare implements BaseEntity {
 
     @Id
@@ -40,6 +41,18 @@ public class Programare implements BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = PROGRAMARE_FK_MODEL, nullable = false)
     private ModelAuto modelAuto;
+
+    @NotNull
+    @Column(name = PROGRAMARE_NUME, length = 100)
+    private String nume;
+
+    @NotNull
+    @Column(name = PROGRAMARE_TELEFON)
+    private int telefon;
+
+    @NotNull
+    @Column(name = PROGRAMARE_EMAIL, length = 100)
+    private String email;
 
     @NotNull
     @DateTimeFormat(pattern = DATE_PATTERN)

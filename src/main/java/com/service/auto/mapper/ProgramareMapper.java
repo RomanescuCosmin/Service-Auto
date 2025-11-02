@@ -3,6 +3,8 @@ package com.service.auto.mapper;
 import com.service.auto.dto.ProgramareDto;
 import com.service.auto.entity.Programare;
 
+import java.time.LocalDateTime;
+
 public class ProgramareMapper extends BaseMapper {
 
     public static ProgramareDto toDTO(final Programare programare) {
@@ -12,6 +14,10 @@ public class ProgramareMapper extends BaseMapper {
                 .fileStorageId(programare.getFileStorage() != null ? programare.getFileStorage().getId() : null)
                 .marcaId(programare.getMarca() != null ? programare.getMarca().getId() : null)
                 .modelId(programare.getModelAuto() != null ? programare.getModelAuto().getId() : null)
+                .modelNume(programare.getModelAuto() != null ? programare.getModelAuto().getNumeModel() : null)
+                .nume(programare.getNume())
+                .telefon(programare.getTelefon())
+                .email(programare.getEmail())
                 .dataProgramare(programare.getDataProgramare())
                 .oraProgramare(programare.getOraProgramare())
                 .minutProgramare(programare.getMinutProgramare())
@@ -24,21 +30,24 @@ public class ProgramareMapper extends BaseMapper {
                 .build();
     }
 
-    public static Programare toEntity(final ProgramareDto dto) {
+    public static Programare toEntity(final ProgramareDto dto, Long userId) {
         return Programare.builder()
                 .id(dto.getId())
-                .user(userRepository.findById(dto.getUserId()))
+                .user(userRepository.findById(userId))
                 .fileStorage(fileStorageRepository.findById(dto.getFileStorageId()))
                 .marca(marcaRepository.findById(dto.getMarcaId()))
                 .modelAuto(modelAutoRepository.findById(dto.getModelId()))
+                .nume(dto.getNume())
+                .telefon(dto.getTelefon())
+                .email(dto.getEmail())
                 .dataProgramare(dto.getDataProgramare())
                 .oraProgramare(dto.getOraProgramare())
                 .minutProgramare(dto.getMinutProgramare())
                 .serieSasiu(dto.getSerieSasiu())
                 .observatii(dto.getObservatii())
-                .confirmed(dto.isConfirmed())
-                .canceled(dto.isCanceled())
-                .createdAt(dto.getCreatedAt())
+                .confirmed(true)
+                .canceled(false)
+                .createdAt(LocalDateTime.now())
                 .version(dto.getVersion())
                 .build();
     }
@@ -49,6 +58,9 @@ public class ProgramareMapper extends BaseMapper {
         programare.setFileStorage(fileStorageRepository.findById(dto.getFileStorageId()));
         programare.setMarca(marcaRepository.findById(dto.getMarcaId()));
         programare.setModelAuto(modelAutoRepository.findById(dto.getModelId()));
+        programare.setNume(dto.getNume());
+        programare.setTelefon(dto.getTelefon());
+        programare.setEmail(dto.getEmail());
         programare.setDataProgramare(dto.getDataProgramare());
         programare.setOraProgramare(dto.getOraProgramare());
         programare.setMinutProgramare(dto.getMinutProgramare());
