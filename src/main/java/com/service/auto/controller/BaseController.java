@@ -1,10 +1,7 @@
 package com.service.auto.controller;
 
 
-import com.service.auto.service.ContactService;
-import com.service.auto.service.EmailService;
-import com.service.auto.service.ProgramareService;
-import com.service.auto.service.UserService;
+import com.service.auto.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -24,5 +21,11 @@ public class BaseController {
 
     @Autowired
     protected ProgramareService programareService;
+
+    @Autowired
+    protected MarcaService marcaService;
+
+    @Autowired
+    protected ModelAutoService modelAutoService;
 
 }

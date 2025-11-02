@@ -89,6 +89,10 @@ CREATE TABLE PROGRAMARE
     FK_MARCA           BIGINT      NOT NULL,
     FK_MODEL           BIGINT      NOT NULL,
 
+    NUME               VARCHAR(100) NOT NULL,
+    TELEFON            INT         NOT NULL,
+    EMAIL              VARCHAR(100) NOT NULL,
+
     DATA_PROGRAMARE    DATE        NOT NULL,
     ORA_PROGRAMARE     INT         NOT NULL,
     MINUT_PROGRAMARE   INT         NOT NULL,

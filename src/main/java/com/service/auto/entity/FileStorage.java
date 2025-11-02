@@ -20,6 +20,7 @@ import static com.service.auto.util.DataBaseConstant.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = FILE_STORAGE_TABLE)
+@SequenceGenerator(name = "file_storage_seq", sequenceName = "file_storage_seq", allocationSize = 1)
 public class FileStorage implements BaseEntity {
 
     @Id

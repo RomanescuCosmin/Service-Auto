@@ -16,6 +16,11 @@ public class ProgramareDto {
     private Long fileStorageId;
     private Long marcaId;
     private Long modelId;
+    private String modelNume;
+
+    private String nume;
+    private int telefon;
+    private String email;
 
     private LocalDate dataProgramare;
     private Integer oraProgramare;
