@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .requestMatchers("/css/**","/js/**","/image/**").permitAll()
                         .requestMatchers("/login","/register","/forgot-password","/reset-password**").permitAll()
                         .requestMatchers("/", "/despre-noi", "/consultanta-daune",
-                                "/servicii", "/galerie", "/contact", "/programare").permitAll()
+                                "/servicii", "/galerie", "/contact", "/programare", "/model").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

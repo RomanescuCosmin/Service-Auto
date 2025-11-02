@@ -1,6 +1,5 @@
 package com.service.auto.controller;
 
-import com.service.auto.dto.ModelAutoSimplifyDto;
 import com.service.auto.dto.ProgramareDto;
 import com.service.auto.exception.InvalidInputException;
 import com.service.auto.security.CustomUserPrincipal;
@@ -12,10 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -65,13 +63,6 @@ public class ProgramareController extends  BaseController {
             redirectAttributes.addFlashAttribute("saveResult", "failed-add");
             return "redirect:/programare/list";
         }
-    }
-
-    @GetMapping(value = "/programare/byMarca/{marcaId}", produces = "application/json")
-    @ResponseBody
-    public List<ModelAutoSimplifyDto> getModelsByMarca(@PathVariable("marcaId") Long marcaId) {
-        logger.info("Cerere GET pentru modelele mărcii cu ID {}", marcaId);
-        return modelAutoService.findModelsByMarca(marcaId);
     }
 
 }
