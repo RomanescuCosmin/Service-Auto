@@ -17,15 +17,13 @@
         <section class="py-16">
             <div class="mx-auto max-w-7xl px-4">
                 <div class="grid items-center gap-10 lg:grid-cols-2">
-                    <!-- Imagine compozită -->
                     <div class="relative">
-                        <!-- imagine fundal -->
                         <img
                                 class="w-full rounded-2xl object-cover grayscale"
                                 src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1600&auto=format&fit=crop"
                                 alt="Mecanicie și piese auto"
                         />
-                        <!-- imagine deasupra -->
+
                         <div
                                 class="absolute -bottom-10 left-10 right-10 overflow-hidden rounded-2xl shadow-xl"
                         >
@@ -37,7 +35,6 @@
                         </div>
                     </div>
 
-                    <!-- Text -->
                     <div class="pt-10 lg:pt-0">
                         <h2 class="text-3xl font-semibold">
                             12 ani <span class="text-orange-600">Experiență</span>
@@ -162,7 +159,7 @@
                     >
                         <img
                                 class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                src="/image/despre-noi/masina-descompusa.png"
+                                th:src="@{/image/despre-noi/masina-descompusa.png}"
                                 alt="Detaliu motor"
                         />
                     </a>
@@ -174,7 +171,7 @@
                     >
                         <img
                                 class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                src="/image/despre-noi/imagine-service.png"
+                                th:src="@{/image/despre-noi/imagine-service.png}"
                                 alt="Mașină în service"
                         />
                     </a>
@@ -186,7 +183,7 @@
                     >
                         <img
                                 class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                src="/image/despre-noi/disc-frana.png"
+                                th:src="@{/image/despre-noi/disc-frana.png}"
                                 alt="Disc frână"
                         />
                     </a>
@@ -198,7 +195,7 @@
                     >
                         <img
                                 class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                src="/image/despre-noi/bloc-motor.png"
+                                th:src="@{/image/despre-noi/bloc-motor.png}"
                                 alt="Compartiment motor"
                         />
                     </a>

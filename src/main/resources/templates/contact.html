@@ -206,7 +206,7 @@
 
                             <div class="flex items-start gap-3">
                                 <span class="grid h-10 w-10 place-items-center rounded-lg ring-1 ring-slate-200">
-                                  <!-- phone -->
+
                                   <svg class="h-5 w-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M3 5a16 16 0 0 0 16 16l2-2a2 2 0 0 0-1-3.3l-3.1-1.1a2 2 0 0 0-2.1.5l-.9.9a13 13 0 0 1-5-5l.9-.9a2 2 0 0 0 .5-2.1L10.3 3A2 2 0 0 0 7 2L5 4a2 2 0 0 0-2 1z"/>
@@ -250,9 +250,8 @@
                         </div>
                     </div>
 
-                    <!-- hartă FĂRĂ overlay gradient -->
                     <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow">
-                        <img src="/image/adresa-maps.png"
+                        <img th:src="@{/image/adresa-maps.png}"
                              alt="Hartă – CSM Auto, Str. Balta Albina 8, Sector 3"
                              class="w-full h-56 md:h-64 object-cover select-none" draggable="false">
                         <div class="p-3 border-t border-slate-200 flex items-center justify-between text-sm">

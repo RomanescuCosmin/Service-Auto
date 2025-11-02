@@ -19,13 +19,12 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/programare")
 public class ProgramareController extends  BaseController {
 
 
     private static final Logger logger = LoggerFactory.getLogger(ProgramareController.class);
 
-    @GetMapping(value = "/list", produces = "text/html")
+    @GetMapping(value = "/programare", produces = "text/html")
     public String programare (Model uiModel) {
         logger.info("programare page");
 
@@ -38,7 +37,7 @@ public class ProgramareController extends  BaseController {
         return "programare";
     }
 
-    @PostMapping(value = "/list", produces = "text/html")
+    @PostMapping(value = "/programare", produces = "text/html")
     public String add (ProgramareDto programareDto,
                        Model uiModel, BindingResult bindingResult,RedirectAttributes redirectAttributes) {
 
@@ -68,7 +67,7 @@ public class ProgramareController extends  BaseController {
         }
     }
 
-    @GetMapping(value = "/byMarca/{marcaId}", produces = "application/json")
+    @GetMapping(value = "/programare/byMarca/{marcaId}", produces = "application/json")
     @ResponseBody
     public List<ModelAutoSimplifyDto> getModelsByMarca(@PathVariable("marcaId") Long marcaId) {
         logger.info("Cerere GET pentru modelele mărcii cu ID {}", marcaId);
