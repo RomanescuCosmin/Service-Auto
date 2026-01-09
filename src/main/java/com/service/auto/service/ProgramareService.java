@@ -1,6 +1,7 @@
 package com.service.auto.service;
 
 import com.service.auto.dto.ProgramareDto;
+import com.service.auto.entity.FileStorage;
 import com.service.auto.entity.Programare;
 import com.service.auto.mapper.ProgramareMapper;
 import jakarta.transaction.Transactional;
@@ -14,9 +15,9 @@ public class ProgramareService extends BaseService {
 
     private final Logger logger = LoggerFactory.getLogger(ProgramareService.class);
 
-    public Programare create(ProgramareDto programareDto, Long userId) {
+    public Programare create(ProgramareDto programareDto, Long userId, FileStorage fileStorage) {
         logger.info("creare programare cu parametrii: ", programareDto);
-        Programare programare = ProgramareMapper.toEntity(programareDto, userId);
+        Programare programare = ProgramareMapper.toEntity(programareDto, userId, fileStorage);
         return programareRepository.merge(programare);
     }
 }

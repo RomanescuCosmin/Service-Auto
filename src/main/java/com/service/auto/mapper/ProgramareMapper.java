@@ -1,6 +1,7 @@
 package com.service.auto.mapper;
 
 import com.service.auto.dto.ProgramareDto;
+import com.service.auto.entity.FileStorage;
 import com.service.auto.entity.Programare;
 
 import java.time.LocalDateTime;
@@ -30,11 +31,11 @@ public class ProgramareMapper extends BaseMapper {
                 .build();
     }
 
-    public static Programare toEntity(final ProgramareDto dto, Long userId) {
+    public static Programare toEntity(final ProgramareDto dto, Long userId, FileStorage fileStorage) {
         return Programare.builder()
                 .id(dto.getId())
                 .user(userRepository.findById(userId))
-                .fileStorage(fileStorageRepository.findById(dto.getFileStorageId()))
+                .fileStorage(fileStorage)
                 .marca(marcaRepository.findById(dto.getMarcaId()))
                 .modelAuto(modelAutoRepository.findById(dto.getModelId()))
                 .nume(dto.getNume())
