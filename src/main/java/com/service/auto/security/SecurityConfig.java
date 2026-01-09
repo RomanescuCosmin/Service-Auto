@@ -30,7 +30,8 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/", false)
+                        .successHandler((request, response, authentication) ->
+                                response.sendRedirect(request.getContextPath() + "/?loginSuccess"))
                         .failureUrl("/login?error")
                 )
                 .exceptionHandling(ex -> ex
