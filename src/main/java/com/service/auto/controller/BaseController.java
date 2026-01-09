@@ -41,6 +41,9 @@ public class BaseController {
     @Autowired
     protected ModelAutoService modelAutoService;
 
+    @Autowired
+    protected FileStorageService fileStorageService;
+
     public ResponseEntity<String> okJsonResponse(Object response) {
 
         try {

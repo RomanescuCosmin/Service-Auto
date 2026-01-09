@@ -1,9 +1,12 @@
 package com.service.auto.controller;
 
+import com.service.auto.dto.FileStorageTypeEnum;
 import com.service.auto.dto.ProgramareDto;
+import com.service.auto.entity.FileStorage;
 import com.service.auto.exception.InvalidInputException;
 import com.service.auto.security.CustomUserPrincipal;
 import groovy.util.logging.Slf4j;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -13,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
@@ -37,7 +42,8 @@ public class ProgramareController extends  BaseController {
 
     @PostMapping(value = "/programare", produces = "text/html")
     public String add (ProgramareDto programareDto,
-                       Model uiModel, BindingResult bindingResult,RedirectAttributes redirectAttributes) {
+                       Model uiModel, BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
         logger.info("post create Programare cu parametrii : ", programareDto);
 
@@ -53,15 +59,18 @@ public class ProgramareController extends  BaseController {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
 
-            programareService.create(programareDto, principal.getId());
+            MultipartFile file = ((StandardMultipartHttpServletRequest) request).getFile("fisier");
+            FileStorage fileStorage = fileStorageService.create(file, FileStorageTypeEnum.PROGRAMARE_AUTO ,principal);
+
+            programareService.create(programareDto, principal.getId(), fileStorage);
 
             redirectAttributes.addFlashAttribute("saveResult", "ok-add");
             redirectAttributes.addFlashAttribute("succesMessage", "Programarea a fost efectuata cu succes, o sa primiti un mail cu informatiile programarii!");
-            return "redirect:/programare/list";
+            return "redirect:/programare";
         } catch (Exception e) {
             logger.error("Eroare la adaugarea inregistrarii", e);
             redirectAttributes.addFlashAttribute("saveResult", "failed-add");
-            return "redirect:/programare/list";
+            return "redirect:/programare";
         }
     }
 

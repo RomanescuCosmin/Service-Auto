@@ -2,6 +2,7 @@ package com.service.auto.service;
 
 import com.service.auto.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 public class BaseService {
 
@@ -22,4 +23,10 @@ public class BaseService {
 
     @Autowired
     protected MarcaRepository marcaRepository;
+
+    @Autowired
+    protected Environment environment;
+
+    @Autowired
+    protected FileStorageRepository fileStorageRepository;
 }
