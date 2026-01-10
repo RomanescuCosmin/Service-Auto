@@ -10,29 +10,21 @@ function applyValidAppearence(element) {
     }
 }
 
-function getValidationMessage(element) {
-    if (element == null || element.parentElement == null) {
-        return null;
-    }
-    return element.parentElement.querySelector('.validation-error');
-}
 
-function showError(element){
-    if(element != null) {
+function showError(element) {
+    if (element != null) {
         applyInvalidAppearence(element);
-        const validationMessage = getValidationMessage(element);
-        if (validationMessage != null) {
-            validationMessage.classList.remove('hidden');
+        if (element.nextElementSibling && element.nextElementSibling.classList.contains('validation-error')) {
+            element.nextElementSibling.classList.remove('hidden');
         }
     }
 }
 
 function showOk(element) {
-    if(element != null) {
+    if (element != null) {
         applyValidAppearence(element);
-        const validationMessage = getValidationMessage(element);
-        if (validationMessage != null) {
-            validationMessage.classList.add('hidden');
+        if (element.nextElementSibling && element.nextElementSibling.classList.contains('validation-error')) {
+            element.nextElementSibling.classList.add('hidden');
         }
     }
 }
