@@ -2,7 +2,7 @@
 <html lang="ro" th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}">
 <head>
     <title>Acces respins</title>
-    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
 </head>
 <body class="bg-white">
 <section x-data="{ showContent:false, busy:false }"
