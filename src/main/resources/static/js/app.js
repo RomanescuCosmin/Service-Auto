@@ -10,11 +10,19 @@ function applyValidAppearence(element) {
     }
 }
 
+function getValidationMessage(element) {
+    if (element == null || element.parentElement == null) {
+        return null;
+    }
+    return element.parentElement.querySelector('.validation-error');
+}
+
 function showError(element){
     if(element != null) {
         applyInvalidAppearence(element);
-        if (element.nextElementSibling && element.nextElementSibling.classList.contains('validation-error')) {
-            element.nextElementSibling.classList.remove('hidden');
+        const validationMessage = getValidationMessage(element);
+        if (validationMessage != null) {
+            validationMessage.classList.remove('hidden');
         }
     }
 }
@@ -22,8 +30,9 @@ function showError(element){
 function showOk(element) {
     if(element != null) {
         applyValidAppearence(element);
-        if(element.nextElementSibling && element.nextElementSibling.classList.contains('validation-error')) {
-            element.nextElementSibling.classList.add('hidden');
+        const validationMessage = getValidationMessage(element);
+        if (validationMessage != null) {
+            validationMessage.classList.add('hidden');
         }
     }
 }

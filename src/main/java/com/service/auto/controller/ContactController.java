@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,6 +51,12 @@ public class ContactController extends BaseController {
             uiModel.asMap().clear();
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
+                redirectAttributes.addFlashAttribute("saveResult", "failed-add");
+                redirectAttributes.addFlashAttribute("errorMessage", "Mesajul nu a putut fi trimis deoarece nu sunteți logat!");
+                return "redirect:/contact";
+            }
+
             CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
 
             contactService.create(contactDto, principal.getId());
@@ -61,7 +68,6 @@ public class ContactController extends BaseController {
         } catch (Exception e) {
             log.error("Eroare la adaugarea inregistrarii", e);
             redirectAttributes.addFlashAttribute("saveResult", "failed-add");
-            redirectAttributes.addFlashAttribute("errorMessage", "Mesajul nu a putut fi trimis deoarece nu sunteți logat!");
             return "redirect:/contact";
         }
 
