@@ -2,6 +2,8 @@ package com.service.auto.controller;
 
 import com.service.auto.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,12 @@ public class AuthController extends BaseController {
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
+                            Model model, Authentication authentication) {
+
+        if(authentication != null && authentication.isAuthenticated()
+        && !(authentication instanceof AnonymousAuthenticationToken)) {
+            return "error/acces-denied.html";
+        }
 
         if (error != null) {
             log.warn("Eroare autentificare: credentiale invalide");
