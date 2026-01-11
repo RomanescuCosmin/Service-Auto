@@ -1,9 +1,8 @@
 <div th:fragment="navbar"
      x-data="{ open:false, scrolled:false }"
      x-init="
-       const onScroll = () => { scrolled = window.scrollY > 80 }
-       window.addEventListener('scroll', onScroll, { passive:true })
-       onScroll()
+       window.addEventListener('scroll', () => { scrolled = window.scrollY > 80 }, { passive:true })
+       scrolled = window.scrollY > 80
      "
      xmlns:x-on="http://www.w3.org/1999/xhtml">
 

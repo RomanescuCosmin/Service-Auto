@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/styles/header.css}">
     <link rel="icon" type="image/x-icon" th:href="@{/image/favicon/favicon.ico}">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script th:src="@{/js/app.js}" defer></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
 
     <title th:replace="${title}">Consultanță daune</title>
@@ -25,7 +26,6 @@
         </th:block>
     </main>
     <div th:replace="~{fragments/footer :: footer}"></div>
-    <script th:src="@{/js/app.js}" defer></script>
 </div>
 </body>
 </html>

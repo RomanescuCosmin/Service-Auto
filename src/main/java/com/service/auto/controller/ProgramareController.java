@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+
 @Slf4j
 @Controller
 public class ProgramareController extends  BaseController {
@@ -34,6 +36,7 @@ public class ProgramareController extends  BaseController {
         ProgramareDto programareDto = new ProgramareDto();
         uiModel.addAttribute("programareDto", programareDto);
         uiModel.addAttribute("marci", marcaService.findAll());
+        uiModel.addAttribute("bookedSlots", programareService.getBookedSlots(LocalDate.now()));
 
         uiModel.addAttribute("pageMode", "programareDto");
 
