@@ -1,6 +1,7 @@
 package com.service.auto.service;
 
 import com.service.auto.dto.ProgramareDto;
+import com.service.auto.dto.ProgramareSlotDto;
 import com.service.auto.entity.FileStorage;
 import com.service.auto.entity.Programare;
 import com.service.auto.mapper.ProgramareMapper;
@@ -30,13 +31,14 @@ public class ProgramareService extends BaseService {
 
     public List<String> getBookedSlots(LocalDate fromDate) {
         return programareRepository.findBookedSlots(fromDate).stream()
-                .filter(row -> row.length >= 3 && Objects.nonNull(row[0]) && Objects.nonNull(row[1]) && Objects.nonNull(row[2]))
-                .map(row -> {
-                    LocalDate date = (LocalDate) row[0];
-                    Integer hour = (Integer) row[1];
-                    Integer minute = (Integer) row[2];
-                    return String.format("%s %02d:%02d", DATE_FORMAT.format(date), hour, minute);
-                })
+                .map(this::formatSlot)
                 .collect(Collectors.toList());
+    }
+
+    private String formatSlot(ProgramareSlotDto slot) {
+        LocalDate date = slot.getDataProgramare();
+        Integer hour = slot.getOraProgramare();
+        Integer minute = slot.getMinutProgramare();
+        return String.format("%s %02d:%02d", DATE_FORMAT.format(date), hour, minute);
     }
 }
