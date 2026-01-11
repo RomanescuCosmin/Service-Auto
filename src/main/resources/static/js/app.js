@@ -62,7 +62,6 @@ function validateMultipleField(errorField) {
     return isValid;
 }
 
-
 function schedulePicker(root) {
     const bookedSlotsRaw = root?.dataset?.bookedSlots ?? '';
     const bookedSlots = bookedSlotsRaw
