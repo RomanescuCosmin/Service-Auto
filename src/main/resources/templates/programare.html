@@ -8,7 +8,9 @@
 <body class="bg-white">
 <section x-data="{ open:null, showContent:false }"
          x-init="setTimeout(()=>showContent=true,100)"
-         class="bg-gradient-to-b from-slate-50 via-white to-orange-50/40">
+         class="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-orange-50/40">
+    <div aria-hidden="true" class="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-orange-200/40 blur-3xl"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -right-24 bottom-20 h-72 w-72 rounded-full bg-slate-200/60 blur-3xl"></div>
 
     <div x-show="showContent"
          x-transition:enter="transition ease-out duration-700"
@@ -16,8 +18,8 @@
          x-transition:enter-end="opacity-100 translate-y-0">
 
         <header class="max-w-7xl mx-auto px-6 pt-10">
-            <div class="rounded-3xl border border-slate-200/70 bg-white/80 shadow-sm backdrop-blur">
-                <div class="grid gap-6 px-6 py-8 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+            <div class="rounded-[32px] border border-slate-200/70 bg-white/80 shadow-sm backdrop-blur">
+                <div class="grid gap-8 px-6 py-8 md:grid-cols-[1.25fr_0.75fr] md:items-center">
                     <div>
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-500">Programare online</p>
                         <h1 class="mt-3 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
@@ -45,7 +47,7 @@
                         </div>
                     </div>
 
-                    <div class="rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-white p-5">
+                    <div class="rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-white p-5 shadow-sm">
                         <h2 class="text-lg font-semibold text-slate-900">Cum funcționează?</h2>
                         <p class="mt-2 text-sm text-slate-600">
                             Completezi datele, alegi mașina și selectezi intervalul dorit. Confirmarea vine rapid pe email.
@@ -74,16 +76,35 @@
         <div th:replace="~{fragments/notification-error}"></div>
 
         <div class="max-w-7xl mx-auto px-6 py-10">
+            <div class="grid gap-4 md:grid-cols-3">
+                <div class="rounded-2xl border border-slate-200/70 bg-white/80 p-4 shadow-sm">
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange-500">Categoria 01</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Contact</h3>
+                    <p class="mt-1 text-sm text-slate-600">Datele personale și modalitatea de comunicare.</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200/70 bg-white/80 p-4 shadow-sm">
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange-500">Categoria 02</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Mașină</h3>
+                    <p class="mt-1 text-sm text-slate-600">Marca, modelul și seria de șasiu.</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200/70 bg-white/80 p-4 shadow-sm">
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange-500">Categoria 03</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Programare</h3>
+                    <p class="mt-1 text-sm text-slate-600">Alegerea datei, intervalului și observații.</p>
+                </div>
+            </div>
+
             <form th:action="@{/programare}"
                   th:object="${programareDto}"
                   method="post"
-                  enctype="multipart/form-data" class="space-y-8">
+                  enctype="multipart/form-data" class="mt-8 space-y-8">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-                <div class="grid gap-10 lg:grid-cols-3">
+                <div class="grid gap-8 lg:grid-cols-3">
 
 
-                    <fieldset class="rounded-3xl border border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+                    <fieldset class="relative rounded-3xl border border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+                        <div aria-hidden="true" class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-200/80 to-transparent"></div>
                         <legend class="px-6 pt-6 flex items-center gap-3 text-xl font-semibold text-slate-900">
                 <span class="grid h-9 w-9 place-items-center rounded-xl bg-orange-500/15 text-orange-600 ring-1 ring-orange-400/30">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -118,7 +139,8 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="rounded-3xl border border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+                    <fieldset class="relative rounded-3xl border border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+                        <div aria-hidden="true" class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-200/80 to-transparent"></div>
                         <legend class="px-6 pt-6 flex items-center gap-3 text-xl font-semibold text-slate-900">
                 <span class="grid h-9 w-9 place-items-center rounded-xl bg-orange-500/15 text-orange-600 ring-1 ring-orange-400/30">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -166,7 +188,8 @@
                     </fieldset>
 
 
-                    <fieldset class="rounded-3xl border border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+                    <fieldset class="relative rounded-3xl border border-slate-200/80 bg-white/95 shadow-md backdrop-blur">
+                        <div aria-hidden="true" class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-200/80 to-transparent"></div>
                         <legend class="px-6 pt-6 flex items-center gap-3 text-xl font-semibold text-slate-900">
                 <span class="grid h-9 w-9 place-items-center rounded-xl bg-orange-500/15 text-orange-600 ring-1 ring-orange-400/30">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -207,8 +230,8 @@
                             <p class="text-xs text-slate-500">Program: 08:00 - 18:00 · Intervale de 30 minute.</p>
 
                             <div x-show="modalOpen" x-cloak
-                                 class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 px-4">
-                                <div class="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl"
+                                 class="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-900/50 px-4 py-6">
+                                <div class="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-200/70"
                                      x-transition @click.away="closeModal()" @keydown.escape.window="closeModal()">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-lg font-semibold text-slate-900">Alege data și ora</h3>
