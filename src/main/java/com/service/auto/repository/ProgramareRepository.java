@@ -23,10 +23,11 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                 .getResultList();
     }
 
-    public List<Programare> findProgramareByUserId(Long programareId, Long userId) {
-        return entityManager.createNativeQuery(
-                        "Select p from programare p where p.id = :programareId and p.fk_user = :userId "
-                ).setParameter("programareId", programareId)
+    public List<Programare> findProgramareByUserId(Long userId) {
+        // TODO: Dacă ai nevoie de SQL nativ, folosește createNativeQuery cu sintaxă SQL și mapare corectă.
+        return entityManager.createQuery(
+                        "select p from Programare p where p.user.id = :userId order by p.dataProgramare desc, p.oraProgramare desc, p.minutProgramare desc",
+                        Programare.class)
                 .setParameter("userId", userId)
                 .getResultList();
 
