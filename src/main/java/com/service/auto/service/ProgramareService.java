@@ -41,8 +41,9 @@ public class ProgramareService extends BaseService {
         return String.format("%s %02d:%02d", DATE_FORMAT.format(date), hour, minute);
     }
 
-    public List<Programare> findProgramareByUserId(Long programareId, Long userId) {
-        logger.info("findProgramareByUserId cu parametrii: ", programareId, userId);
-        return programareRepository.findProgramareByUserId(programareId, userId);
+    public List<Programare> findProgramareByUserId(Long userId) {
+        // TODO: Completează mesajul de log cu placeholder-e (ex: "{}", userId) pentru a vedea parametrii în loguri.
+        logger.info("findProgramareByUserId cu parametrii: ", userId);
+        return programareRepository.findProgramareByUserId(userId);
     }
 }

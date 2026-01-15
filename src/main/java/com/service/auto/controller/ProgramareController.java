@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -83,16 +82,18 @@ public class ProgramareController extends  BaseController {
     }
 
 
-    @GetMapping(value = "/programari-personale/{id}", produces = "text/html")
-    public String getProgramarePersonala(@PathVariable Long programareId, Model model, Authentication authentication) {
+    @GetMapping(value = "/programari-personale", produces = "text/html")
+    public String getProgramarePersonala(Model model, Authentication authentication) {
         logger.info("programare personala page");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
 
-        List<Programare> programareList = programareService.findProgramareByUserId(programareId,principal.getId());
+        // TODO: Folosește parametrul `authentication` în loc de SecurityContextHolder sau elimină-l dacă nu este necesar.
+        // TODO: Dacă ai nevoie de detalii pentru o singură programare, adaugă un endpoint separat cu PathVariable și validări.
+        List<Programare> programareList = programareService.findProgramareByUserId(principal.getId());
         model.addAttribute("programareList", programareList);
 
-        return "programari-personale.html";
+        return "programari-personale";
     }
 }
