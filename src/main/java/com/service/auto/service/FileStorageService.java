@@ -6,20 +6,25 @@ import com.service.auto.security.CustomUserPrincipal;
 import jakarta.transaction.Transactional;
 import org.apache.commons.io.FilenameUtils;
 import org.hibernate.service.spi.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class FileStorageService extends BaseService {
 
+    private static final Logger logger = LoggerFactory.getLogger(FileStorageService.class);
 
     public FileStorage create(MultipartFile file, FileStorageTypeEnum fileStorageTypeEnum, CustomUserPrincipal principal) {
 
@@ -61,5 +66,23 @@ public class FileStorageService extends BaseService {
             throw new ServiceException(exception.getMessage());
         }
 
+    }
+
+    public Optional<byte[]> loadFileBytes(FileStorage fileStorage) {
+        if (fileStorage == null) {
+            return Optional.empty();
+        }
+
+        Path targetFile = Paths.get(fileStorage.getFileRootPath(), fileStorage.getFileSubdirPath(), fileStorage.getFileMd5());
+        if (!Files.exists(targetFile)) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(Files.readAllBytes(targetFile));
+        } catch (IOException exception) {
+            logger.warn("Nu am putut citi fișierul pentru FileStorage id {}.", fileStorage.getId(), exception);
+            return Optional.empty();
+        }
     }
 }

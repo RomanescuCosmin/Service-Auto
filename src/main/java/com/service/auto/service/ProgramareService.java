@@ -46,4 +46,8 @@ public class ProgramareService extends BaseService {
         logger.info("findProgramareByUserId cu parametrii: ", userId);
         return programareRepository.findProgramareByUserId(userId);
     }
+
+    public Programare findById(Long id) {
+        return programareRepository.findById(id);
+    }
 }
