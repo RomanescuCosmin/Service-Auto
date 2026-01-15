@@ -20,7 +20,6 @@ import java.time.LocalDate;
 @Transactional
 public class FileStorageService extends BaseService {
 
-
     public FileStorage create(MultipartFile file, FileStorageTypeEnum fileStorageTypeEnum, CustomUserPrincipal principal) {
 
         try {
