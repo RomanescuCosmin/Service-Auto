@@ -5,58 +5,60 @@
     <meta charset="UTF-8"/>
     <title>Programările mele</title>
 </head>
-<body class="bg-white">
+<body class="bg-slate-950">
 <section x-data="{ showContent:false }"
          x-init="setTimeout(()=>showContent=true,120)"
-         class="relative overflow-hidden bg-gradient-to-b from-slate-100 via-white to-sky-50/40">
-    <div aria-hidden="true" class="pointer-events-none absolute -left-28 top-12 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -right-24 bottom-10 h-64 w-64 rounded-full bg-slate-200/60 blur-3xl"></div>
+         class="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div aria-hidden="true" class="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-sky-500/20 blur-[120px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute right-10 top-0 h-56 w-56 rounded-full bg-indigo-400/20 blur-[120px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-emerald-400/10 blur-[140px]"></div>
 
     <div x-show="showContent"
          x-transition:enter="transition ease-out duration-700"
          x-transition:enter-start="opacity-0 translate-y-4"
          x-transition:enter-end="opacity-100 translate-y-0">
-        <header class="max-w-5xl mx-auto px-5 pt-8">
-            <div class="rounded-2xl border border-slate-200/70 bg-white/80 shadow-sm backdrop-blur">
-                <div class="grid gap-6 px-5 py-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <header class="max-w-6xl mx-auto px-6 pt-10">
+            <div class="rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.8)] backdrop-blur">
+                <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-sky-500">Programări personale</p>
-                        <h1 class="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                            Spațiul tău <span class="text-sky-600">Service Auto</span>
+                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-sky-300/80">Programările tale</p>
+                        <h1 class="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+                            Dashboard-ul tău <span class="text-sky-400">Service Auto</span>
                         </h1>
-                        <p class="mt-2 text-sm text-slate-600">
-                            Aici găsești toate programările tale, statusul lor și detaliile esențiale. Dacă ai nevoie de ajutor
-                            rapid, suntem la un apel distanță.
+                        <p class="mt-3 max-w-xl text-sm text-slate-300">
+                            Monitorizează rapid statusul fiecărei programări, descarcă documente și păstrează legătura cu
+                            echipa noastră. Totul, într-un singur loc.
                         </p>
-                        <div class="mt-4 flex flex-wrap gap-3">
+                        <div class="mt-6 flex flex-wrap gap-3">
                             <a th:href="@{/programare}"
-                               class="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500">
-                                Adaugă o nouă programare
+                               class="inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 hover:bg-sky-400">
+                                Programează o vizită
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14"/>
                                     <path d="M5 12h14"/>
                                 </svg>
                             </a>
                             <a th:href="@{/contact}"
-                               class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
-                                Contact rapid
-                                <svg class="h-4 w-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                               class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-semibold text-white hover:border-white/40">
+                                Vorbește cu noi
+                                <svg class="h-4 w-4 text-sky-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.81-1.09a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z"/>
                                 </svg>
                             </a>
                         </div>
                     </div>
-                    <div class="rounded-xl border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-white p-4 shadow-sm">
-                        <h2 class="text-base font-semibold text-slate-900">Rezumat rapid</h2>
-                        <p class="mt-2 text-xs text-slate-600">Statusurile sunt actualizate în timp real de echipa noastră.</p>
-                        <div class="mt-4 grid gap-3">
-                            <div class="flex items-center justify-between rounded-lg bg-white px-3 py-2 shadow-sm">
-                                <span class="text-xs font-semibold text-slate-700">Total programări</span>
-                                <span class="text-base font-bold text-slate-900" th:text="${programareList.size()}">0</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-lg bg-white px-3 py-2 shadow-sm">
-                                <span class="text-xs font-semibold text-slate-700">Status curent</span>
-                                <span class="text-[11px] font-semibold uppercase tracking-wide text-sky-500">Vezi mai jos</span>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:max-w-sm">
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Programări totale</p>
+                            <p class="mt-3 text-3xl font-bold text-white" th:text="${programareList.size()}">0</p>
+                            <p class="mt-2 text-xs text-slate-400">Actualizate în timp real.</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Status mediu</p>
+                            <p class="mt-3 text-sm font-semibold text-sky-300">Verifică fiecare card</p>
+                            <div class="mt-4 flex gap-2">
+                                <span class="rounded-full bg-emerald-400/20 px-3 py-1 text-[10px] font-semibold text-emerald-200">Confirmată</span>
+                                <span class="rounded-full bg-sky-400/20 px-3 py-1 text-[10px] font-semibold text-sky-200">În așteptare</span>
                             </div>
                         </div>
                     </div>
@@ -64,98 +66,100 @@
             </div>
         </header>
 
-        <div class="max-w-5xl mx-auto px-5 py-8">
+        <div class="max-w-6xl mx-auto px-6 py-10">
             <div th:if="${#lists.isEmpty(programareList)}"
-                 class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center shadow-sm">
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-500">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                 class="rounded-[28px] border border-dashed border-white/20 bg-white/5 p-10 text-center">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-500/20 text-sky-200">
+                    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 6v6l4 2"/>
                         <circle cx="12" cy="12" r="9"/>
                     </svg>
                 </div>
-                <h3 class="mt-4 text-lg font-semibold text-slate-900">Nu ai programări încă</h3>
-                <p class="mt-2 text-sm text-slate-600">Programează-ți prima vizită și noi ne ocupăm de restul.</p>
+                <h3 class="mt-5 text-xl font-semibold text-white">Nu ai programări încă</h3>
+                <p class="mt-3 text-sm text-slate-300">Programează-ți prima vizită și noi ne ocupăm de restul.</p>
                 <a th:href="@{/programare}"
-                   class="mt-5 inline-flex items-center justify-center rounded-lg bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-500">
+                   class="mt-6 inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 hover:bg-sky-400">
                     Creează o programare
                 </a>
             </div>
 
-            <div th:if="${!#lists.isEmpty(programareList)}" class="grid gap-4">
+            <div th:if="${!#lists.isEmpty(programareList)}" class="grid gap-6">
                 <article th:each="programare : ${programareList}"
-                         class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                         class="group rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_30px_60px_-50px_rgba(15,23,42,0.9)] backdrop-blur">
                     <div class="flex flex-wrap items-start justify-between gap-4">
                         <div>
-                            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Programare</p>
-                            <h2 class="mt-1.5 text-xl font-semibold text-slate-900" th:text="${programare.nume}">Nume Client</h2>
-                            <p class="mt-1 text-xs text-slate-600">
+                            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-300">
+                                Programare
+                            </div>
+                            <h2 class="mt-3 text-2xl font-semibold text-white" th:text="${programare.nume}">Nume Client</h2>
+                            <p class="mt-2 text-xs text-slate-300">
                                 <span th:text="${#temporals.format(programare.dataProgramare, 'dd MMM yyyy')}">12 Ian 2024</span>
                                 •
                                 <span th:text="|${#numbers.formatInteger(programare.oraProgramare, 2)}:${#numbers.formatInteger(programare.minutProgramare, 2)}|">09:30</span>
                             </p>
                         </div>
-                        <span class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold"
-                              th:classappend="${programare.confirmed} ? 'bg-emerald-100 text-emerald-700' : (${programare.canceled} ? 'bg-rose-100 text-rose-700' : 'bg-sky-100 text-sky-700')"
+                        <span class="inline-flex items-center gap-2 rounded-full px-4 py-1 text-[11px] font-semibold"
+                              th:classappend="${programare.confirmed} ? 'bg-emerald-400/20 text-emerald-200' : (${programare.canceled} ? 'bg-rose-400/20 text-rose-200' : 'bg-sky-400/20 text-sky-200')"
                               th:text="${programare.confirmed} ? 'Confirmată' : (${programare.canceled} ? 'Anulată' : 'În așteptare')">
                             În așteptare
                         </span>
                     </div>
 
-                    <div class="mt-4 grid gap-3 md:grid-cols-2">
-                        <div class="rounded-xl bg-slate-50 p-3">
-                            <h3 class="text-xs font-semibold text-slate-900">Mașină &amp; identificare</h3>
-                            <dl class="mt-2 space-y-2 text-xs text-slate-600">
-                                <div class="flex justify-between">
-                                    <dt class="font-semibold text-slate-700">Marcă</dt>
+                    <div class="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+                        <div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+                            <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Mașină &amp; identificare</h3>
+                            <dl class="mt-4 space-y-3 text-xs text-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <dt class="font-semibold text-slate-300">Marcă</dt>
                                     <dd th:text="${programare.marca != null ? programare.marca.nume : '-'}">-</dd>
                                 </div>
-                                <div class="flex justify-between">
-                                    <dt class="font-semibold text-slate-700">Model</dt>
+                                <div class="flex items-center justify-between">
+                                    <dt class="font-semibold text-slate-300">Model</dt>
                                     <dd th:text="${programare.modelAuto != null ? programare.modelAuto.nume : '-'}">-</dd>
                                 </div>
-                                <div class="flex justify-between">
-                                    <dt class="font-semibold text-slate-700">Serie șasiu</dt>
+                                <div class="flex items-center justify-between">
+                                    <dt class="font-semibold text-slate-300">Serie șasiu</dt>
                                     <dd th:text="${programare.serieSasiu}">-</dd>
                                 </div>
                             </dl>
                         </div>
 
-                        <div class="rounded-xl bg-slate-50 p-3">
-                            <h3 class="text-xs font-semibold text-slate-900">Date de contact</h3>
-                            <dl class="mt-2 space-y-2 text-xs text-slate-600">
-                                <div class="flex justify-between">
-                                    <dt class="font-semibold text-slate-700">Telefon</dt>
+                        <div class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+                            <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Date de contact</h3>
+                            <dl class="mt-4 space-y-3 text-xs text-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <dt class="font-semibold text-slate-300">Telefon</dt>
                                     <dd th:text="${programare.telefon}">-</dd>
                                 </div>
-                                <div class="flex justify-between">
-                                    <dt class="font-semibold text-slate-700">Email</dt>
+                                <div class="flex items-center justify-between">
+                                    <dt class="font-semibold text-slate-300">Email</dt>
                                     <dd th:text="${programare.email}">-</dd>
                                 </div>
-                                <div class="flex justify-between">
-                                    <dt class="font-semibold text-slate-700">Creată la</dt>
+                                <div class="flex items-center justify-between">
+                                    <dt class="font-semibold text-slate-300">Creată la</dt>
                                     <dd th:text="${#temporals.format(programare.createdAt, 'dd MMM yyyy, HH:mm')}">-</dd>
                                 </div>
                             </dl>
                         </div>
                     </div>
 
-                    <div class="mt-4 rounded-xl border border-dashed border-slate-200 bg-white/70 p-3">
-                        <h3 class="text-xs font-semibold text-slate-900">Observații</h3>
-                        <p class="mt-2 text-xs text-slate-600" th:text="${programare.observatii != null && !programare.observatii.isBlank() ? programare.observatii : 'Nu ai adăugat observații pentru această programare.'}">
+                    <div class="mt-5 rounded-2xl border border-dashed border-white/10 bg-white/5 p-4">
+                        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Observații</h3>
+                        <p class="mt-3 text-xs text-slate-200" th:text="${programare.observatii != null && !programare.observatii.isBlank() ? programare.observatii : 'Nu ai adăugat observații pentru această programare.'}">
                             Nu ai adăugat observații pentru această programare.
                         </p>
                     </div>
 
-                    <div class="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/70 p-3">
+                    <div class="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-slate-900/50 p-4">
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">Document</p>
-                            <p class="mt-1 text-xs text-slate-600"
+                            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">Document atașat</p>
+                            <p class="mt-2 text-xs text-slate-200"
                                th:text="${programare.fileStorage != null ? programare.fileStorage.fileOriginalName : 'Nu există document atașat.'}">
                                 Nu există document atașat.
                             </p>
                         </div>
                         <span th:if="${programare.fileStorage != null}"
-                              class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm">
+                              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:border-white/40">
                             Descarcă document
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M12 3v12"/>
@@ -164,7 +168,7 @@
                             </svg>
                         </span>
                         <span th:unless="${programare.fileStorage != null}"
-                              class="inline-flex items-center rounded-lg bg-slate-200/60 px-3 py-2 text-[11px] font-semibold text-slate-500">
+                              class="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-[11px] font-semibold text-slate-300">
                             Fără document
                         </span>
                     </div>
