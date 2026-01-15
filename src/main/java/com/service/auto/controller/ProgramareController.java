@@ -9,12 +9,6 @@ import com.service.auto.exception.InvalidInputException;
 import com.service.auto.security.CustomUserPrincipal;
 import groovy.util.logging.Slf4j;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -23,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
@@ -103,32 +96,4 @@ public class ProgramareController extends  BaseController {
         return "programari-personale";
     }
 
-    @GetMapping(value = "/programari-personale/{id}/document")
-    public ResponseEntity<ByteArrayResource> downloadDocument(@PathVariable("id") Long id) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
-
-        Programare programare = programareService.findById(id);
-        if (programare == null || programare.getFileStorage() == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        if (!programare.getUser().getId().equals(principal.getId())) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
-        return fileStorageService.loadFileBytes(programare.getFileStorage())
-                .map(bytes -> {
-                    ByteArrayResource resource = new ByteArrayResource(bytes);
-                    ContentDisposition contentDisposition = ContentDisposition.attachment()
-                            .filename(programare.getFileStorage().getFileOriginalName())
-                            .build();
-                    return ResponseEntity.ok()
-                            .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition.toString())
-                            .contentLength(bytes.length)
-                            .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                            .body(resource);
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
 }

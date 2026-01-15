@@ -154,16 +154,15 @@
                                 Nu există document atașat.
                             </p>
                         </div>
-                        <a th:if="${programare.fileStorage != null}"
-                           th:href="@{/programari-personale/{id}/document(id=${programare.id})}"
-                           class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm hover:border-sky-200 hover:text-sky-600">
+                        <span th:if="${programare.fileStorage != null}"
+                              class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm">
                             Descarcă document
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M12 3v12"/>
                                 <path d="M7 10l5 5 5-5"/>
                                 <path d="M5 21h14"/>
                             </svg>
-                        </a>
+                        </span>
                         <span th:unless="${programare.fileStorage != null}"
                               class="inline-flex items-center rounded-lg bg-slate-200/60 px-3 py-2 text-[11px] font-semibold text-slate-500">
                             Fără document
