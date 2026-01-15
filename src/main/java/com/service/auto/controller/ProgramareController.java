@@ -3,6 +3,8 @@ package com.service.auto.controller;
 import com.service.auto.dto.FileStorageTypeEnum;
 import com.service.auto.dto.ProgramareDto;
 import com.service.auto.entity.FileStorage;
+import com.service.auto.entity.Programare;
+import com.service.auto.entity.User;
 import com.service.auto.exception.InvalidInputException;
 import com.service.auto.security.CustomUserPrincipal;
 import groovy.util.logging.Slf4j;
@@ -15,12 +17,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -77,4 +82,17 @@ public class ProgramareController extends  BaseController {
         }
     }
 
+
+    @GetMapping(value = "/programari-personale/{id}", produces = "text/html")
+    public String getProgramarePersonala(@PathVariable Long programareId, Model model, Authentication authentication) {
+        logger.info("programare personala page");
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
+
+        List<Programare> programareList = programareService.findProgramareByUserId(programareId,principal.getId());
+        model.addAttribute("programareList", programareList);
+
+        return "programari-personale.html";
+    }
 }

@@ -12,11 +12,23 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
     public List<ProgramareSlotDto> findBookedSlots(LocalDate fromDate) {
         return entityManager.createQuery(
-                        "select new com.service.auto.dto.ProgramareSlotDto(p.dataProgramare, p.oraProgramare, p.minutProgramare) " +
-                                "from Programare p " +
-                                "where p.canceled = false and p.dataProgramare >= :fromDate",
+                        "select new com.service.auto.dto.ProgramareSlotDto(" +
+                                " p.dataProgramare, " +
+                                " p.oraProgramare," +
+                                " p.minutProgramare) " +
+                                " from Programare p " +
+                                " where p.canceled = false and p.dataProgramare >= :fromDate",
                         ProgramareSlotDto.class)
                 .setParameter("fromDate", fromDate)
                 .getResultList();
+    }
+
+    public List<Programare> findProgramareByUserId(Long programareId, Long userId) {
+        return entityManager.createNativeQuery(
+                        "Select p from programare p where p.id = :programareId and p.fk_user = :userId "
+                ).setParameter("programareId", programareId)
+                .setParameter("userId", userId)
+                .getResultList();
+
     }
 }
