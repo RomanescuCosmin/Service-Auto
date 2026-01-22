@@ -43,7 +43,15 @@ public class ProgramareService extends BaseService {
 
     public List<Programare> findProgramareByUserId(Long userId) {
         // TODO: Completează mesajul de log cu placeholder-e (ex: "{}", userId) pentru a vedea parametrii în loguri.
-        logger.info("findProgramareByUserId cu parametrii: ", userId);
+        logger.info("findProgramareByUserId cu userId: {} ", userId);
         return programareRepository.findProgramareByUserId(userId);
+    }
+
+    public Programare getProgramareByFileStorageId(Long fileStorageId) {
+        logger.info("getProgramareByFileStorageId cu documentId: {} ", fileStorageId);
+        if (fileStorageId == null) {
+            return null;
+        }
+        return programareRepository.getProgramareByFileStorageId(fileStorageId);
     }
 }

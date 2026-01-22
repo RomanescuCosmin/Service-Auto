@@ -2,6 +2,7 @@ package com.service.auto.repository;
 
 import com.service.auto.dto.ProgramareSlotDto;
 import com.service.auto.entity.Programare;
+import jakarta.persistence.NoResultException;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -31,5 +32,18 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                 .setParameter("userId", userId)
                 .getResultList();
 
+    }
+
+    public Programare getProgramareByFileStorageId(Long fileStorageId) {
+        try {
+            return entityManager.createQuery(
+                            "select p from Programare p where p.fileStorage.id = :fileStorageId",
+                            Programare.class)
+                    .setParameter("fileStorageId", fileStorageId)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 }
