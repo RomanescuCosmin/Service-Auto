@@ -8,29 +8,27 @@
 <body class="bg-white">
 <section x-data="{ showContent:false }"
          x-init="setTimeout(()=>showContent=true,120)"
-         class="relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-amber-50/40">
-    <div aria-hidden="true" class="pointer-events-none absolute right-10 top-0 h-56 w-56 rounded-full bg-rose-200/40 blur-[120px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-amber-200/30 blur-[140px]"></div>
+         class="relative overflow-hidden bg-white">
 
     <div x-show="showContent"
          x-transition:enter="transition ease-out duration-700"
          x-transition:enter-start="opacity-0 translate-y-4"
          x-transition:enter-end="opacity-100 translate-y-0">
-        <header class="max-w-6xl mx-auto px-6 pt-10">
-            <div class="rounded-[28px] border border-orange-100 bg-white/80 p-6 shadow-[0_30px_80px_-60px_rgba(251,146,60,0.35)] backdrop-blur">
+        <header class="max-w-6xl mx-auto px-6 pt-12">
+            <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
                 <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-400">Programările tale</p>
-                        <h1 class="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                            Dashboard-ul tău <span class="text-orange-500">Service Auto</span>
+                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Programările tale</p>
+                        <h1 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+                            Dashboard-ul tău <span class="text-slate-900">Service Auto</span>
                         </h1>
-                        <p class="mt-3 max-w-xl text-sm text-slate-600">
+                        <p class="mt-3 max-w-xl text-sm leading-6 text-slate-600">
                             Monitorizează rapid statusul fiecărei programări, descarcă documente și păstrează legătura cu
                             echipa noastră. Totul, într-un singur loc.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-3">
                             <a th:href="@{/programare}"
-                               class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/20 hover:bg-slate-800">
+                               class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800">
                                 Programează o vizită
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14"/>
@@ -38,16 +36,16 @@
                                 </svg>
                             </a>
                             <a th:href="@{/contact}"
-                               class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 hover:border-orange-300">
+                               class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 hover:border-slate-300 hover:text-slate-900">
                                 Vorbește cu noi
-                                <svg class="h-4 w-4 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.81-1.09a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z"/>
                                 </svg>
                             </a>
                         </div>
                     </div>
                     <div class="grid gap-4 sm:grid-cols-2 lg:max-w-sm">
-                        <div class="rounded-2xl border border-orange-100 bg-white p-4 shadow-sm">
+                        <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Programări totale</p>
                             <p class="mt-3 text-3xl font-bold text-slate-900" th:text="${programareList.size()}">0</p>
                             <p class="mt-2 text-xs text-slate-500">Actualizate în timp real.</p>
@@ -59,8 +57,8 @@
 
         <div class="max-w-6xl mx-auto px-6 py-10">
             <div th:if="${#lists.isEmpty(programareList)}"
-                 class="rounded-[28px] border border-dashed border-orange-200 bg-white/80 p-10 text-center shadow-sm">
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-500">
+                 class="rounded-3xl border border-dashed border-slate-200 bg-white p-10 text-center shadow-sm">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 6v6l4 2"/>
                         <circle cx="12" cy="12" r="9"/>
@@ -69,16 +67,16 @@
                 <h3 class="mt-5 text-xl font-semibold text-slate-900">Nu ai programări încă</h3>
                 <p class="mt-3 text-sm text-slate-600">Programează-ți prima vizită și noi ne ocupăm de restul.</p>
                 <a th:href="@{/programare}"
-                   class="mt-6 inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/20 hover:bg-slate-800">
+                   class="mt-6 inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800">
                     Creează o programare
                 </a>
             </div>
 
             <div th:if="${!#lists.isEmpty(programareList)}"
-                 class="overflow-hidden rounded-[28px] border border-orange-100 bg-white/90 shadow-[0_35px_90px_-70px_rgba(120,53,15,0.25)] backdrop-blur">
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-orange-100 bg-orange-50/60 px-6 py-5">
+                 class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-6 py-5">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-400">Rezumat programări</p>
+                        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Rezumat programări</p>
                         <h2 class="mt-2 text-xl font-bold text-slate-900">Programările tale în format tabelar</h2>
                         <p class="mt-1 text-sm text-slate-600">Vezi rapid datele principale, statusul și documentele atașate.</p>
                     </div>
@@ -89,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="hidden border-b border-orange-100 bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 lg:grid lg:grid-cols-[1.2fr_1fr_1.2fr_1fr_0.8fr_1.3fr]">
+                <div class="hidden border-b border-slate-200 bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 lg:grid lg:grid-cols-[1.2fr_1fr_1.2fr_1fr_0.8fr_1.3fr]">
                     <span>Programare</span>
                     <span>Client</span>
                     <span>Mașină</span>
@@ -98,19 +96,19 @@
                     <span>Acțiuni</span>
                 </div>
 
-                <div class="divide-y divide-orange-100">
+                <div class="divide-y divide-slate-200">
                     <article th:each="programare : ${programareList}"
                              class="group grid gap-5 px-6 py-6 lg:grid-cols-[1.2fr_1fr_1.2fr_1fr_0.8fr_1.3fr]">
                         <div class="flex flex-col gap-3">
-                            <div class="rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3">
-                                <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-orange-500">Programare</p>
+                            <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Programare</p>
                                 <p class="mt-1 text-base font-semibold text-slate-900" th:text="${#temporals.format(programare.dataProgramare, 'dd MMM yyyy')}">12 Ian 2024</p>
                                 <p class="text-xs text-slate-600"
                                    th:text="|${#numbers.formatInteger(programare.oraProgramare, 2)}:${#numbers.formatInteger(programare.minutProgramare, 2)}|">
                                     09:30
                                 </p>
                             </div>
-                            <div class="rounded-xl border border-dashed border-orange-100 bg-orange-50/40 p-3 lg:hidden">
+                            <div class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-3 lg:hidden">
                                 <h3 class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Observații</h3>
                                 <p class="mt-2 text-[11px] text-slate-600"
                                    th:text="${programare.observatii != null && !programare.observatii.isBlank() ? programare.observatii : 'Nu ai adăugat observații pentru această programare.'}">
@@ -122,13 +120,13 @@
                         <div>
                             <h2 class="text-lg font-semibold text-slate-900" th:text="${programare.getNume()}">Nume Client</h2>
                             <p class="mt-1 text-xs text-slate-600">Client principal &amp; programare activă</p>
-                            <div class="mt-4 rounded-xl border border-orange-100 bg-white px-3 py-3">
+                            <div class="mt-4 rounded-xl border border-slate-200 bg-white px-3 py-3">
                                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Creată la</p>
                                 <p class="mt-2 text-xs text-slate-700" th:text="${#temporals.format(programare.createdAt, 'dd MMM yyyy, HH:mm')}">-</p>
                             </div>
                         </div>
 
-                        <div class="rounded-xl border border-orange-100 bg-white px-3 py-3">
+                        <div class="rounded-xl border border-slate-200 bg-white px-3 py-3">
                             <h3 class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Mașină &amp; identificare</h3>
                             <dl class="mt-3 space-y-2 text-[11px] text-slate-600">
                                 <div class="flex items-center justify-between">
@@ -146,7 +144,7 @@
                             </dl>
                         </div>
 
-                        <div class="rounded-xl border border-orange-100 bg-white px-3 py-3">
+                        <div class="rounded-xl border border-slate-200 bg-white px-3 py-3">
                             <h3 class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Date de contact</h3>
                             <dl class="mt-3 space-y-2 text-[11px] text-slate-600">
                                 <div class="flex items-center justify-between">
@@ -169,7 +167,7 @@
                         </div>
 
                         <div class="flex flex-col gap-3">
-                            <div class="rounded-xl border border-orange-100 bg-white px-3 py-3">
+                            <div class="rounded-xl border border-slate-200 bg-white px-3 py-3">
                                 <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Document atașat</p>
                                 <p class="mt-1 text-[11px] text-slate-600"
                                    th:text="${programare.fileStorage != null ? programare.fileStorage.fileOriginalName : 'Nu există document atașat.'}">
@@ -179,7 +177,7 @@
                             <div class="flex flex-wrap items-center gap-2">
                                 <button type="button"
                                         th:if="${!programare.canceled}"
-                                        class="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-3 py-2 text-[11px] font-semibold text-rose-600 hover:border-rose-300 hover:text-rose-700">
+                                        class="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-2 text-[11px] font-semibold text-rose-700 shadow-sm hover:bg-rose-100">
                                     Anulează
                                     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M18 6L6 18"/>
@@ -188,7 +186,7 @@
                                 </button>
                                 <a th:if="${programare.fileStorage != null}"
                                    th:href="@{|/files/${programare.fileStorage.id}|}"
-                                   class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-2 text-[11px] font-semibold text-orange-600 hover:border-orange-300">
+                                   class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-2 text-[11px] font-semibold text-white shadow-sm hover:bg-slate-800">
                                     Descarcă
                                     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 3v12"/>
@@ -205,8 +203,8 @@
                     </article>
                 </div>
 
-                <div class="border-t border-orange-100 bg-white px-6 py-5">
-                    <div class="rounded-xl border border-dashed border-orange-100 bg-orange-50/40 p-4">
+                <div class="border-t border-slate-200 bg-white px-6 py-5">
+                    <div class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-4">
                         <h3 class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Observații generale</h3>
                         <p class="mt-2 text-sm text-slate-600">
                             Pentru actualizări rapide, contactează echipa noastră sau folosește butonul de anulare din dreptul fiecărei programări.
