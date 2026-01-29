@@ -28,5 +28,8 @@ public class BaseService {
     protected Environment environment;
 
     @Autowired
+    protected EmailService emailService;
+
+    @Autowired
     protected FileStorageRepository fileStorageRepository;
 }

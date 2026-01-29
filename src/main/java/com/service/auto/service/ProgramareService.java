@@ -5,6 +5,7 @@ import com.service.auto.dto.ProgramareSlotDto;
 import com.service.auto.entity.FileStorage;
 import com.service.auto.entity.Programare;
 import com.service.auto.mapper.ProgramareMapper;
+import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +23,10 @@ public class ProgramareService extends BaseService {
     private final Logger logger = LoggerFactory.getLogger(ProgramareService.class);
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
 
-    public Programare create(ProgramareDto programareDto, Long userId, FileStorage fileStorage) {
+    public Programare create(ProgramareDto programareDto, Long userId, FileStorage fileStorage) throws MessagingException {
         logger.info("creare programare cu parametrii: ", programareDto);
         Programare programare = ProgramareMapper.toEntity(programareDto, userId, fileStorage);
+        emailService.sendEmailForAppointment(programareDto);
         return programareRepository.merge(programare);
     }
 
@@ -42,7 +44,6 @@ public class ProgramareService extends BaseService {
     }
 
     public List<Programare> findProgramareByUserId(Long userId) {
-        // TODO: Completează mesajul de log cu placeholder-e (ex: "{}", userId) pentru a vedea parametrii în loguri.
         logger.info("findProgramareByUserId cu userId: {} ", userId);
         return programareRepository.findProgramareByUserId(userId);
     }

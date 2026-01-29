@@ -43,12 +43,6 @@ public class ProgramareController extends BaseController {
 
 
     private static final Logger logger = LoggerFactory.getLogger(ProgramareController.class);
-    private final Environment environment;
-
-    public ProgramareController(Environment environment) {
-        super();
-        this.environment = environment;
-    }
 
     @GetMapping(value = "/programare", produces = "text/html")
     public String programare(Model uiModel) {
@@ -116,7 +110,7 @@ public class ProgramareController extends BaseController {
 
 
     @GetMapping("/files/{fileStorageId}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable("fileStorageId") Long fileStorageId, Model model) {
+    public ResponseEntity<Resource> downloadFile(@PathVariable("fileStorageId") Long fileStorageId) {
         logger.info("downloadFileStorageById for programare page with fileStorageId={}", fileStorageId);
 
         if (fileStorageId == null) {
@@ -175,7 +169,7 @@ public class ProgramareController extends BaseController {
         ResponseEntity.BodyBuilder builder = ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, disposition.toString())
-                .cacheControl(CacheControl.noCache());
+                .cacheControl(CacheControl.noStore());
 
         if (size >= 0) {
             builder.contentLength(size);
