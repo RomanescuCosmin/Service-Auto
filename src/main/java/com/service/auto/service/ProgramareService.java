@@ -26,7 +26,12 @@ public class ProgramareService extends BaseService {
     public Programare create(ProgramareDto programareDto, Long userId, FileStorage fileStorage) throws MessagingException {
         logger.info("creare programare cu parametrii: ", programareDto);
         Programare programare = ProgramareMapper.toEntity(programareDto, userId, fileStorage);
-        emailService.sendEmailForAppointment(programareDto);
+        try {
+            emailService.sendEmailForAppointment(programareDto);
+        } catch (MessagingException e) {
+            logger.info("eroare la trimiterea email-ului ", e.getMessage());
+        }
+
         return programareRepository.merge(programare);
     }
 
@@ -48,11 +53,24 @@ public class ProgramareService extends BaseService {
         return programareRepository.findProgramareByUserId(userId);
     }
 
+    public Programare findProgramareByIdAndUser(Long programareId, Long userId) {
+        logger.info("findProgramareByIdAndUser cu programareId: {}, userId: {} ",programareId, userId);
+        return programareRepository.findProgramareByIdAndUser(programareId, userId);
+    }
+
     public Programare getProgramareByFileStorageId(Long fileStorageId) {
         logger.info("getProgramareByFileStorageId cu documentId: {} ", fileStorageId);
         if (fileStorageId == null) {
             return null;
         }
         return programareRepository.getProgramareByFileStorageId(fileStorageId);
+    }
+
+    public void setAnulareProgramare (Long programareId, Long userId) {
+        Programare programare = programareRepository.findProgramareByIdAndUser(programareId, userId);
+        programare.setCanceled(true);
+        programare.setConfirmed(false);
+
+        programareRepository.merge(programare);
     }
 }

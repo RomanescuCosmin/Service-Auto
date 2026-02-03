@@ -11,7 +11,6 @@ import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
@@ -23,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 import org.springframework.web.server.ResponseStatusException;
@@ -106,6 +106,31 @@ public class ProgramareController extends BaseController {
         model.addAttribute("programareList", programareList);
 
         return "programari-personale";
+    }
+
+
+    @PostMapping(value = "/programari-personale/anulare-programare/{id}", produces = "text/html")
+    public String anulareProgramare(HttpServletRequest httpServletRequest, @PathVariable("id") Long programareId,
+                                             Model uiModel,
+                                             RedirectAttributes redirAttrs) {
+
+        logger.info("anulareProgramare with parameters: programareId = {}", programareId);
+
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
+
+            programareService.setAnulareProgramare(programareId, principal.getId());
+
+            uiModel.asMap().clear();
+
+            redirAttrs.addFlashAttribute("saveResult", "ok-add");
+            redirAttrs.addFlashAttribute("succesMessage", "Programarea a fost anulată cu succes!");
+            return "redirect:/programari-personale";
+        } catch (Exception ex) {
+            logger.error("--------------------failed to anulareProgramare: ", ex);
+            return  "redirect:/programari-personale";
+        }
     }
 
 

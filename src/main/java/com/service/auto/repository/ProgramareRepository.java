@@ -46,4 +46,18 @@ public class ProgramareRepository extends BaseRepository<Programare> {
             return null;
         }
     }
+
+    public Programare findProgramareByIdAndUser(Long programareId, Long userId) {
+        try {
+            return entityManager.createQuery(
+                            "select p from Programare p where p.id = :programareId and p.user.id = :userId",
+                            Programare.class)
+                    .setParameter("programareId", programareId)
+                    .setParameter("userId", userId)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
+
+    }
 }

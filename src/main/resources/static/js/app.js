@@ -10,6 +10,15 @@ function applyValidAppearence(element) {
     }
 }
 
+function openModal(elementId) {
+    const open = document.getElementById(elementId);
+    open.classList.remove("hidden");
+}
+
+function closeModal(elementId) {
+    const close = document.getElementById(elementId);
+    close.classList.add("hidden");
+}
 
 function showError(element) {
     if (element != null) {
