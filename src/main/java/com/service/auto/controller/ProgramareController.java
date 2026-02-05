@@ -98,7 +98,7 @@ public class ProgramareController extends BaseController {
     @GetMapping(value = "/programari-personale", produces = "text/html")
     public String programariPersonaleList(
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "dataProgramare") String sort,
             @RequestParam(defaultValue = "desc") String order,
             @RequestParam(required = false) Boolean confirmed,

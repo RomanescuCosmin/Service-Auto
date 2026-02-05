@@ -17,6 +17,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
     private static final List<String> ALLOWED_SORTS =
             List.of("dataProgramare", "oraProgramare", "createdAt");
 
+    private static final String USER_ID = "userId";
+    private static final String CONFIRMED = "confirmed";
+    private static final String CANCELED = "canceled";
+
 
     public List<ProgramareListDto> find(ProgramareFilter filter, int page, int size) {
 
@@ -60,15 +64,15 @@ public class ProgramareRepository extends BaseRepository<Programare> {
         TypedQuery<ProgramareListDto> query = entityManager.createQuery(jpql.toString(), ProgramareListDto.class);
 
         if (filter.userId() != null) {
-            query.setParameter("userId", filter.userId());
+            query.setParameter(USER_ID, filter.userId());
         }
 
         if (filter.confirmed() != null) {
-            query.setParameter("confirmed", filter.confirmed());
+            query.setParameter(CONFIRMED, filter.confirmed());
         }
 
         if (filter.canceled() != null) {
-            query.setParameter("canceled", filter.canceled());
+            query.setParameter(CANCELED, filter.canceled());
         }
 
         query.setFirstResult((page - 1) * size);
@@ -96,17 +100,19 @@ public class ProgramareRepository extends BaseRepository<Programare> {
         }
 
         TypedQuery<Long> query = entityManager.createQuery(jpql.toString(), Long.class);
+
         if (filter.userId() != null) {
-            query.setParameter("userId", filter.userId());
+            query.setParameter(USER_ID, filter.userId());
         }
 
         if (filter.confirmed() != null) {
-            query.setParameter("confirmed", filter.confirmed());
+            query.setParameter(CONFIRMED, filter.confirmed());
         }
 
         if (filter.canceled() != null) {
-            query.setParameter("canceled", filter.canceled());
+            query.setParameter(CANCELED, filter.canceled());
         }
+
         return query.getSingleResult();
     }
 
@@ -127,7 +133,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
         return entityManager.createQuery(
                         "select p from Programare p where p.user.id = :userId order by p.dataProgramare desc, p.oraProgramare desc, p.minutProgramare desc",
                         Programare.class)
-                .setParameter("userId", userId)
+                .setParameter(USER_ID, userId)
                 .getResultList();
 
     }
@@ -151,7 +157,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                             "select p from Programare p where p.id = :programareId and p.user.id = :userId",
                             Programare.class)
                     .setParameter("programareId", programareId)
-                    .setParameter("userId", userId)
+                    .setParameter(USER_ID, userId)
                     .getSingleResult();
         } catch (NoResultException ex) {
             return null;
