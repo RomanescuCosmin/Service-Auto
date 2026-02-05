@@ -1,58 +1,72 @@
 <div th:fragment="anulare-programare(programareId)">
-
-    <div th:id="'cancelModal-' + ${programareId}"
-         class="hidden fixed inset-0 z-50 flex items-center justify-center">
-        <div class="absolute inset-0 bg-slate-900/50 transition-opacity duration-300"
-             th:attr="onclick=|closeModal('cancelModal-${programareId}')|"></div>
-        <div class="relative w-full max-w-md rounded-xl bg-white shadow-2xl">
-            <div class="flex items-center gap-4 px-6 py-4 border-b">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-red-600 hover:bg-slate-100 cursor-pointer "
-                    th:attr="onclick=|closeModal('cancelModal-${programareId}')|">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v3m0 4h.01M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3 class="text-sm font-semibold text-slate-900">
-                        Anulare programare
-                    </h3>
-                    <p class="text-xs text-slate-500">
-                        Această acțiune este ireversibilă
-                    </p>
-                </div>
-            </div>
-            <div class="px-6 py-5 text-sm text-slate-600 space-y-4">
-                <p>
-                    Confirmi anularea acestei programări?
-                </p>
-
-                <div class="rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
-                    După anulare, vei primi automat un email de confirmare.
-                </div>
-            </div>
-            <div class="flex justify-end gap-3 px-6 py-4 border-t bg-slate-50 rounded-b-xl">
-
-                <button type="button"
-                        th:attr="onclick=|closeModal('cancelModal-${programareId}')|"
-                        class="px-4 py-2 text-xs font-medium
-                               rounded-md border border-slate-300
-                               text-slate-600 hover:bg-slate-100">
-                    Renunță
-                </button>
-
-                <form th:action="@{/programari-personale/anulare-programare/{id}(id=${programare.id})}" method="post">
-                    <button type="submit"
-                            class="px-4 py-2 text-xs font-semibold
-                                   rounded-md bg-red-600 text-white
-                                   hover:bg-red-700">
-                        Confirmă anularea
-                    </button>
-                </form>
-
-            </div>
+  <div
+    th:id="'cancelModal-' + ${programareId}"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center"
+  >
+    <div
+      class="absolute inset-0 bg-slate-900/50 transition-opacity duration-300"
+      th:attr="onclick=|closeModal('cancelModal-${programareId}')|"
+    ></div>
+    <div class="relative w-full max-w-md rounded-xl bg-white shadow-2xl">
+      <div class="flex items-center gap-4 px-6 py-4 border-b">
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-red-600 hover:bg-slate-100 cursor-pointer"
+          th:attr="onclick=|closeModal('cancelModal-${programareId}')|"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3m0 4h.01M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"
+            />
+          </svg>
         </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900">
+            Anulare programare
+          </h3>
+          <p class="text-xs text-slate-500">
+            Această acțiune este ireversibilă
+          </p>
+        </div>
+      </div>
+      <div class="px-6 py-5 text-sm text-slate-600 space-y-4">
+        <p>Confirmi anularea acestei programări?</p>
+
+        <div class="rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
+          După anulare, vei primi automat un email de confirmare.
+        </div>
+      </div>
+      <div
+        class="flex justify-end gap-3 px-6 py-4 border-t bg-slate-50 rounded-b-xl"
+      >
+        <button
+          type="button"
+          th:attr="onclick=|closeModal('cancelModal-${programareId}')|"
+          class="px-4 py-2 text-xs font-medium rounded-md border border-slate-300 text-slate-600 hover:bg-slate-100"
+        >
+          Renunță
+        </button>
+
+        <form
+          th:action="@{/programari-personale/anulare-programare/{id}(id=${programare.id})}"
+          method="post"
+        >
+          <button
+            type="submit"
+            class="px-4 py-2 text-xs font-semibold rounded-md bg-red-600 text-white hover:bg-red-700"
+          >
+            Confirmă anularea
+          </button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

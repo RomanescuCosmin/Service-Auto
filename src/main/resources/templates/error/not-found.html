@@ -1,27 +1,34 @@
-<!DOCTYPE html>
-<html lang="ro" th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}">
-<head>
+<!doctype html>
+<html
+  lang="ro"
+  th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}"
+>
+  <head>
     <title>Pagină negasită</title>
-    <link rel="stylesheet" th:href="@{/styles/header.css}">
-</head>
-<body class="bg-white">
-<section x-data="{ showContent:false, busy:false }"
-         x-init="setTimeout(()=>showContent=true,100)">
-    <main class="px-6 py-16">
+    <link rel="stylesheet" th:href="@{/styles/header.css}" />
+  </head>
+  <body class="bg-white">
+    <section
+      x-data="{ showContent:false, busy:false }"
+      x-init="setTimeout(()=>showContent=true,100)"
+    >
+      <main class="px-6 py-16">
         <div class="mx-auto max-w-xl text-center">
-            <p class="text-7xl font-extrabold tracking-tight">404</p>
-            <h1 class="mt-4 text-3xl font-bold">Ups… pagina nu există</h1>
-            <p class="mt-2 text-gray-600">
-                URL-ul pe care l-ai introdus este greșit sau resursa a fost mutată.
-            </p>
-            <div class="mt-8">
-                <a th:href="@{/}"
-                   class="inline-flex items-center rounded-xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800">
-                    ← Înapoi la acasă
-                </a>
-            </div>
+          <p class="text-7xl font-extrabold tracking-tight">404</p>
+          <h1 class="mt-4 text-3xl font-bold">Ups… pagina nu există</h1>
+          <p class="mt-2 text-gray-600">
+            URL-ul pe care l-ai introdus este greșit sau resursa a fost mutată.
+          </p>
+          <div class="mt-8">
+            <a
+              th:href="@{/}"
+              class="inline-flex items-center rounded-xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              ← Înapoi la acasă
+            </a>
+          </div>
         </div>
-    </main>
-</section>
-</body>
+      </main>
+    </section>
+  </body>
 </html>

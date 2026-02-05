@@ -1,64 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Confirmare Programare Service Auto</title>
-</head>
-<body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, sans-serif;">
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f8;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="padding: 20px 0">
+          <table
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            style="
+              background-color: #ffffff;
+              border-radius: 6px;
+              overflow: hidden;
+            "
+          >
+            <tr>
+              <td
+                align="center"
+                style="padding: 20px; background-color: #1e88e5"
+              >
+                <img src="cid:serviceLogo" width="80" alt="Service Auto" />
+                <h2 style="color: #ffffff; margin: 10px 0 0">Service Auto</h2>
+              </td>
+            </tr>
 
-<table width="100%" cellpadding="0" cellspacing="0">
-    <tr>
-        <td style="padding:20px 0;">
-            <table width="100%" cellpadding="0" cellspacing="0"
-                   style="background-color:#ffffff; border-radius:6px; overflow:hidden;">
+            <tr>
+              <td style="padding: 30px; color: #333333">
+                <p>Bună <strong>{{nume}}</strong>,</p>
 
-                <tr>
-                    <td align="center" style="padding:20px; background-color:#1e88e5;">
-                        <img src="cid:serviceLogo" width="80" alt="Service Auto"/>
-                        <h2 style="color:#ffffff; margin:10px 0 0;">Service Auto</h2>
-                    </td>
-                </tr>
+                <p>
+                  Programarea ta a fost înregistrată cu succes. Mai jos găsești
+                  detaliile:
+                </p>
 
-                <tr>
-                    <td style="padding:30px; color:#333333;">
-                        <p>Bună <strong>{{nume}}</strong>,</p>
+                <table
+                  width="100%"
+                  cellpadding="8"
+                  cellspacing="0"
+                  style="border-collapse: collapse; margin-top: 15px"
+                >
+                  <tr style="background-color: #f1f1f1">
+                    <td><strong>Data</strong></td>
+                    <td>{{dataProgramare}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ora</strong></td>
+                    <td>{{ora}}</td>
+                  </tr>
+                </table>
 
-                        <p>Programarea ta a fost înregistrată cu succes. Mai jos găsești detaliile:</p>
+                <p style="margin-top: 25px">
+                  Dacă ai întrebări sau dorești modificarea programării, te
+                  rugăm să ne contactezi.
+                </p>
 
-                        <table width="100%" cellpadding="8" cellspacing="0"
-                               style="border-collapse:collapse; margin-top:15px;">
-                            <tr style="background-color:#f1f1f1;">
-                                <td><strong>Data</strong></td>
-                                <td>{{dataProgramare}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ora</strong></td>
-                                <td>{{ora}}</td>
-                            </tr>
-                        </table>
+                <p style="margin-top: 30px">
+                  Cu stimă,<br />
+                  <strong>Echipa Service Auto</strong>
+                </p>
+              </td>
+            </tr>
 
-                        <p style="margin-top:25px;">
-                            Dacă ai întrebări sau dorești modificarea programării, te rugăm să ne contactezi.
-                        </p>
-
-                        <p style="margin-top:30px;">
-                            Cu stimă,<br/>
-                            <strong>Echipa Service Auto</strong>
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="center"
-                        style="padding:15px; background-color:#eeeeee; font-size:12px; color:#777777;">
-                        © 2026 Service Auto
-                    </td>
-                </tr>
-
-            </table>
+            <tr>
+              <td
+                align="center"
+                style="
+                  padding: 15px;
+                  background-color: #eeeeee;
+                  font-size: 12px;
+                  color: #777777;
+                "
+              >
+                © 2026 Service Auto
+              </td>
+            </tr>
+          </table>
         </td>
-    </tr>
-</table>
-
-</body>
+      </tr>
+    </table>
+  </body>
 </html>
