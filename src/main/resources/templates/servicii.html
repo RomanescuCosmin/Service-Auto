@@ -1,782 +1,1428 @@
-<!DOCTYPE html>
-<html lang="en" th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}"
-      xmlns:x-transition="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+<!doctype html>
+<html
+  lang="en"
+  th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}"
+  xmlns:x-transition="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <meta charset="UTF-8" />
     <title>Servicii</title>
-</head>
-<body>
-<section x-data="{ open: null, showContent: false, tab: 'diagnoza' }"
-         x-init="setTimeout(() => showContent = true, 100)"
-         class="bg-white">
-    <div x-show="showContent"
-         x-transition:enter="transition ease-out duration-700"
-         x-transition:enter-start="opacity-0 translate-y-4"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         class="main-content max-w-full ">
+  </head>
+  <body>
+    <section
+      x-data="{ open: null, showContent: false, tab: 'diagnoza' }"
+      x-init="setTimeout(() => showContent = true, 100)"
+      class="bg-white"
+    >
+      <div
+        x-show="showContent"
+        x-transition:enter="transition ease-out duration-700"
+        x-transition:enter-start="opacity-0 translate-y-4"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="main-content max-w-full"
+      >
         <div class="max-w-6xl mx-auto px-4 py-10 grid lg:grid-cols-3 gap-8">
+          <main class="lg:col-span-2 lg:order-1 space-y-6">
+            <template x-if="tab==='diagnoza'">
+              <article class="space-y-10">
+                <figure
+                  class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow"
+                >
+                  <img
+                    th:src="@{/image/servicii/diagnoza-auto.png}"
+                    alt="Diagnoză auto computerizată"
+                    class="w-full h-[320px] md:h-[420px] object-cover"
+                  />
+                </figure>
 
-            <!-- ===== STÂNGA: conținutul tab-urilor ===== -->
-            <main class="lg:col-span-2 lg:order-1 space-y-6">
+                <header>
+                  <h1
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+                  >
+                    Diagnoza Auto București
+                  </h1>
+                  <p class="mt-4 text-slate-700 leading-7">
+                    Diagnoza auto computerizată se execută cu ajutorul unui
+                    tester conectat la calculatorul de bord, analizând indici
+                    precum temperatură, presiune, debit, senzori etc. Este
+                    metoda corectă și rapidă pentru a identifica problemele la
+                    automobile pe benzină, diesel, hibride sau electrice.
+                  </p>
+                </header>
 
-                <!-- === DIAGNOZA (conținut complet) === -->
-                <template x-if="tab==='diagnoza'">
-                    <article class="space-y-10">
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Ce este și de ce contează?
+                  </h2>
+                  <p class="text-slate-700 leading-7">
+                    O diagnoză corectă previne erorile de interpretare și
+                    reparărilor inutile. Considerăm identificarea cauzei drept
+                    cel mai important pas – o problemă găsită corect înseamnă o
+                    reparație precisă, într-un timp optim.
+                  </p>
+                  <p class="text-slate-700 leading-7">
+                    La multe defecțiuni, cauza reală se vede doar în urma unei
+                    diagnoze interpretate corect. De aceea acordăm timpul
+                    necesar analizei, inclusiv „live data” și test actuatori,
+                    pentru a verifica comportamentul real al componentelor.
+                  </p>
+                </section>
 
-                        <!-- Hero imagine -->
-                        <!-- Înlocuiește src cu imaginea ta (ex: /image/diagnoza/hero.jpg) -->
-                        <figure class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow">
-                            <img th:src="@{/image/servicii/diagnoza-auto.png}"
-                                 alt="Diagnoză auto computerizată"
-                                 class="w-full h-[320px] md:h-[420px] object-cover">
-                        </figure>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Teste pe care le efectuăm frecvent
+                  </h2>
+                  <ul class="mt-2 space-y-3 text-slate-800">
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"
+                      ></span>
+                      Măsurare acumulator auto
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"
+                      ></span>
+                      Diagnostic motor și cutie de viteze
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"
+                      ></span>
+                      Măsurare voltaj alternator
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"
+                      ></span>
+                      Testare lichid de frână
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"
+                      ></span>
+                      Presiune pneuri & forță de frânare
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"
+                      ></span>
+                      Analiza gazelor, a uleiului sau a carburantului
+                    </li>
+                  </ul>
+                </section>
 
-                        <!-- Titlu + intro -->
-                        <header>
-                            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                                Diagnoza Auto București
-                            </h1>
-                            <p class="mt-4 text-slate-700 leading-7">
-                                Diagnoza auto computerizată se execută cu ajutorul unui tester conectat la calculatorul de bord,
-                                analizând indici precum temperatură, presiune, debit, senzori etc. Este metoda corectă și rapidă
-                                pentru a identifica problemele la automobile pe benzină, diesel, hibride sau electrice.
-                            </p>
-                        </header>
+                <section class="grid md:grid-cols-2 gap-8 items-start">
+                  <img
+                    th:src="@{/image/servicii/diagnoza-auto1.png}"
+                    alt="Testare OBD"
+                    class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[280px] md:h-[360px]"
+                  />
 
-                        <!-- Secțiune: de ce e importantă -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Ce este și de ce contează?</h2>
-                            <p class="text-slate-700 leading-7">
-                                O diagnoză corectă previne erorile de interpretare și reparărilor inutile. Considerăm
-                                identificarea cauzei drept cel mai important pas – o problemă găsită corect înseamnă o reparație
-                                precisă, într-un timp optim.
-                            </p>
-                            <p class="text-slate-700 leading-7">
-                                La multe defecțiuni, cauza reală se vede doar în urma unei diagnoze interpretate corect. De aceea
-                                acordăm timpul necesar analizei, inclusiv „live data” și test actuatori, pentru a verifica
-                                comportamentul real al componentelor.
-                            </p>
-                        </section>
+                  <div class="space-y-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                      Service diagnoză auto București sector 3
+                    </h2>
+                    <p class="text-slate-700 leading-7">
+                      Echipamentele moderne OBD și experiența mecanicilor noștri
+                      ne permit să detectăm rapid atât erorile curente cât și
+                      problemele „ascunse”. Oferim raport clar și propuneri de
+                      remediere înainte de începerea oricărei lucrări.
+                    </p>
+                    <p class="text-slate-700 leading-7">
+                      Recomandăm o diagnoză periodică (1–2 ori/an pentru mașini
+                      mai vechi de 5 ani) sau înainte de achiziția unui
+                      autoturism rulat, pentru a evita surprizele costisitoare.
+                    </p>
+                  </div>
+                </section>
 
-                        <!-- Listă teste efectuate -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Teste pe care le efectuăm frecvent</h2>
-                            <ul class="mt-2 space-y-3 text-slate-800">
-                                <li class="flex items-start gap-2">
-                                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>
-                                    Măsurare acumulator auto
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>
-                                    Diagnostic motor și cutie de viteze
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>
-                                    Măsurare voltaj alternator
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>
-                                    Testare lichid de frână
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>
-                                    Presiune pneuri & forță de frânare
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>
-                                    Analiza gazelor, a uleiului sau a carburantului
-                                </li>
-                            </ul>
-                        </section>
+                <section class="space-y-5 text-slate-700 leading-7">
+                  <p>
+                    Aproape toate automobilele produse în ultimii 20 de ani au
+                    port OBD, astfel încât testerul comunică direct cu ECU-urile
+                    mașinii. Pe lângă citirea și ștergerea codurilor, analizăm
+                    parametrii în timp real pentru a confirma cauza, nu doar
+                    efectul.
+                  </p>
+                  <p>
+                    Dacă ești în pragul achiziției unui autoturism la mâna a
+                    doua, o diagnoză completă îți indică eventualele probleme
+                    nedeclarate. Pentru flote, păstrăm istoric și oferim
+                    recomandări de mentenanță preventivă.
+                  </p>
+                  <p>
+                    Comunicarea deschisă face parte din modul nostru de lucru:
+                    explicăm pe înțeles fiecare pas, iar la final primești
+                    recomandări și garanție pentru lucrările efectuate.
+                  </p>
+                  <p class="font-medium text-slate-900">
+                    Te așteptăm pe Strada Balta Albina nr. 8, sector 3,
+                    București – pentru o diagnoză eficientă și rapidă.
+                  </p>
+                </section>
+              </article>
+            </template>
 
-                        <section class="grid md:grid-cols-2 gap-8 items-start">
+            <template x-if="tab==='vopsitorie'">
+              <article class="space-y-10">
+                <figure
+                  class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow"
+                >
+                  <img
+                    th:src="@{/image/servicii/vopsitorie.png}"
+                    alt="Vopsitorie auto în cabină de vopsit"
+                    class="w-full h-[320px] md:h-[420px] object-cover"
+                  />
+                </figure>
 
-                            <img th:src="@{/image/servicii/diagnoza-auto1.png}"
-                                 alt="Testare OBD"
-                                 class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[280px] md:h-[360px]">
+                <header>
+                  <h1
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+                  >
+                    Vopsitorie Auto București
+                  </h1>
+                  <p class="mt-4 text-slate-700 leading-7">
+                    Oferim servicii profesionale de vopsitorie auto în
+                    București. Cu peste 12 ani de experiență, echipa noastră
+                    este specializată în lucrări de calitate, eficiente și
+                    sigure: vopsire parțială sau totală, reparații zgârieturi,
+                    corecții de culoare, finisaj protejat – astfel încât mașina
+                    ta să-și recapete aspectul atractiv, ca “ieșită din nou pe
+                    porțile fabricii”.
+                  </p>
+                </header>
 
-                            <div class="space-y-4">
-                                <h2 class="text-2xl font-extrabold text-slate-900">
-                                    Service diagnoză auto București sector 3
-                                </h2>
-                                <p class="text-slate-700 leading-7">
-                                    Echipamentele moderne OBD și experiența mecanicilor noștri ne permit să detectăm rapid atât
-                                    erorile curente cât și problemele „ascunse”. Oferim raport clar și propuneri de remediere
-                                    înainte de începerea oricărei lucrări.
-                                </p>
-                                <p class="text-slate-700 leading-7">
-                                    Recomandăm o diagnoză periodică (1–2 ori/an pentru mașini mai vechi de 5 ani) sau înainte de
-                                    achiziția unui autoturism rulat, pentru a evita surprizele costisitoare.
-                                </p>
-                            </div>
-                        </section>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Mașina ta va străluci din nou cu serviciile noastre de
+                    vopsitorie auto
+                  </h2>
+                  <p class="text-slate-700 leading-7">
+                    Atelierul este dotat cu cabină de vopsit, colorimetru și
+                    pistol profesional; folosim materiale conforme standardelor
+                    UE. Putem lucra punctual pe elemente (zgârieturi, lovituri,
+                    rugină) sau vopsire completă, în funcție de necesități.
+                  </p>
+                  <p class="text-slate-700 leading-7">
+                    De la pregătire (șlefuire, chituire, grunduire) până la
+                    aplicarea succesivă a straturilor și lacuire, respectăm
+                    timpii de lucru pentru aderență și durabilitate. Rezultatul:
+                    luciu uniform și protecție de lungă durată.
+                  </p>
+                </section>
 
-                        <!-- Text extins (paragrafe) -->
-                        <section class="space-y-5 text-slate-700 leading-7">
-                            <p>
-                                Aproape toate automobilele produse în ultimii 20 de ani au port OBD, astfel încât testerul comunică
-                                direct cu ECU-urile mașinii. Pe lângă citirea și ștergerea codurilor, analizăm parametrii în timp real
-                                pentru a confirma cauza, nu doar efectul.
-                            </p>
-                            <p>
-                                Dacă ești în pragul achiziției unui autoturism la mâna a doua, o diagnoză completă îți indică
-                                eventualele probleme nedeclarate. Pentru flote, păstrăm istoric și oferim recomandări de mentenanță
-                                preventivă.
-                            </p>
-                            <p>
-                                Comunicarea deschisă face parte din modul nostru de lucru: explicăm pe înțeles fiecare pas, iar la
-                                final primești recomandări și garanție pentru lucrările efectuate.
-                            </p>
-                            <p class="font-medium text-slate-900">
-                                Te așteptăm pe Strada Balta Albina nr. 8, sector 3, București – pentru o diagnoză eficientă și rapidă.
-                            </p>
-                        </section>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Etapele unui vopsit auto sunt:
+                  </h2>
+                  <ul class="mt-2 space-y-3 text-slate-800">
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Șlefuim, curățăm și degresăm suprafața de lucru
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Aplicăm stratul de retuș cu chit, unde e cazul
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Izolăm porii cu primer/grund
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Netezim suprafețele după caz
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Aplicăm vopseaua în mai multe straturi, cu pistol
+                      profesional
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Lăcuim pentru protecție și luciu (2–3 straturi)
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Respectăm timpii de uscare/„coacere”, dezizolare și
+                      polișare
+                    </li>
+                  </ul>
 
-                    </article>
-                </template>
+                  <p class="text-slate-700 leading-7">
+                    Lucrăm cu materiale pe bază de apă pentru o uscare mai
+                    rapidă și emisii reduse. Serviciile noastre includ:
+                  </p>
+                  <ul class="mt-2 space-y-2 text-slate-800">
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="w-1.5 h-1.5 mt-2 rounded-full bg-orange-500"
+                      ></span
+                      >Vopsire parțială sau integrală
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="w-1.5 h-1.5 mt-2 rounded-full bg-orange-500"
+                      ></span
+                      >Polish caroserie
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="w-1.5 h-1.5 mt-2 rounded-full bg-orange-500"
+                      ></span
+                      >Schimbare de culoare caroserie
+                    </li>
+                  </ul>
+                </section>
 
-                <!-- === VOPSITORIE === -->
-                <!-- === VOPSITORIE (conținut complet) === -->
-                <template x-if="tab==='vopsitorie'">
-                    <article class="space-y-10">
+                <section class="grid md:grid-cols-2 gap-8 items-start">
+                  <img
+                    th:src="@{/image/servicii/vopsitorie1.png}"
+                    alt="Aplicare vopsea auto"
+                    class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]"
+                  />
+                  <div class="space-y-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                      Vopsitorie auto București la cel mai bun preț
+                    </h2>
+                    <p class="text-slate-700 leading-7">
+                      Aducem un suflu proaspăt în servicii de tinichigerie și
+                      vopsitorie. Cu pasiune și responsabilitate, oferim soluții
+                      pentru orice marcă/modelAuto – mașini noi sau mai vechi –,
+                      păstrând un raport excelent calitate–preț.
+                    </p>
+                    <p class="text-slate-700 leading-7">
+                      Beneficiezi de consultanță clară, deviz înainte de lucru
+                      și același tratament de specialitate pentru fiecare
+                      client.
+                    </p>
+                  </div>
+                </section>
 
-                        <!-- Hero imagine -->
-                        <figure class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow">
-                            <img th:src="@{/image/servicii/vopsitorie.png}"
-                                 alt="Vopsitorie auto în cabină de vopsit"
-                                 class="w-full h-[320px] md:h-[420px] object-cover">
-                        </figure>
+                <section class="space-y-6">
+                  <h2 class="text-3xl font-bold text-slate-900">
+                    Beneficiază de servicii de vopsit auto moderne în unul
+                    dintre cele mai avansate service-uri auto din țară, în
+                    sectorul 3 din București
+                  </h2>
+                  <p class="text-slate-700 leading-7">
+                    Suntem transparenți – prețurile sunt la vedere, iar
+                    comunicarea este deschisă pe tot parcursul lucrării. Îți
+                    garantăm că autoturismul tău rămâne pe mâini bune.
+                  </p>
+                  <ul class="grid sm:grid-cols-2 gap-y-2 text-slate-800">
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Eficiență și profesionalism
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Experiență și expertiză
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Atenție la detalii
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Aparatură modernă și specializată
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Siguranță și promptitudine
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Preț competitiv
+                    </li>
+                  </ul>
+                  <p class="text-slate-700 leading-7">
+                    Pentru vopsire integrală sau reparații pe element,
+                    programează-te și te ajutăm să redai mașinii strălucirea
+                    inițială. 📞
+                    <a
+                      href="tel:0731348340"
+                      class="font-semibold text-orange-600 hover:underline"
+                      >0731 348 340</a
+                    >
+                  </p>
+                </section>
+              </article>
+            </template>
 
-                        <!-- Titlu + intro -->
-                        <header>
-                            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                                Vopsitorie Auto București
-                            </h1>
-                            <p class="mt-4 text-slate-700 leading-7">
-                                Oferim servicii profesionale de vopsitorie auto în București. Cu peste 12 ani de
-                                experiență, echipa noastră este specializată în lucrări de calitate, eficiente și
-                                sigure: vopsire parțială sau totală, reparații zgârieturi, corecții de culoare,
-                                finisaj protejat – astfel încât mașina ta să-și recapete aspectul atractiv, ca
-                                “ieșită din nou pe porțile fabricii”.
-                            </p>
-                        </header>
+            <template x-if="tab==='mecanica'">
+              <article class="space-y-10">
+                <figure
+                  class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow"
+                >
+                  <img
+                    th:src="@{/image/servicii/mecanica.png}"
+                    alt="Servicii mecanică auto în atelier"
+                    class="w-full h-[320px] md:h-[420px] object-cover"
+                  />
+                </figure>
 
-                        <!-- De ce / cum lucrăm -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">
-                                Mașina ta va străluci din nou cu serviciile noastre de vopsitorie auto
-                            </h2>
-                            <p class="text-slate-700 leading-7">
-                                Atelierul este dotat cu cabină de vopsit, colorimetru și pistol profesional;
-                                folosim materiale conforme standardelor UE. Putem lucra punctual pe elemente
-                                (zgârieturi, lovituri, rugină) sau vopsire completă, în funcție de necesități.
-                            </p>
-                            <p class="text-slate-700 leading-7">
-                                De la pregătire (șlefuire, chituire, grunduire) până la aplicarea succesivă a
-                                straturilor și lacuire, respectăm timpii de lucru pentru aderență și durabilitate.
-                                Rezultatul: luciu uniform și protecție de lungă durată.
-                            </p>
-                        </section>
+                <header>
+                  <h1
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+                  >
+                    Mecanica Auto București
+                  </h1>
+                  <p class="mt-4 text-slate-700 leading-7">
+                    Cauți un service de mecanică auto în București? Efectuăm
+                    lucrări cu orice grad de dificultate, de la un simplu schimb
+                    de ulei până la recondiționat motoare. Lucrăm după
+                    documentație tehnică specifică fiecărei operațiuni și
+                    investim constant în echipamente moderne, ca să-ți oferim
+                    calitate și siguranță la fiecare intervenție.
+                  </p>
+                  <p class="mt-2 text-slate-700 leading-7">
+                    Servicii profesionale de mecanică auto la prețuri
+                    avantajoase. Lucrăm cu grijă, atenție la detalii și fără
+                    grabă, astfel încât rezultatul să fie corect din prima.
+                    Suntem multimarcă, cu peste 10 ani de experiență pe
+                    motorizări și modele diverse.
+                  </p>
+                </header>
 
-                        <!-- Etape vopsit -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Etapele unui vopsit auto sunt:</h2>
-                            <ul class="mt-2 space-y-3 text-slate-800">
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Șlefuim, curățăm și degresăm suprafața de lucru</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Aplicăm stratul de retuș cu chit, unde e cazul</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Izolăm porii cu primer/grund</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Netezim suprafețele după caz</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Aplicăm vopseaua în mai multe straturi, cu pistol profesional</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Lăcuim pentru protecție și luciu (2–3 straturi)</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Respectăm timpii de uscare/„coacere”, dezizolare și polișare</li>
-                            </ul>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Lucrări frecvente de mecanică
+                  </h2>
+                  <ul
+                    class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Schimbare kit distribuție
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Schimbare kit ambreiaj
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Schimbare suspensie
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Sistem de frână (plăcuțe, discuri, lichid)
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Revizie auto completă
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Înlocuit amortizoare
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        />
+                      </svg>
+                      Recondiționare casete de direcție
+                    </li>
+                  </ul>
+                  <div class="pt-2">
+                    <a
+                      href="tel:0731348340"
+                      class="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600 transition"
+                    >
+                      Programează-te: 0731 348 340
+                    </a>
+                  </div>
+                </section>
 
-                            <p class="text-slate-700 leading-7">
-                                Lucrăm cu materiale pe bază de apă pentru o uscare mai rapidă și emisii reduse.
-                                Serviciile noastre includ:
-                            </p>
-                            <ul class="mt-2 space-y-2 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 mt-2 rounded-full bg-orange-500"></span>Vopsire parțială sau integrală</li>
-                                <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 mt-2 rounded-full bg-orange-500"></span>Polish caroserie</li>
-                                <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 mt-2 rounded-full bg-orange-500"></span>Schimbare de culoare caroserie</li>
-                            </ul>
-                        </section>
+                <section class="grid md:grid-cols-2 gap-8 items-start">
+                  <img
+                    th:src="@{/image/servicii/mecanica1.png}"
+                    alt="Intervenții mecanice detaliu"
+                    class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]"
+                  />
+                  <div class="space-y-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                      Dexcar Service – Specialiști în mecanică
+                    </h2>
+                    <p class="text-slate-700 leading-7">
+                      Știm că găsirea unui service bun în București poate fi
+                      dificilă. La Dexcar găsești o echipă disponibilă, atentă
+                      și competentă. Preluăm problemele cap-coadă, fără plimbări
+                      între service-uri.
+                    </p>
+                    <p class="text-slate-700 leading-7">
+                      Cu peste 10 ani de experiență, abordăm fiecare lucrare cu
+                      diag­noză corectă (testere de ultimă generație) și cu
+                      proceduri clare. Întreținerea periodică prelungește viața
+                      mașinii – îți recomandăm un control tehnic regulat.
+                    </p>
+                  </div>
+                </section>
 
-                        <!-- Split: imagine + text "la cel mai bun preț" -->
-                        <section class="grid md:grid-cols-2 gap-8 items-start">
-                            <img th:src="@{/image/servicii/vopsitorie1.png}"
-                                 alt="Aplicare vopsea auto"
-                                 class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]">
-                            <div class="space-y-4">
-                                <h2 class="text-2xl font-extrabold text-slate-900">
-                                    Vopsitorie auto București la cel mai bun preț
-                                </h2>
-                                <p class="text-slate-700 leading-7">
-                                    Aducem un suflu proaspăt în servicii de tinichigerie și vopsitorie. Cu pasiune
-                                    și responsabilitate, oferim soluții pentru orice marcă/modelAuto – mașini noi sau
-                                    mai vechi –, păstrând un raport excelent calitate–preț.
-                                </p>
-                                <p class="text-slate-700 leading-7">
-                                    Beneficiezi de consultanță clară, deviz înainte de lucru și același tratament
-                                    de specialitate pentru fiecare client.
-                                </p>
-                            </div>
-                        </section>
+                <section class="space-y-5 text-slate-700 leading-7">
+                  <p>
+                    Suntem un service multimarcă format din ingineri și mecanici
+                    pasionați. Ne perfecționăm constant – actualizăm procedurile
+                    și folosim aparatură eficientă pentru a identifica rapid și
+                    corect defectele.
+                  </p>
+                  <p>
+                    Transparența este esențială pentru noi: primești explicații
+                    pe înțeles și deviz înainte de lucru. Practicăm o politică
+                    de prețuri accesibile, iar pentru lucrările efectuate oferim
+                    garanție pe manoperă și piese noi.
+                  </p>
+                </section>
 
-                        <!-- Beneficii -->
-                        <section class="space-y-6">
-                            <h2 class="text-3xl font-bold text-slate-900">
-                                Beneficiază de servicii de vopsit auto moderne în unul dintre cele mai avansate
-                                service-uri auto din țară, în sectorul 3 din București
-                            </h2>
-                            <p class="text-slate-700 leading-7">
-                                Suntem transparenți – prețurile sunt la vedere, iar comunicarea este deschisă pe tot
-                                parcursul lucrării. Îți garantăm că autoturismul tău rămâne pe mâini bune.
-                            </p>
-                            <ul class="grid sm:grid-cols-2 gap-y-2 text-slate-800">
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Eficiență și profesionalism</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Experiență și expertiză</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Atenție la detalii</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Aparatură modernă și specializată</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Siguranță și promptitudine</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Preț competitiv</li>
-                            </ul>
-                            <p class="text-slate-700 leading-7">
-                                Pentru vopsire integrală sau reparații pe element, programează-te și te ajutăm
-                                să redai mașinii strălucirea inițială. 📞 <a href="tel:0731348340" class="font-semibold text-orange-600 hover:underline">0731 348 340</a>
-                            </p>
-                        </section>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Avantajele noastre
+                  </h2>
+                  <ul
+                    class="grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Servicii de orice complexitate
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Transparență și costuri la vedere
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Comunicare și onestitate
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Expertiză și experiență
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Programare rapidă
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg
+                        class="w-4 h-4 mt-1 text-orange-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                        /></svg
+                      >Garanție manoperă & piese de schimb
+                    </li>
+                  </ul>
+                </section>
 
-                    </article>
-                </template>
+                <section
+                  class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6"
+                >
+                  <p class="text-slate-700 leading-7">
+                    Vrem ca experiența ta la service să fie diferită – fără
+                    stres, cu rezultate pe care te poți baza. Programează-te
+                    acum și rezolvăm rapid orice problemă mecanică.
+                  </p>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href="tel:0731348340"
+                      class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition"
+                    >
+                      Sună: 0731 348 340
+                    </a>
+                    <a
+                      th:href="@{/programare}"
+                      class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition"
+                    >
+                      Programare online
+                    </a>
+                    <span class="text-slate-600"
+                      >Strada Balta Albina nr. 8, Sector 3, București</span
+                    >
+                  </div>
+                </section>
+              </article>
+            </template>
 
+            <template x-if="tab==='tinichigerie'">
+              <article class="space-y-10">
+                <figure
+                  class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow"
+                >
+                  <img
+                    th:src="@{/image/servicii/tinichigerie.png}"
+                    alt="Lucrări de tinichigerie auto"
+                    class="w-full h-[320px] md:h-[420px] object-cover"
+                  />
+                </figure>
 
-                <!-- === MECANICĂ === -->
-                <!-- === MECANICA (conținut complet) === -->
-                <template x-if="tab==='mecanica'">
-                    <article class="space-y-10">
+                <header>
+                  <h1
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+                  >
+                    Tinichigerie Auto București
+                  </h1>
+                  <p class="mt-4 text-slate-700 leading-7">
+                    Trafic, gropi, vreme rea sau incidente ușoare pot deteriora
+                    caroseria ori elemente metalice. La
+                    <strong>Dexcar Service</strong> readucem forma corectă și
+                    siguranța structurii, pregătind perfect pentru vopsire și
+                    utilizare în siguranță.
+                  </p>
+                  <p class="mt-2 text-slate-700 leading-7">
+                    Avem peste 10 ani de experiență, echipamente dedicate și
+                    proceduri moderne. Intervenim atent și eficient – de la
+                    îndreptări fine la lucrări pe șasiu.
+                  </p>
+                </header>
 
-                        <!-- Hero imagine -->
-                        <figure class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow">
-                            <img th:src="@{/image/servicii/mecanica.png}"
-                                 alt="Servicii mecanică auto în atelier"
-                                 class="w-full h-[320px] md:h-[420px] object-cover">
-                        </figure>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Servicii de tinichigerie
+                  </h2>
+                  <ul
+                    class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Redresare caroserie (capotă, portiere, aripi)
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Redresare șasiu / structură
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Îndreptare la rece / demontare & montaj elemente
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Sudură MIG/MAG în mediu protejat (oțel, aluminiu)
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Schimbare parbriz & lunetă
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Reparare avarii simple și complexe
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Centrare, aliniere, pregătire pentru vopsire
+                    </li>
+                  </ul>
+                </section>
 
-                        <!-- Titlu + intro -->
-                        <header>
-                            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                                Mecanica Auto București
-                            </h1>
-                            <p class="mt-4 text-slate-700 leading-7">
-                                Cauți un service de mecanică auto în București? Efectuăm lucrări cu orice
-                                grad de dificultate, de la un simplu schimb de ulei până la recondiționat
-                                motoare. Lucrăm după documentație tehnică specifică fiecărei operațiuni și
-                                investim constant în echipamente moderne, ca să-ți oferim calitate și
-                                siguranță la fiecare intervenție.
-                            </p>
-                            <p class="mt-2 text-slate-700 leading-7">
-                                Servicii profesionale de mecanică auto la prețuri avantajoase. Lucrăm cu grijă,
-                                atenție la detalii și fără grabă, astfel încât rezultatul să fie corect din prima.
-                                Suntem multimarcă, cu peste 10 ani de experiență pe motorizări și modele diverse.
-                            </p>
-                        </header>
+                <section class="grid md:grid-cols-2 gap-8 items-start">
+                  <img
+                    th:src="@{/image/servicii/tinichigerie1.png}"
+                    alt="Echipamente tinichigerie auto"
+                    class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]"
+                  />
+                  <div class="space-y-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                      Tehnică modernă, rezultate corecte
+                    </h2>
+                    <p class="text-slate-700 leading-7">
+                      Folosim standuri de redresare, scule specifice pentru
+                      îndreptare la rece și aparate de sudură MIG/MAG cu amestec
+                      de argon și CO₂, pentru cordoane curate și zone adiacente
+                      protejate.
+                    </p>
+                    <p class="text-slate-700 leading-7">
+                      Măsurăm, demontăm, corectăm și reasamblăm în parametri.
+                      Unde este necesar, pregătim elementele pentru vopsire în
+                      aceeași flux logistic.
+                    </p>
+                  </div>
+                </section>
 
-                        <!-- Lucrări frecvente -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Lucrări frecvente de mecanică</h2>
-                            <ul class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Schimbare kit distribuție
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Schimbare kit ambreiaj
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Schimbare suspensie
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Sistem de frână (plăcuțe, discuri, lichid)
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Revizie auto completă
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Înlocuit amortizoare
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>
-                                    Recondiționare casete de direcție
-                                </li>
-                            </ul>
-                            <div class="pt-2">
-                                <a href="tel:0731348340"
-                                   class="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600 transition">
-                                    Programează-te: 0731 348 340
-                                </a>
-                            </div>
-                        </section>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Când e nevoie de tinichigerie?
+                  </h2>
+                  <ul
+                    class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Accidente ușoare, loviri în parcare
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Zgârieturi, îndoituri, uzură avansată
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Gropi/denivelări ce afectează alinierea
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Grindină sau obiecte antrenate de vânt
+                    </li>
+                  </ul>
+                </section>
 
-                        <!-- Split: imagine + text -->
-                        <section class="grid md:grid-cols-2 gap-8 items-start">
-                            <img th:src="@{/image/servicii/mecanica1.png}"
-                                 alt="Intervenții mecanice detaliu"
-                                 class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]">
-                            <div class="space-y-4">
-                                <h2 class="text-2xl font-extrabold text-slate-900">
-                                    Dexcar Service – Specialiști în mecanică
-                                </h2>
-                                <p class="text-slate-700 leading-7">
-                                    Știm că găsirea unui service bun în București poate fi dificilă. La Dexcar
-                                    găsești o echipă disponibilă, atentă și competentă. Preluăm problemele cap-coadă,
-                                    fără plimbări între service-uri.
-                                </p>
-                                <p class="text-slate-700 leading-7">
-                                    Cu peste 10 ani de experiență, abordăm fiecare lucrare cu diag­noză corectă
-                                    (testere de ultimă generație) și cu proceduri clare. Întreținerea periodică
-                                    prelungește viața mașinii – îți recomandăm un control tehnic regulat.
-                                </p>
-                            </div>
-                        </section>
+                <section
+                  class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6"
+                >
+                  <p class="text-slate-700 leading-7">
+                    Oferim servicii corecte, transparente și la prețuri
+                    accesibile, cu garanție pentru lucrări și piese. Vino la
+                    evaluare – îți propunem soluția optimă.
+                  </p>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href="tel:0731348340"
+                      class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition"
+                    >
+                      Sună: 0731 348 340
+                    </a>
+                    <a
+                      th:href="@{/programare}"
+                      class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition"
+                    >
+                      Programare online
+                    </a>
+                    <span class="text-slate-600"
+                      >Strada Balta Albina nr. 8, Sector 3, București</span
+                    >
+                  </div>
+                </section>
+              </article>
+            </template>
 
-                        <!-- Filosofie & transparență -->
-                        <section class="space-y-5 text-slate-700 leading-7">
-                            <p>
-                                Suntem un service multimarcă format din ingineri și mecanici pasionați. Ne
-                                perfecționăm constant – actualizăm procedurile și folosim aparatură eficientă
-                                pentru a identifica rapid și corect defectele.
-                            </p>
-                            <p>
-                                Transparența este esențială pentru noi: primești explicații pe înțeles și
-                                deviz înainte de lucru. Practicăm o politică de prețuri accesibile, iar pentru
-                                lucrările efectuate oferim garanție pe manoperă și piese noi.
-                            </p>
-                        </section>
+            <template x-if="tab==='revizie'">
+              <article class="space-y-10">
+                <figure
+                  class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow"
+                >
+                  <img
+                    th:src="@{/image/servicii/revizie.png}"
+                    alt="Revizie auto București"
+                    class="w-full h-[320px] md:h-[420px] object-cover"
+                  />
+                </figure>
 
-                        <!-- Avantaje -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Avantajele noastre</h2>
-                            <ul class="grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Servicii de orice complexitate</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Transparență și costuri la vedere</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Comunicare și onestitate</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Expertiză și experiență</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Programare rapidă</li>
-                                <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>Garanție manoperă & piese de schimb</li>
-                            </ul>
-                        </section>
+                <header>
+                  <h1
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+                  >
+                    Revizie Auto București
+                  </h1>
+                  <p class="mt-4 text-slate-700 leading-7">
+                    Revizia este setul de verificări și operațiuni periodice
+                    care păstrează automobilul în parametri și te mențin în
+                    siguranță. Se efectuează într-un service autorizat, cu
+                    personal pregătit – la <strong>Dexcar Service</strong>
+                    primești transparență, deviz înainte de lucru și garanție.
+                  </p>
+                  <p class="mt-2 text-slate-700 leading-7">
+                    Recomandăm revizie la <strong>5.000–10.000 km</strong> sau
+                    cel târziu la <strong>1 an</strong>, în funcție de uzură și
+                    recomandările producătorului.
+                  </p>
+                </header>
 
-                        <!-- CTA final -->
-                        <section class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6">
-                            <p class="text-slate-700 leading-7">
-                                Vrem ca experiența ta la service să fie diferită – fără stres, cu rezultate pe care
-                                te poți baza. Programează-te acum și rezolvăm rapid orice problemă mecanică.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="tel:0731348340" class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition">
-                                    Sună: 0731 348 340
-                                </a>
-                                <a th:href="@{/programare}" class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition">
-                                    Programare online
-                                </a>
-                                <span class="text-slate-600">Strada Balta Albina nr. 8, Sector 3, București</span>
-                            </div>
-                        </section>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Operațiuni standard la revizie
+                  </h2>
+                  <ul
+                    class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Schimb ulei motor + filtru ulei
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Filtru aer, filtru habitaclu (după caz filtru
+                      combustibil)
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Verificare sistem frânare (plăcuțe, discuri, lichid)
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Verificare direcție, suspensie, articulații
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Verificare lumini și sistem electric
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Diagnoză OBD + resetare service
+                    </li>
+                  </ul>
 
-                    </article>
-                </template>
+                  <div class="pt-2">
+                    <p class="text-slate-700 leading-7">
+                      La cerere sau când este cazul, efectuăm și lucrări conexe
+                      de mecanică: schimb distribuție, ambreiaj, verificări
+                      avansate ale sistemelor de siguranță etc.
+                    </p>
+                  </div>
+                </section>
 
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    De ce Dexcar Service
+                  </h2>
+                  <ul
+                    class="grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Seriozitate și onestitate
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Experiență & expertiză
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Transparență și costuri la vedere
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Garanție pentru manoperă și piese
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Preț avantajos
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Programare rapidă
+                    </li>
+                  </ul>
+                </section>
 
-                <!-- === TINICHIGERIE === -->
-                <!-- === TINICHIGERIE (conținut complet) === -->
-                <template x-if="tab==='tinichigerie'">
-                    <article class="space-y-10">
-                        <!-- Hero -->
-                        <figure class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow">
-                            <img th:src="@{/image/servicii/tinichigerie.png}"
-                                 alt="Lucrări de tinichigerie auto"
-                                 class="w-full h-[320px] md:h-[420px] object-cover">
-                        </figure>
+                <section
+                  class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6"
+                >
+                  <p class="text-slate-700 leading-7">
+                    Revizia periodică prelungește viața mașinii și previne
+                    reparații costisitoare. Programează-te acum – verificăm
+                    cap-coadă și îți comunicăm totul clar.
+                  </p>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href="tel:0731348340"
+                      class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition"
+                    >
+                      Sună: 0731 348 340
+                    </a>
+                    <a
+                      th:href="@{/programare}"
+                      class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition"
+                    >
+                      Programare online
+                    </a>
+                    <span class="text-slate-600"
+                      >Strada Balta Albina nr. 8, Sector 3, București</span
+                    >
+                  </div>
+                </section>
+              </article>
+            </template>
 
-                        <!-- Titlu + intro -->
-                        <header>
-                            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                                Tinichigerie Auto București
-                            </h1>
-                            <p class="mt-4 text-slate-700 leading-7">
-                                Trafic, gropi, vreme rea sau incidente ușoare pot deteriora caroseria ori
-                                elemente metalice. La <strong>Dexcar Service</strong> readucem forma corectă
-                                și siguranța structurii, pregătind perfect pentru vopsire și utilizare în
-                                siguranță.
-                            </p>
-                            <p class="mt-2 text-slate-700 leading-7">
-                                Avem peste 10 ani de experiență, echipamente dedicate și proceduri moderne.
-                                Intervenim atent și eficient – de la îndreptări fine la lucrări pe șasiu.
-                            </p>
-                        </header>
+            <template x-if="tab==='vopsitorie-obiecte'">
+              <article class="space-y-10">
+                <figure
+                  class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow"
+                >
+                  <img
+                    th:src="@{/image/servicii/vopsitorie-obiecte.png}"
+                    alt="Vopsitorie obiecte din metal și plastic"
+                    class="w-full h-[320px] md:h-[420px] object-cover"
+                  />
+                </figure>
 
-                        <!-- Servicii oferite -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Servicii de tinichigerie</h2>
-                            <ul class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Redresare caroserie (capotă, portiere, aripi)</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Redresare șasiu / structură</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Îndreptare la rece / demontare & montaj elemente</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Sudură MIG/MAG în mediu protejat (oțel, aluminiu)</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Schimbare parbriz & lunetă</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Reparare avarii simple și complexe</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Centrare, aliniere, pregătire pentru vopsire</li>
-                            </ul>
-                        </section>
+                <header>
+                  <h1
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+                  >
+                    Vopsitorie Obiecte – metal & plastic
+                  </h1>
+                  <p class="mt-4 text-slate-700 leading-7">
+                    Oferim vopsire profesională pentru obiecte și componente din
+                    metal sau plastic: piese industriale, elemente de amenajare,
+                    obiecte de decor și multe altele. Tehnologie modernă și
+                    rezultate uniforme, rapide și rezistente.
+                  </p>
+                </header>
 
-                        <!-- Tehnologie -->
-                        <section class="grid md:grid-cols-2 gap-8 items-start">
-                            <img th:src="@{/image/servicii/tinichigerie1.png}"
-                                 alt="Echipamente tinichigerie auto"
-                                 class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]">
-                            <div class="space-y-4">
-                                <h2 class="text-2xl font-extrabold text-slate-900">Tehnică modernă, rezultate corecte</h2>
-                                <p class="text-slate-700 leading-7">
-                                    Folosim standuri de redresare, scule specifice pentru îndreptare la rece și
-                                    aparate de sudură MIG/MAG cu amestec de argon și CO₂, pentru cordoane curate
-                                    și zone adiacente protejate.
-                                </p>
-                                <p class="text-slate-700 leading-7">
-                                    Măsurăm, demontăm, corectăm și reasamblăm în parametri. Unde este necesar,
-                                    pregătim elementele pentru vopsire în aceeași flux logistic.
-                                </p>
-                            </div>
-                        </section>
+                <section class="grid md:grid-cols-2 gap-8 items-start">
+                  <div class="space-y-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                      Proces și tehnologie
+                    </h2>
+                    <p class="text-slate-700 leading-7">
+                      Lucrăm în cabină de vopsire cu filtre și evacuare,
+                      folosind vopsele
+                      <strong>pe bază de apă</strong> și lacuri profesionale –
+                      uscare rapidă și protecție la zgârieturi. Respectăm
+                      aceleași standarde ca în vopsitoria auto.
+                    </p>
+                    <p class="text-slate-700 leading-7">
+                      La final, obiectele sunt coapte la ~<strong>60°C</strong>
+                      pentru uscare eficientă, apoi ambalate / pregătite de
+                      montaj.
+                    </p>
+                  </div>
+                  <img
+                    th:src="@{/image/servicii/vopsitorie-obiecte1.png}"
+                    alt="Proces vopsire obiecte"
+                    class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]"
+                  />
+                </section>
 
-                        <!-- Când apelezi la tinichigerie -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Când e nevoie de tinichigerie?</h2>
-                            <ul class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Accidente ușoare, loviri în parcare</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Zgârieturi, îndoituri, uzură avansată</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Gropi/denivelări ce afectează alinierea</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Grindină sau obiecte antrenate de vânt</li>
-                            </ul>
-                        </section>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Exemple de obiecte pe care le vopsim
+                  </h2>
+                  <ul
+                    class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Guri de aerisire, panouri metalice
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Mobilier metalic, calorifere & robinete
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Obiecte sanitare, întrerupătoare
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Piese din plastic (carcase, capace, profile)
+                    </li>
+                  </ul>
+                  <p class="text-xs text-slate-500">
+                    Notă: nu vopsim obiecte din lemn, cauciuc sau porțelan.
+                  </p>
+                </section>
 
-                        <!-- CTA -->
-                        <section class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6">
-                            <p class="text-slate-700 leading-7">
-                                Oferim servicii corecte, transparente și la prețuri accesibile, cu garanție
-                                pentru lucrări și piese. Vino la evaluare – îți propunem soluția optimă.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="tel:0731348340" class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition">
-                                    Sună: 0731 348 340
-                                </a>
-                                <a th:href="@{/programare}" class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition">
-                                    Programare online
-                                </a>
-                                <span class="text-slate-600">Strada Balta Albina nr. 8, Sector 3, București</span>
-                            </div>
-                        </section>
-                    </article>
-                </template>
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Avantajele serviciului nostru
+                  </h2>
+                  <ul
+                    class="grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800"
+                  >
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Dotări moderne & eficiente
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Echipă cu experiență
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Atenție la detalii
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Siguranță și promptitudine
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Transparență & respect
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-1 h-2 w-2 rounded-full bg-orange-500"
+                      ></span
+                      >Rezultate rapide, prețuri atractive
+                    </li>
+                  </ul>
+                </section>
 
+                <section class="space-y-4">
+                  <h2 class="text-xl font-semibold text-slate-900">
+                    Pașii lucrării (pe scurt)
+                  </h2>
+                  <ol
+                    class="list-decimal pl-6 space-y-1 text-slate-700 leading-7"
+                  >
+                    <li>Decapare / matuire, corectarea imperfecțiunilor.</li>
+                    <li>Aplicare grund/primer, apoi 1–3 straturi de vopsea.</li>
+                    <li>
+                      2–3 straturi de lac de protecție pentru luciu și
+                      rezistență.
+                    </li>
+                    <li>Coacere în cabină la ~60°C, verificare și ambalare.</li>
+                  </ol>
+                </section>
 
-                <!-- === REVIZIE === -->
-                <!-- === REVIZIE (conținut complet) === -->
-                <template x-if="tab==='revizie'">
-                    <article class="space-y-10">
-                        <!-- Hero -->
-                        <figure class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow">
-                            <img th:src="@{/image/servicii/revizie.png}"
-                                 alt="Revizie auto București"
-                                 class="w-full h-[320px] md:h-[420px] object-cover">
-                        </figure>
+                <section
+                  class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6"
+                >
+                  <p class="text-slate-700 leading-7">
+                    Vrei să schimbi culoarea sau să reîmprospătezi aspectul unor
+                    obiecte din metal sau plastic? Trimite detalii și dimensiuni
+                    – îți oferim ofertă clară și termen rapid.
+                  </p>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href="tel:0731348340"
+                      class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition"
+                    >
+                      Sună: 0731 348 340
+                    </a>
+                    <a
+                      th:href="@{/contact}"
+                      class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition"
+                    >
+                      Cere ofertă
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </template>
+          </main>
 
-                        <!-- Titlu + intro -->
-                        <header>
-                            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                                Revizie Auto București
-                            </h1>
-                            <p class="mt-4 text-slate-700 leading-7">
-                                Revizia este setul de verificări și operațiuni periodice care păstrează
-                                automobilul în parametri și te mențin în siguranță. Se efectuează într-un
-                                service autorizat, cu personal pregătit – la <strong>Dexcar Service</strong>
-                                primești transparență, deviz înainte de lucru și garanție.
-                            </p>
-                            <p class="mt-2 text-slate-700 leading-7">
-                                Recomandăm revizie la <strong>5.000–10.000 km</strong> sau cel târziu la
-                                <strong>1 an</strong>, în funcție de uzură și recomandările producătorului.
-                            </p>
-                        </header>
+          <aside class="lg:col-span-1 lg:order-2 space-y-8">
+            <div
+              class="lg:sticky lg:top-24 rounded-xl bg-white shadow-[0_20px_40px_rgba(0,0,0,0.08)] ring-1 ring-slate-100 overflow-hidden"
+            >
+              <div class="px-6 pt-6 pb-4">
+                <h2 class="text-2xl font-semibold text-slate-900">Servicii</h2>
+              </div>
 
-                        <!-- Ce includem -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Operațiuni standard la revizie</h2>
-                            <ul class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Schimb ulei motor + filtru ulei</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Filtru aer, filtru habitaclu (după caz filtru combustibil)</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Verificare sistem frânare (plăcuțe, discuri, lichid)</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Verificare direcție, suspensie, articulații</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Verificare lumini și sistem electric</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Diagnoză OBD + resetare service</li>
-                            </ul>
+              <nav class="divide-y divide-slate-100">
+                <button
+                  @click="tab='diagnoza'"
+                  class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
+                  :class="tab==='diagnoza' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'"
+                >
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 rounded-r"
+                    :class="tab==='diagnoza' ? 'bg-orange-500' : 'bg-transparent'"
+                  ></span>
+                  <svg
+                    class="h-5 w-5 text-slate-900"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect
+                      x="3"
+                      y="5"
+                      width="18"
+                      height="14"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 9h10M7 13h6"></path>
+                  </svg>
+                  <span class="font-medium">Diagnoza Auto</span>
+                </button>
 
-                            <div class="pt-2">
-                                <p class="text-slate-700 leading-7">
-                                    La cerere sau când este cazul, efectuăm și lucrări conexe de mecanică:
-                                    schimb distribuție, ambreiaj, verificări avansate ale sistemelor de siguranță etc.
-                                </p>
-                            </div>
-                        </section>
+                <button
+                  @click="tab='vopsitorie'"
+                  class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
+                  :class="tab==='vopsitorie' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'"
+                >
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 rounded-r"
+                    :class="tab==='vopsitorie' ? 'bg-orange-500' : 'bg-transparent'"
+                  ></span>
+                  <svg
+                    class="h-5 w-5 text-slate-900"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 7h10v4H3zM13 9l5-5 3 3-5 5M14 12l-4 4"></path>
+                  </svg>
+                  <span class="font-medium">Vopsitorie Auto</span>
+                </button>
 
-                        <!-- De ce noi -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">De ce Dexcar Service</h2>
-                            <ul class="grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Seriozitate și onestitate</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Experiență & expertiză</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Transparență și costuri la vedere</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Garanție pentru manoperă și piese</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Preț avantajos</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Programare rapidă</li>
-                            </ul>
-                        </section>
+                <button
+                  @click="tab='mecanica'"
+                  class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
+                  :class="tab==='mecanica' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'"
+                >
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 rounded-r"
+                    :class="tab==='mecanica' ? 'bg-orange-500' : 'bg-transparent'"
+                  ></span>
+                  <svg
+                    class="h-5 w-5 text-slate-900"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M10 7a4 4 0 118 0l-2 2-2-2-2 2-2-2zM3 21l6-6"
+                    ></path>
+                  </svg>
+                  <span class="font-medium">Mecanica Auto</span>
+                </button>
 
-                        <!-- CTA -->
-                        <section class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6">
-                            <p class="text-slate-700 leading-7">
-                                Revizia periodică prelungește viața mașinii și previne reparații costisitoare.
-                                Programează-te acum – verificăm cap-coadă și îți comunicăm totul clar.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="tel:0731348340" class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition">
-                                    Sună: 0731 348 340
-                                </a>
-                                <a th:href="@{/programare}" class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition">
-                                    Programare online
-                                </a>
-                                <span class="text-slate-600">Strada Balta Albina nr. 8, Sector 3, București</span>
-                            </div>
-                        </section>
-                    </article>
-                </template>
+                <button
+                  @click="tab='tinichigerie'"
+                  class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
+                  :class="tab==='tinichigerie' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'"
+                >
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 rounded-r"
+                    :class="tab==='tinichigerie' ? 'bg-orange-500' : 'bg-transparent'"
+                  ></span>
+                  <svg
+                    class="h-5 w-5 text-slate-900"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 15l6 6M3 21l6-6M14 3l7 7-9 9H5v-7z"></path>
+                  </svg>
+                  <span class="font-medium">Tinichigerie Auto</span>
+                </button>
 
+                <button
+                  @click="tab='revizie'"
+                  class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
+                  :class="tab==='revizie' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'"
+                >
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 rounded-r"
+                    :class="tab==='revizie' ? 'bg-orange-500' : 'bg-transparent'"
+                  ></span>
+                  <svg
+                    class="h-5 w-5 text-slate-900"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 8v8M8 12h8M4 4h16v16H4z"></path>
+                  </svg>
+                  <span class="font-medium">Revizie Auto</span>
+                </button>
 
-                <!-- === VOPSITORIE OBIECTE === -->
-                <!-- === VOPSITORIE OBIECTE (metal & plastic) === -->
-                <template x-if="tab==='vopsitorie-obiecte'">
-                    <article class="space-y-10">
-                        <!-- Hero -->
-                        <figure class="rounded-xl overflow-hidden ring-1 ring-slate-200 shadow">
-                            <img th:src="@{/image/servicii/vopsitorie-obiecte.png}"
-                                 alt="Vopsitorie obiecte din metal și plastic"
-                                 class="w-full h-[320px] md:h-[420px] object-cover">
-                        </figure>
+                <button
+                  @click="tab='vopsitorie-obiecte'"
+                  class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
+                  :class="tab==='vopsitorie-obiecte' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'"
+                >
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 rounded-r"
+                    :class="tab==='vopsitorie-obiecte' ? 'bg-orange-500' : 'bg-transparent'"
+                  ></span>
+                  <svg
+                    class="h-5 w-5 text-slate-900"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M6 3v18M18 3v18M10 7h4M10 12h4M10 17h4"></path>
+                  </svg>
+                  <span class="font-medium">Vopsitorie Obiecte</span>
+                </button>
+              </nav>
+            </div>
 
-                        <!-- Titlu + intro -->
-                        <header>
-                            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                                Vopsitorie Obiecte – metal & plastic
-                            </h1>
-                            <p class="mt-4 text-slate-700 leading-7">
-                                Oferim vopsire profesională pentru obiecte și componente din metal sau plastic:
-                                piese industriale, elemente de amenajare, obiecte de decor și multe altele.
-                                Tehnologie modernă și rezultate uniforme, rapide și rezistente.
-                            </p>
-                        </header>
-
-                        <!-- Proces & tehnologie -->
-                        <section class="grid md:grid-cols-2 gap-8 items-start">
-                            <div class="space-y-4">
-                                <h2 class="text-2xl font-extrabold text-slate-900">Proces și tehnologie</h2>
-                                <p class="text-slate-700 leading-7">
-                                    Lucrăm în cabină de vopsire cu filtre și evacuare, folosind vopsele
-                                    <strong>pe bază de apă</strong> și lacuri profesionale – uscare rapidă și
-                                    protecție la zgârieturi. Respectăm aceleași standarde ca în vopsitoria auto.
-                                </p>
-                                <p class="text-slate-700 leading-7">
-                                    La final, obiectele sunt coapte la ~<strong>60°C</strong> pentru uscare
-                                    eficientă, apoi ambalate / pregătite de montaj.
-                                </p>
-                            </div>
-                            <img th:src="@{/image/servicii/vopsitorie-obiecte1.png}"
-                                 alt="Proces vopsire obiecte"
-                                 class="rounded-xl ring-1 ring-slate-200 shadow object-cover w-full h-[260px] md:h-[320px]">
-                        </section>
-
-                        <!-- Exemple de obiecte -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Exemple de obiecte pe care le vopsim</h2>
-                            <ul class="mt-2 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Guri de aerisire, panouri metalice</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Mobilier metalic, calorifere & robinete</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Obiecte sanitare, întrerupătoare</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Piese din plastic (carcase, capace, profile)</li>
-                            </ul>
-                            <p class="text-xs text-slate-500">
-                                Notă: nu vopsim obiecte din lemn, cauciuc sau porțelan.
-                            </p>
-                        </section>
-
-                        <!-- Avantaje -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Avantajele serviciului nostru</h2>
-                            <ul class="grid sm:grid-cols-2 gap-y-2 gap-x-6 text-slate-800">
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Dotări moderne & eficiente</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Echipă cu experiență</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Atenție la detalii</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Siguranță și promptitudine</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Transparență & respect</li>
-                                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-orange-500"></span>Rezultate rapide, prețuri atractive</li>
-                            </ul>
-                        </section>
-
-                        <!-- Pași pe scurt -->
-                        <section class="space-y-4">
-                            <h2 class="text-xl font-semibold text-slate-900">Pașii lucrării (pe scurt)</h2>
-                            <ol class="list-decimal pl-6 space-y-1 text-slate-700 leading-7">
-                                <li>Decapare / matuire, corectarea imperfecțiunilor.</li>
-                                <li>Aplicare grund/primer, apoi 1–3 straturi de vopsea.</li>
-                                <li>2–3 straturi de lac de protecție pentru luciu și rezistență.</li>
-                                <li>Coacere în cabină la ~60°C, verificare și ambalare.</li>
-                            </ol>
-                        </section>
-
-                        <!-- CTA -->
-                        <section class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-6">
-                            <p class="text-slate-700 leading-7">
-                                Vrei să schimbi culoarea sau să reîmprospătezi aspectul unor obiecte din metal
-                                sau plastic? Trimite detalii și dimensiuni – îți oferim ofertă clară și termen rapid.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-3">
-                                <a href="tel:0731348340" class="rounded-lg bg-slate-900 text-white px-5 py-2.5 hover:bg-slate-800 transition">
-                                    Sună: 0731 348 340
-                                </a>
-                                <a th:href="@{/contact}" class="rounded-lg px-5 py-2.5 font-semibold text-orange-600 ring-1 ring-orange-600/30 hover:bg-orange-50 transition">
-                                    Cere ofertă
-                                </a>
-                            </div>
-                        </section>
-                    </article>
-                </template>
-
-
-            </main>
-
-            <!-- ===== DREAPTA: lista servicii (sticky) + Contact ===== -->
-            <aside class="lg:col-span-1 lg:order-2 space-y-8">
-                <!-- Lista servicii -->
-                <div class="lg:sticky lg:top-24 rounded-xl bg-white shadow-[0_20px_40px_rgba(0,0,0,0.08)] ring-1 ring-slate-100 overflow-hidden">
-                    <div class="px-6 pt-6 pb-4">
-                        <h2 class="text-2xl font-semibold text-slate-900">Servicii</h2>
-                    </div>
-
-                    <nav class="divide-y divide-slate-100">
-                        <!-- Diagnoza -->
-                        <button @click="tab='diagnoza'"
-                                class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
-                                :class="tab==='diagnoza' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'">
-              <span class="absolute left-0 top-0 h-full w-1 rounded-r"
-                    :class="tab==='diagnoza' ? 'bg-orange-500' : 'bg-transparent'"></span>
-                            <svg class="h-5 w-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-                                <path d="M7 9h10M7 13h6"></path>
-                            </svg>
-                            <span class="font-medium">Diagnoza Auto</span>
-                        </button>
-
-                        <!-- Vopsitorie -->
-                        <button @click="tab='vopsitorie'"
-                                class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
-                                :class="tab==='vopsitorie' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'">
-              <span class="absolute left-0 top-0 h-full w-1 rounded-r"
-                    :class="tab==='vopsitorie' ? 'bg-orange-500' : 'bg-transparent'"></span>
-                            <svg class="h-5 w-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 7h10v4H3zM13 9l5-5 3 3-5 5M14 12l-4 4"></path>
-                            </svg>
-                            <span class="font-medium">Vopsitorie Auto</span>
-                        </button>
-
-                        <!-- Mecanica -->
-                        <button @click="tab='mecanica'"
-                                class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
-                                :class="tab==='mecanica' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'">
-              <span class="absolute left-0 top-0 h-full w-1 rounded-r"
-                    :class="tab==='mecanica' ? 'bg-orange-500' : 'bg-transparent'"></span>
-                            <svg class="h-5 w-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10 7a4 4 0 118 0l-2 2-2-2-2 2-2-2zM3 21l6-6"></path>
-                            </svg>
-                            <span class="font-medium">Mecanica Auto</span>
-                        </button>
-
-                        <!-- Tinichigerie -->
-                        <button @click="tab='tinichigerie'"
-                                class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
-                                :class="tab==='tinichigerie' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'">
-              <span class="absolute left-0 top-0 h-full w-1 rounded-r"
-                    :class="tab==='tinichigerie' ? 'bg-orange-500' : 'bg-transparent'"></span>
-                            <svg class="h-5 w-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 15l6 6M3 21l6-6M14 3l7 7-9 9H5v-7z"></path>
-                            </svg>
-                            <span class="font-medium">Tinichigerie Auto</span>
-                        </button>
-
-                        <!-- Revizie -->
-                        <button @click="tab='revizie'"
-                                class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
-                                :class="tab==='revizie' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'">
-              <span class="absolute left-0 top-0 h-full w-1 rounded-r"
-                    :class="tab==='revizie' ? 'bg-orange-500' : 'bg-transparent'"></span>
-                            <svg class="h-5 w-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 8v8M8 12h8M4 4h16v16H4z"></path>
-                            </svg>
-                            <span class="font-medium">Revizie Auto</span>
-                        </button>
-
-                        <!-- Vopsitorie obicete -->
-                        <button @click="tab='vopsitorie-obiecte'"
-                                class="relative w-full text-left flex items-center gap-3 px-6 py-4 transition"
-                                :class="tab==='vopsitorie-obiecte' ? 'bg-slate-50 text-slate-900' : 'bg-white text-slate-700 hover:bg-slate-100'">
-              <span class="absolute left-0 top-0 h-full w-1 rounded-r"
-                    :class="tab==='vopsitorie-obiecte' ? 'bg-orange-500' : 'bg-transparent'"></span>
-                            <svg class="h-5 w-5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M6 3v18M18 3v18M10 7h4M10 12h4M10 17h4"></path>
-                            </svg>
-                            <span class="font-medium">Vopsitorie Obiecte</span>
-                        </button>
-                    </nav>
+            <div
+              class="rounded-xl bg-white shadow-[0_20px_40px_rgba(0,0,0,0.08)] ring-1 ring-slate-100 overflow-hidden"
+            >
+              <div class="px-6 pt-6 pb-4">
+                <h2 class="text-2xl font-semibold text-slate-900">Contact</h2>
+              </div>
+              <div class="px-6 pb-6 space-y-6 text-sm text-slate-700">
+                <div>
+                  <div
+                    class="flex items-center gap-2 text-orange-600 font-semibold"
+                  >
+                    Adresă
+                  </div>
+                  <p class="mt-1">
+                    Strada Balta Albina, nr. 8<br />Sector 3, București
+                  </p>
                 </div>
-
-                <!-- Card Contact (ca în capturi) -->
-                <div class="rounded-xl bg-white shadow-[0_20px_40px_rgba(0,0,0,0.08)] ring-1 ring-slate-100 overflow-hidden">
-                    <div class="px-6 pt-6 pb-4">
-                        <h2 class="text-2xl font-semibold text-slate-900">Contact</h2>
-                    </div>
-                    <div class="px-6 pb-6 space-y-6 text-sm text-slate-700">
-                        <div>
-                            <div class="flex items-center gap-2 text-orange-600 font-semibold">Adresă</div>
-                            <p class="mt-1">Strada Balta Albina, nr. 8<br>Sector 3, București</p>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 text-orange-600 font-semibold">Telefon</div>
-                            <p class="mt-1">
-                                <a href="tel:0731348340" class="hover:underline">0731 348 340</a>
-                            </p>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 text-orange-600 font-semibold">Program</div>
-                            <p class="mt-1">Lun–Vin: 8:00 – 17:00<br>Sam–Dum: Închis</p>
-                        </div>
-                    </div>
+                <div>
+                  <div
+                    class="flex items-center gap-2 text-orange-600 font-semibold"
+                  >
+                    Telefon
+                  </div>
+                  <p class="mt-1">
+                    <a href="tel:0731348340" class="hover:underline"
+                      >0731 348 340</a
+                    >
+                  </p>
                 </div>
-            </aside>
-
+                <div>
+                  <div
+                    class="flex items-center gap-2 text-orange-600 font-semibold"
+                  >
+                    Program
+                  </div>
+                  <p class="mt-1">Lun–Vin: 8:00 – 17:00<br />Sam–Dum: Închis</p>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
-    </div>
-</section>
-</body>
+      </div>
+    </section>
+  </body>
 </html>

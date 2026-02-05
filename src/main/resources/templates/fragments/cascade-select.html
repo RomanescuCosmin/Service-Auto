@@ -1,9 +1,10 @@
-<!-- Fragment pentru selecție în cascadă, cu UI custom -->
-<div th:fragment="cascadeSelect(selectName, defaultValue, defaultText, cascadeId, cascadeUrl)"
-     xmlns:th="http://www.thymeleaf.org" th:remove="tag">
-
-    <div
-            x-data="{
+<div
+  th:fragment="cascadeSelect(selectName, defaultValue, defaultText, cascadeId, cascadeUrl)"
+  xmlns:th="http://www.thymeleaf.org"
+  th:remove="tag"
+>
+  <div
+    x-data="{
       // UI
       open: false,
       query: '',
@@ -94,82 +95,125 @@
         this.open = false;
       }
     }"
-            th:data-select-name="${selectName}"
-            th:data-cascade-id="${cascadeId}"
-            th:data-cascade-url="${cascadeUrl}"
-            th:data-default-value="${defaultValue}"
-            th:data-default-text="${defaultText}"
-            class="relative">
+    th:data-select-name="${selectName}"
+    th:data-cascade-id="${cascadeId}"
+    th:data-cascade-url="${cascadeUrl}"
+    th:data-default-value="${defaultValue}"
+    th:data-default-text="${defaultText}"
+    class="relative"
+  >
+    <input
+      type="hidden"
+      th:attr="name=${selectName}, id=${selectName}"
+      x-model="selectedValue"
+    />
 
-        <!-- inputul care trimite valoarea în formular -->
-        <input type="hidden" th:attr="name=${selectName}, id=${selectName}" x-model="selectedValue">
+    <button
+      type="button"
+      :id="selectName + '__btn'"
+      class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 text-left transition focus:outline-none focus:bg-white focus:border-orange-500 focus:ring-2 focus:ring-orange-100 hover:bg-white pr-10"
+      @click="open = !open"
+      :aria-expanded="open"
+      aria-haspopup="listbox"
+    >
+      <span x-show="selectedText()" x-text="selectedText()"></span>
+      <span x-show="!selectedText()" class="text-slate-400"
+        >-- Selectează model --</span
+      >
 
-        <!-- butonul de deschidere (look modern) -->
-        <button
-                type="button"
-                :id="selectName + '__btn'"
-                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800
-             text-left transition focus:outline-none focus:bg-white focus:border-orange-500
-             focus:ring-2 focus:ring-orange-100 hover:bg-white pr-10"
-                @click="open = !open"
-                :aria-expanded="open"
-                aria-haspopup="listbox">
+      <svg
+        class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 opacity-70"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+          clip-rule="evenodd"
+        />
+      </svg>
 
-            <span x-show="selectedText()" x-text="selectedText()"></span>
-            <span x-show="!selectedText()" class="text-slate-400">-- Selectează model --</span>
+      <svg
+        x-show="loading"
+        class="absolute right-8 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="3"
+        ></circle>
+        <path
+          class="opacity-75"
+          d="M4 12a8 8 0 018-8"
+          stroke="currentColor"
+          stroke-width="3"
+        ></path>
+      </svg>
+    </button>
 
-            <!-- icon săgeată -->
-            <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 opacity-70"
-                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+    <div
+      x-show="open"
+      x-transition
+      @click.outside="open=false"
+      class="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl"
+    >
+      <div x-show="options.length > 7" class="p-2 border-b border-slate-100">
+        <input
+          type="text"
+          x-model="query"
+          placeholder="Caută model..."
+          class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:bg-white focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
+        />
+      </div>
+
+      <div x-show="loading" class="p-3 text-sm text-slate-500">
+        Se încarcă...
+      </div>
+      <div
+        x-show="!loading && !filtered.length"
+        class="p-3 text-sm text-slate-500"
+      >
+        Nicio opțiune
+      </div>
+
+      <ul
+        x-show="!loading && filtered.length"
+        role="listbox"
+        :aria-activedescendant="selectName + '__opt__' + selectedValue"
+        class="max-h-64 overflow-auto py-1"
+      >
+        <template x-for="option in filtered" :key="option.id">
+          <li
+            role="option"
+            :id="selectName + '__opt__' + option.id"
+            :aria-selected="option.id === selectedValue"
+            @click="select(option)"
+            class="flex cursor-pointer items-center justify-between px-3 py-2 text-sm hover:bg-orange-50"
+            :class="{'bg-orange-50': option.id === selectedValue}"
+          >
+            <span x-text="option.text" class="truncate"></span>
+
+            <svg
+              x-show="option.id === selectedValue"
+              class="h-4 w-4 opacity-70"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.704 5.29a1 1 0 00-1.408-1.42l-6.3 6.245-2.292-2.27A1 1 0 104.296 9.27l3 2.97a1 1 0 001.404-.006l8.004-7.945z"
+                clip-rule="evenodd"
+              />
             </svg>
-
-            <!-- spinner mic la încărcare -->
-            <svg x-show="loading" class="absolute right-8 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin"
-                 viewBox="0 0 24 24" fill="none">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
-                <path class="opacity-75" d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="3"></path>
-            </svg>
-        </button>
-
-        <!-- panoul dropdown -->
-        <div x-show="open" x-transition
-             @click.outside="open=false"
-             class="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl">
-
-            <!-- search (apare doar dacă sunt mai multe opțiuni) -->
-            <div x-show="options.length > 7" class="p-2 border-b border-slate-100">
-                <input type="text" x-model="query" placeholder="Caută model..."
-                       class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm
-                      focus:bg-white focus:border-orange-500 focus:ring-2 focus:ring-orange-100">
-            </div>
-
-            <!-- stări -->
-            <div x-show="loading" class="p-3 text-sm text-slate-500">Se încarcă...</div>
-            <div x-show="!loading && !filtered.length" class="p-3 text-sm text-slate-500">Nicio opțiune</div>
-
-            <!-- lista opțiuni -->
-            <ul x-show="!loading && filtered.length"
-                role="listbox"
-                :aria-activedescendant="selectName + '__opt__' + selectedValue"
-                class="max-h-64 overflow-auto py-1">
-
-                <template x-for="option in filtered" :key="option.id">
-                    <li role="option"
-                        :id="selectName + '__opt__' + option.id"
-                        :aria-selected="option.id === selectedValue"
-                        @click="select(option)"
-                        class="flex cursor-pointer items-center justify-between px-3 py-2 text-sm
-                     hover:bg-orange-50"
-                        :class="{'bg-orange-50': option.id === selectedValue}">
-                        <span x-text="option.text" class="truncate"></span>
-                        <!-- check icon pt. selectat -->
-                        <svg x-show="option.id === selectedValue" class="h-4 w-4 opacity-70" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 00-1.408-1.42l-6.3 6.245-2.292-2.27A1 1 0 104.296 9.27l3 2.97a1 1 0 001.404-.006l8.004-7.945z" clip-rule="evenodd"/>
-                        </svg>
-                    </li>
-                </template>
-            </ul>
-        </div>
+          </li>
+        </template>
+      </ul>
     </div>
+  </div>
 </div>

@@ -1,159 +1,328 @@
-<div th:fragment="navbar"
-     x-data="{ open:false, scrolled:false }"
-     x-init="
+<div
+  th:fragment="navbar"
+  x-data="{ open:false, scrolled:false }"
+  x-init="
        window.addEventListener('scroll', () => { scrolled = window.scrollY > 80 }, { passive:true })
        scrolled = window.scrollY > 80
      "
-     xmlns:x-on="http://www.w3.org/1999/xhtml">
-
-    <div class="sticky top-0 z-[60] isolate w-full overflow-visible shadow-[0_8px_24px_rgba(0,0,0,0.08)] ring-1 ring-slate-200 bg-white">
-
-        <!-- Top bar -->
-        <div class="bg-slate-900 text-slate-100">
-            <div class="flex items-center justify-between px-6 py-2 text-xs sm:text-sm">
-                <div class="font-semibold tracking-wide">Service-ul tău de încredere</div>
-                <div class="space-x-4">
-                    <a href="#" class="hover:text-orange-400">Dark mode</a>
-                    <span class="text-slate-500">|</span>
-                    <a href="#" class="hover:text-orange-400">Light mode</a>
-                </div>
-            </div>
+  xmlns:x-on="http://www.w3.org/1999/xhtml"
+>
+  <div
+    class="sticky top-0 z-[60] isolate w-full overflow-visible shadow-[0_8px_24px_rgba(0,0,0,0.08)] ring-1 ring-slate-200 bg-white"
+  >
+    <div class="bg-slate-900 text-slate-100">
+      <div
+        class="flex items-center justify-between px-6 py-2 text-xs sm:text-sm"
+      >
+        <div class="font-semibold tracking-wide">
+          Service-ul tău de încredere
         </div>
+        <div class="space-x-4">
+          <a href="#" class="hover:text-orange-400">Dark mode</a>
+          <span class="text-slate-500">|</span>
+          <a href="#" class="hover:text-orange-400">Light mode</a>
+        </div>
+      </div>
+    </div>
 
-        <!-- Main bar -->
-        <header class="w-full bg-white">
-            <div class="max-w-7xl mx-auto flex items-center gap-3 px-4 sm:px-6 py-3">
+    <header class="w-full bg-white">
+      <div class="max-w-7xl mx-auto flex items-center gap-3 px-4 sm:px-6 py-3">
+        <a th:href="@{/}" class="flex items-center gap-3">
+          <img
+            th:src="@{/image/email/service-logo.png}"
+            alt="Logo"
+            class="h-12 w-12 rounded-full ring-2 ring-slate-200"
+          />
+          <span class="hidden sm:block font-semibold text-lg text-slate-800"
+            >Service CSM Auto</span
+          >
+        </a>
 
-                <!-- Logo -->
-                <a th:href="@{/}" class="flex items-center gap-3">
-                    <img th:src="@{/image/email/service-logo.png}" alt="Logo" class="h-12 w-12 rounded-full ring-2 ring-slate-200" />
-                    <span class="hidden sm:block font-semibold text-lg text-slate-800">Service CSM Auto</span>
-                </a>
+        <nav class="hidden md:flex items-center gap-2 font-semibold ml-4">
+          <a
+            th:href="@{/}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Acasă</a
+          >
+          <a
+            th:href="@{/despre-noi}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Despre</a
+          >
+          <a
+            th:href="@{/consultanta-daune}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Consultanță daune</a
+          >
+          <a
+            th:href="@{/servicii}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Servicii</a
+          >
+          <a
+            th:href="@{/galerie}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Galerie</a
+          >
+          <a
+            th:href="@{/contact}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Contact</a
+          >
+          <a
+            th:href="@{/programare}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Programare</a
+          >
+        </nav>
 
-                <!-- Desktop nav -->
-                <nav class="hidden md:flex items-center gap-2 font-semibold ml-4">
-                    <a th:href="@{/}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Acasă</a>
-                    <a th:href="@{/despre-noi}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Despre</a>
-                    <a th:href="@{/consultanta-daune}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Consultanță daune</a>
-                    <a th:href="@{/servicii}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Servicii</a>
-                    <a  th:href="@{/galerie}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Galerie</a>
-                    <a th:href="@{/contact}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Contact</a>
-                    <a th:href="@{/programare}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Programare</a>
-                </nav>
+        <div class="flex-1"></div>
 
-                <!-- Spacer -->
-                <div class="flex-1"></div>
-
-                <!-- Logged in -->
-                <div th:if="${isAuthenticated}" class="hidden md:block relative" x-data="{openUser:false}">
-                    <button type="button" @click="openUser=!openUser"
-                            class="inline-flex items-center gap-3 rounded-xl px-2.5 py-1.5 hover:bg-slate-100 text-slate-800">
-                        <!-- Avatar with user SVG -->
-                        <span class="relative grid h-9 w-9 place-items-center rounded-full bg-slate-900 text-white ring-2 ring-slate-200">
-              <!-- User SVG -->
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div
+          th:if="${isAuthenticated}"
+          class="hidden md:block relative"
+          x-data="{openUser:false}"
+        >
+          <button
+            type="button"
+            @click="openUser=!openUser"
+            class="inline-flex items-center gap-3 rounded-xl px-2.5 py-1.5 hover:bg-slate-100 text-slate-800"
+          >
+            <span
+              class="relative grid h-9 w-9 place-items-center rounded-full bg-slate-900 text-white ring-2 ring-slate-200"
+            >
+              <svg
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <path d="M20 21v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </span>
-                        <span class="hidden lg:block text-sm">
-              <span class="font-semibold" th:text="${displayName}">Utilizator</span>
+            <span class="hidden lg:block text-sm">
+              <span class="font-semibold" th:text="${displayName}"
+                >Utilizator</span
+              >
             </span>
-                        <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
+            <svg
+              class="h-4 w-4 text-slate-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
 
-                    <!-- Dropdown -->
-                    <div x-show="openUser" x-transition @click.outside="openUser=false"
-                         class="absolute right-0 mt-2 w-64 rounded-xl bg-white ring-1 ring-slate-200 shadow-lg overflow-hidden">
-                        <div class="px-4 py-3 bg-slate-50">
-                            <p class="text-sm font-semibold text-slate-900" th:text="${displayName}">Utilizator</p>
-                            <p class="text-xs text-slate-500" th:text="${username}">email@exemplu.ro</p>
-                        </div>
-                        <div class="py-1">
-                            <a th:href="@{/programari-personale}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Programările mele</a>
-                            <form th:action="@{/logout}" method="post" class="px-2 pt-1 pb-2">
-                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                <button type="submit"
-                                        class="w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50">
-                                    <!-- logout icon -->
-                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                        <path d="M16 17l5-5-5-5"></path>
-                                        <path d="M21 12H9"></path>
-                                    </svg>
-                                    Delogare
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Logged out -->
-                <div th:if="${!isAuthenticated}" class="hidden md:flex items-center gap-2">
-                    <a th:href="@{/login}"
-                       class="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold text-slate-800 ring-1 ring-slate-200 hover:bg-slate-50">
-                        Autentificare
-                    </a>
-                    <a th:href="@{/register}"
-                       class="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600">
-                        Înregistrare
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <button x-on:click="open=!open"
-                        class="md:hidden ml-1 inline-flex items-center gap-2 rounded-lg px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
-                    Meniu
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="6"  x2="21" y2="6"  />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
+          <div
+            x-show="openUser"
+            x-transition
+            @click.outside="openUser=false"
+            class="absolute right-0 mt-2 w-64 rounded-xl bg-white ring-1 ring-slate-200 shadow-lg overflow-hidden"
+          >
+            <div class="px-4 py-3 bg-slate-50">
+              <p
+                class="text-sm font-semibold text-slate-900"
+                th:text="${displayName}"
+              >
+                Utilizator
+              </p>
+              <p class="text-xs text-slate-500" th:text="${username}">
+                email@exemplu.ro
+              </p>
+            </div>
+            <div class="py-1">
+              <a
+                th:href="@{/programari-personale}"
+                class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100"
+                >Programările mele</a
+              >
+              <form th:action="@{/logout}" method="post" class="px-2 pt-1 pb-2">
+                <input
+                  type="hidden"
+                  th:name="${_csrf.parameterName}"
+                  th:value="${_csrf.token}"
+                />
+                <button
+                  type="submit"
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50"
+                >
+                  <svg
+                    class="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <path d="M16 17l5-5-5-5"></path>
+                    <path d="M21 12H9"></path>
+                  </svg>
+                  Delogare
                 </button>
+              </form>
             </div>
+          </div>
+        </div>
 
-            <!-- Mobile menu -->
-            <div class="md:hidden" x-show="open" x-transition.origin.top.left>
-                <nav class="px-4 pb-3 grid gap-1">
-                    <a th:href="@{/}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Acasă</a>
-                    <a th:href="@{/despre-noi}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Despre</a>
-                    <a th:href="@{/consultanta-daune}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Consultanță daune</a>
-                    <a th:href="@{/servicii}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Servicii</a>
-                    <a th:href="@{/galerie}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Galerie</a>
-                    <a th:href="@{/contact}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Contact</a>
-                    <a th:href="@{/programare}" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition">Programare</a>
+        <div
+          th:if="${!isAuthenticated}"
+          class="hidden md:flex items-center gap-2"
+        >
+          <a
+            th:href="@{/login}"
+            class="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold text-slate-800 ring-1 ring-slate-200 hover:bg-slate-50"
+          >
+            Autentificare
+          </a>
+          <a
+            th:href="@{/register}"
+            class="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600"
+          >
+            Înregistrare
+          </a>
+        </div>
 
-                    <!-- Mobile auth -->
-                    <div th:if="${isAuthenticated}" class="mt-2 rounded-xl border border-slate-200 p-3">
-                        <div class="flex items-center gap-3">
-              <span class="grid h-9 w-9 place-items-center rounded-full bg-slate-900 text-white ring-2 ring-slate-200">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <button
+          x-on:click="open=!open"
+          class="md:hidden ml-1 inline-flex items-center gap-2 rounded-lg px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 transition"
+        >
+          Meniu
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="md:hidden" x-show="open" x-transition.origin.top.left>
+        <nav class="px-4 pb-3 grid gap-1">
+          <a
+            th:href="@{/}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Acasă</a
+          >
+          <a
+            th:href="@{/despre-noi}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Despre</a
+          >
+          <a
+            th:href="@{/consultanta-daune}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Consultanță daune</a
+          >
+          <a
+            th:href="@{/servicii}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Servicii</a
+          >
+          <a
+            th:href="@{/galerie}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Galerie</a
+          >
+          <a
+            th:href="@{/contact}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Contact</a
+          >
+          <a
+            th:href="@{/programare}"
+            class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-900 hover:text-white transition"
+            >Programare</a
+          >
+
+          <div
+            th:if="${isAuthenticated}"
+            class="mt-2 rounded-xl border border-slate-200 p-3"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="grid h-9 w-9 place-items-center rounded-full bg-slate-900 text-white ring-2 ring-slate-200"
+              >
+                <svg
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 21v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
               </span>
-                            <div class="text-sm">
-                                <div class="font-semibold text-slate-900" th:text="${displayName}">Utilizator</div>
-                                <div class="text-slate-500" th:text="${username}">email@exemplu.ro</div>
-                            </div>
-                        </div>
-                        <div class="mt-3 grid grid-cols-2 gap-2">
-                            <a th:href="@{/programari-personale}" class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm ring-1 ring-slate-200 text-slate-800">Programările mele</a>
-                            <form th:action="@{/logout}" method="post">
-                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                <button type="submit" class="w-full inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-red-500 hover:bg-red-600">Delogare</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div th:if="${!isAuthenticated}" class="mt-2 grid grid-cols-2 gap-2">
-                        <a th:href="@{/login}" class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm ring-1 ring-slate-200 text-slate-800">Autentificare</a>
-                        <a th:href="@{/register}" class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600">Înregistrare</a>
-                    </div>
-                </nav>
+              <div class="text-sm">
+                <div
+                  class="font-semibold text-slate-900"
+                  th:text="${displayName}"
+                >
+                  Utilizator
+                </div>
+                <div class="text-slate-500" th:text="${username}">
+                  email@exemplu.ro
+                </div>
+              </div>
             </div>
-        </header>
-    </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <a
+                th:href="@{/programari-personale}"
+                class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm ring-1 ring-slate-200 text-slate-800"
+                >Programările mele</a
+              >
+              <form th:action="@{/logout}" method="post">
+                <input
+                  type="hidden"
+                  th:name="${_csrf.parameterName}"
+                  th:value="${_csrf.token}"
+                />
+                <button
+                  type="submit"
+                  class="w-full inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-red-500 hover:bg-red-600"
+                >
+                  Delogare
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div th:if="${!isAuthenticated}" class="mt-2 grid grid-cols-2 gap-2">
+            <a
+              th:href="@{/login}"
+              class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm ring-1 ring-slate-200 text-slate-800"
+              >Autentificare</a
+            >
+            <a
+              th:href="@{/register}"
+              class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600"
+              >Înregistrare</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+  </div>
 </div>

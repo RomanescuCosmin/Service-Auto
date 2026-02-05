@@ -1,221 +1,363 @@
-<!DOCTYPE html>
-<html lang="ro" xmlns:th="http://www.thymeleaf.org" xmlns:x-transition="http://www.w3.org/1999/xhtml">
-<head>
+<!doctype html>
+<html
+  lang="ro"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:x-transition="http://www.w3.org/1999/xhtml"
+>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Autentificare — CSM Auto</title>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
     <link rel="icon" type="image/x-icon" href="/image/favicon/favicon.ico" />
-</head>
-<body class="bg-slate-50 text-slate-800">
-<section x-data="{ showModal:false, showPass:false }" class="relative min-h-screen">
-
-
-    <div class="pointer-events-none absolute inset-0">
-        <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-orange-400/20 blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-amber-300/10 blur-3xl"></div>
-        <div class="absolute inset-0 [background-image:radial-gradient(theme(colors.slate.300)/40_1px,transparent_1px)] [background-size:18px_18px] opacity-30"></div>
-    </div>
-
-    <div class="relative mx-auto max-w-5xl px-6 py-10 md:py-16">
-        <div class="mb-8 flex items-center justify-between">
-            <a th:href="@{/}" class="inline-flex items-center gap-2">
-                <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500 text-white font-bold">CSM</span>
-                <span class="text-lg font-semibold">CSM Auto</span>
-            </a>
-            <a th:href="@{/}" class="text-sm font-medium text-slate-500 hover:text-slate-700">Înapoi la site</a>
-        </div>
-
-        <div class="grid gap-0 overflow-hidden rounded-3xl ring-1 ring-slate-200 shadow-2xl md:grid-cols-2 bg-white">
-            <div class="p-6 sm:p-8">
-                <header class="mb-6">
-                    <h1 class="text-2xl font-bold text-slate-900">Autentificare</h1>
-                    <p class="mt-1 text-sm text-slate-500">Introdu emailul și parola pentru a continua.</p>
-                </header>
-
-                <div th:if="${param.error}" class="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-                    Date de autentificare invalide.
-                </div>
-                <div th:if="${param.logout}" class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
-                    Ai fost delogat cu succes.
-                </div>
-
-                <form th:action="@{/login}" method="post" class="space-y-5">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-
-                    <div class="relative">
-                        <input id="username" name="username" type="email" required placeholder=" "
-                               class="peer w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-transparent outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100" />
-                        <label for="username"
-                               class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 bg-white px-1 text-slate-500 transition-all
-                          peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base
-                          peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-600">
-                            Email
-                        </label>
-                    </div>
-
-                    <div class="relative">
-                        <input :type="showPass ? 'text' : 'password'" id="password" name="password" required placeholder=" "
-                               class="peer w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-slate-900 placeholder-transparent outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100" />
-                        <label for="password"
-                               class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 bg-white px-1 text-slate-500 transition-all
-                          peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base
-                          peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-600">
-                            Parolă
-                        </label>
-                        <button type="button" @click="showPass=!showPass"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                                aria-label="Arată/ascunde parola">
-                            <svg x-show="!showPass" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
-                            </svg>
-                            <svg x-show="showPass" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 3l18 18"/><path d="M17.94 17.94C16.22 19.24 14.22 20 12 20 5 20 1 12 1 12a21.8 21.8 0 015.06-6.06"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-1">
-                        <label class="inline-flex items-center gap-2 text-sm text-slate-700">
-                            <input type="checkbox" name="remember-me" class="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500">
-                            Ține-mă minte
-                        </label>
-                        <button type="button" @click="showModal=true" class="text-sm font-medium text-orange-600 hover:text-orange-700">
-                            Ai uitat parola?
-                        </button>
-                    </div>
-
-                    <!-- Submit -->
-                    <button type="submit"
-                            class="group w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-4 py-3.5 font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-white">
-                        Autentificare
-                        <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                    </button>
-
-                    <p class="text-center text-sm text-slate-600">
-                        Nu ai cont?
-                        <a th:href="@{/register}" class="font-semibold text-orange-600 hover:text-orange-700">Înregistrează-te</a>
-                    </p>
-                </form>
-            </div>
-
-            <!-- Dreapta: vizual + selling -->
-            <div class="relative hidden md:block">
-                <img th:src="@{/image/email/service-logo.png}" alt="CSM Auto" class="absolute inset-0 h-full w-full object-cover opacity-70">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/60 to-slate-900/40"></div>
-
-                <div class="relative h-full p-8 flex flex-col justify-end text-white">
-          <span class="inline-flex w-fit items-center gap-2 rounded-full bg-orange-500/15 text-orange-300 ring-1 ring-orange-400/30 px-3 py-1 text-xs font-semibold">
-            Contul tău CSM Auto
-          </span>
-                    <h2 class="mt-4 text-3xl font-extrabold">Gestionează-ți mașina fără griji</h2>
-                    <ul class="mt-3 space-y-2 text-slate-200/90 text-sm">
-                        <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-orange-400"></span> Programări rapide & notificări</li>
-                        <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-orange-400"></span> Istoric lucrări & recomandări</li>
-                        <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-orange-400"></span> Devize clare, costuri la vedere</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <p class="mt-6 text-center text-xs text-slate-500">&copy; 2025 CSM Auto</p>
-    </div>
-
-    <div
-            x-show="showModal"
-            x-transition.opacity
-            class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
-            @keydown.escape.window="showModal=false"
-            @click.self="showModal=false"
-            aria-modal="true"
-            role="dialog"
-            aria-labelledby="reset-title"
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+    <section
+      x-data="{ showModal:false, showPass:false }"
+      class="relative min-h-screen"
     >
+      <div class="pointer-events-none absolute inset-0">
         <div
-                x-show="showModal"
-                x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 scale-95"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-95"
-                class="w-full max-w-md origin-center rounded-2xl bg-white ring-1 ring-slate-200 shadow-2xl"
-                @click.stop
-        >
-            <div class="p-6">
-                <!-- header -->
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center gap-3">
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10 text-orange-600 ring-1 ring-orange-500/20">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 12A10 10 0 102 12a10 10 0 0020 0z"/><path d="M12 8v5l3 3"/>
-            </svg>
-          </span>
-                        <h3 id="reset-title" class="text-lg font-semibold text-slate-900">Resetare parolă</h3>
-                    </div>
+          class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-orange-400/20 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-amber-300/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute inset-0 [background-image:radial-gradient(theme(colors.slate.300)/40_1px,transparent_1px)] [background-size:18px_18px] opacity-30"
+        ></div>
+      </div>
 
-                    <button
-                            @click="showModal=false"
-                            class="rounded-lg p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100"
-                            aria-label="Închide"
-                    >
-                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 6l12 12M6 18L18 6"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <p class="mt-2 text-sm text-slate-600">
-                    Introdu adresa de email și îți trimitem un link de resetare.
-                </p>
-
-                <!-- form -->
-                <form th:action="@{/forgot-password}" method="post" class="mt-4 space-y-4">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-                    <!-- Email (floating label, ca în formularul principal) -->
-                    <div class="relative">
-                        <input
-                                type="email"
-                                id="resetEmail"
-                                name="email"
-                                required
-                                placeholder=" "
-                                class="peer w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-transparent outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
-                        />
-                        <label
-                                for="resetEmail"
-                                class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 bg-white px-1 text-slate-500 transition-all
-                   peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base
-                   peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-600"
-                        >
-                            Email
-                        </label>
-                    </div>
-
-                    <div class="flex items-center gap-3 pt-1">
-                        <button
-                                type="submit"
-                                class="flex-1 rounded-2xl bg-orange-500 px-4 py-3.5 font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-white"
-                        >
-                            Trimite link
-                        </button>
-
-                        <button
-                                type="button"
-                                @click="showModal=false"
-                                class="rounded-2xl px-4 py-3.5 font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50"
-                        >
-                            Anulează
-                        </button>
-                    </div>
-                </form>
-            </div>
+      <div class="relative mx-auto max-w-5xl px-6 py-10 md:py-16">
+        <div class="mb-8 flex items-center justify-between">
+          <a th:href="@{/}" class="inline-flex items-center gap-2">
+            <span
+              class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500 text-white font-bold"
+              >CSM</span
+            >
+            <span class="text-lg font-semibold">CSM Auto</span>
+          </a>
+          <a
+            th:href="@{/}"
+            class="text-sm font-medium text-slate-500 hover:text-slate-700"
+            >Înapoi la site</a
+          >
         </div>
-    </div>
 
-</section>
-</body>
+        <div
+          class="grid gap-0 overflow-hidden rounded-3xl ring-1 ring-slate-200 shadow-2xl md:grid-cols-2 bg-white"
+        >
+          <div class="p-6 sm:p-8">
+            <header class="mb-6">
+              <h1 class="text-2xl font-bold text-slate-900">Autentificare</h1>
+              <p class="mt-1 text-sm text-slate-500">
+                Introdu emailul și parola pentru a continua.
+              </p>
+            </header>
+
+            <div
+              th:if="${param.error}"
+              class="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+            >
+              Date de autentificare invalide.
+            </div>
+            <div
+              th:if="${param.logout}"
+              class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700"
+            >
+              Ai fost delogat cu succes.
+            </div>
+
+            <form th:action="@{/login}" method="post" class="space-y-5">
+              <input
+                type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}"
+              />
+
+              <div class="relative">
+                <input
+                  id="username"
+                  name="username"
+                  type="email"
+                  required
+                  placeholder=" "
+                  class="peer w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-transparent outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
+                />
+                <label
+                  for="username"
+                  class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 bg-white px-1 text-slate-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-600"
+                >
+                  Email
+                </label>
+              </div>
+
+              <div class="relative">
+                <input
+                  :type="showPass ? 'text' : 'password'"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder=" "
+                  class="peer w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-slate-900 placeholder-transparent outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
+                />
+                <label
+                  for="password"
+                  class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 bg-white px-1 text-slate-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-600"
+                >
+                  Parolă
+                </label>
+                <button
+                  type="button"
+                  @click="showPass=!showPass"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  aria-label="Arată/ascunde parola"
+                >
+                  <svg
+                    x-show="!showPass"
+                    class="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg
+                    x-show="showPass"
+                    class="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 3l18 18" />
+                    <path
+                      d="M17.94 17.94C16.22 19.24 14.22 20 12 20 5 20 1 12 1 12a21.8 21.8 0 015.06-6.06"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between pt-1">
+                <label
+                  class="inline-flex items-center gap-2 text-sm text-slate-700"
+                >
+                  <input
+                    type="checkbox"
+                    name="remember-me"
+                    class="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
+                  />
+                  Ține-mă minte
+                </label>
+                <button
+                  type="button"
+                  @click="showModal=true"
+                  class="text-sm font-medium text-orange-600 hover:text-orange-700"
+                >
+                  Ai uitat parola?
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                class="group w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-4 py-3.5 font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-white"
+              >
+                Autentificare
+                <svg
+                  class="h-4 w-4 transition group-hover:translate-x-0.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <p class="text-center text-sm text-slate-600">
+                Nu ai cont?
+                <a
+                  th:href="@{/register}"
+                  class="font-semibold text-orange-600 hover:text-orange-700"
+                  >Înregistrează-te</a
+                >
+              </p>
+            </form>
+          </div>
+
+          <div class="relative hidden md:block">
+            <img
+              th:src="@{/image/email/service-logo.png}"
+              alt="CSM Auto"
+              class="absolute inset-0 h-full w-full object-cover opacity-70"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/60 to-slate-900/40"
+            ></div>
+
+            <div
+              class="relative h-full p-8 flex flex-col justify-end text-white"
+            >
+              <span
+                class="inline-flex w-fit items-center gap-2 rounded-full bg-orange-500/15 text-orange-300 ring-1 ring-orange-400/30 px-3 py-1 text-xs font-semibold"
+              >
+                Contul tău CSM Auto
+              </span>
+              <h2 class="mt-4 text-3xl font-extrabold">
+                Gestionează-ți mașina fără griji
+              </h2>
+              <ul class="mt-3 space-y-2 text-slate-200/90 text-sm">
+                <li class="flex items-start gap-2">
+                  <span
+                    class="mt-1 h-1.5 w-1.5 rounded-full bg-orange-400"
+                  ></span>
+                  Programări rapide & notificări
+                </li>
+                <li class="flex items-start gap-2">
+                  <span
+                    class="mt-1 h-1.5 w-1.5 rounded-full bg-orange-400"
+                  ></span>
+                  Istoric lucrări & recomandări
+                </li>
+                <li class="flex items-start gap-2">
+                  <span
+                    class="mt-1 h-1.5 w-1.5 rounded-full bg-orange-400"
+                  ></span>
+                  Devize clare, costuri la vedere
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-6 text-center text-xs text-slate-500">
+          &copy; 2025 CSM Auto
+        </p>
+      </div>
+
+      <div
+        x-show="showModal"
+        x-transition.opacity
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
+        @keydown.escape.window="showModal=false"
+        @click.self="showModal=false"
+        aria-modal="true"
+        role="dialog"
+        aria-labelledby="reset-title"
+      >
+        <div
+          x-show="showModal"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 scale-95"
+          x-transition:enter-end="opacity-100 scale-100"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100 scale-100"
+          x-transition:leave-end="opacity-0 scale-95"
+          class="w-full max-w-md origin-center rounded-2xl bg-white ring-1 ring-slate-200 shadow-2xl"
+          @click.stop
+        >
+          <div class="p-6">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <span
+                  class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10 text-orange-600 ring-1 ring-orange-500/20"
+                >
+                  <svg
+                    class="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M22 12A10 10 0 102 12a10 10 0 0020 0z" />
+                    <path d="M12 8v5l3 3" />
+                  </svg>
+                </span>
+                <h3
+                  id="reset-title"
+                  class="text-lg font-semibold text-slate-900"
+                >
+                  Resetare parolă
+                </h3>
+              </div>
+
+              <button
+                @click="showModal=false"
+                class="rounded-lg p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+                aria-label="Închide"
+              >
+                <svg
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 6l12 12M6 18L18 6" />
+                </svg>
+              </button>
+            </div>
+
+            <p class="mt-2 text-sm text-slate-600">
+              Introdu adresa de email și îți trimitem un link de resetare.
+            </p>
+
+            <form
+              th:action="@{/forgot-password}"
+              method="post"
+              class="mt-4 space-y-4"
+            >
+              <input
+                type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}"
+              />
+
+              <div class="relative">
+                <input
+                  type="email"
+                  id="resetEmail"
+                  name="email"
+                  required
+                  placeholder=" "
+                  class="peer w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-transparent outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
+                />
+                <label
+                  for="resetEmail"
+                  class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 bg-white px-1 text-slate-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-focus:text-orange-600"
+                >
+                  Email
+                </label>
+              </div>
+
+              <div class="flex items-center gap-3 pt-1">
+                <button
+                  type="submit"
+                  class="flex-1 rounded-2xl bg-orange-500 px-4 py-3.5 font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-white"
+                >
+                  Trimite link
+                </button>
+
+                <button
+                  type="button"
+                  @click="showModal=false"
+                  class="rounded-2xl px-4 py-3.5 font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50"
+                >
+                  Anulează
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

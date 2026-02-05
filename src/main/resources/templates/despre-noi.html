@@ -1,209 +1,216 @@
-<!DOCTYPE html>
-<html lang="en" th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}"
-      xmlns:x-transition="http://www.w3.org/1999/xhtml">
-<head>
+<!doctype html>
+<html
+  lang="en"
+  th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}"
+  xmlns:x-transition="http://www.w3.org/1999/xhtml"
+>
+  <head>
     <title>Despre noi</title>
-</head>
-<body class="antialiased text-slate-800">
-<!-- Experiență -->
-<section x-data="{ showContent: false }"
-         x-init="setTimeout(() => showContent = true, 100)"
-         class="bg-white">
-    <div x-show="showContent"
-         x-transition:enter="transition ease-out duration-700"
-         x-transition:enter-start="opacity-0 translate-y-4"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         class="main-content max-w-full ">
+  </head>
+  <body class="antialiased text-slate-800">
+    <section
+      x-data="{ showContent: false }"
+      x-init="setTimeout(() => showContent = true, 100)"
+      class="bg-white"
+    >
+      <div
+        x-show="showContent"
+        x-transition:enter="transition ease-out duration-700"
+        x-transition:enter-start="opacity-0 translate-y-4"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="main-content max-w-full"
+      >
         <section class="py-16">
-            <div class="mx-auto max-w-7xl px-4">
-                <div class="grid items-center gap-10 lg:grid-cols-2">
-                    <div class="relative">
-                        <img
-                                class="w-full rounded-2xl object-cover grayscale"
-                                src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1600&auto=format&fit=crop"
-                                alt="Mecanicie și piese auto"
-                        />
+          <div class="mx-auto max-w-7xl px-4">
+            <div class="grid items-center gap-10 lg:grid-cols-2">
+              <div class="relative">
+                <img
+                  class="w-full rounded-2xl object-cover grayscale"
+                  src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1600&auto=format&fit=crop"
+                  alt="Mecanicie și piese auto"
+                />
 
-                        <div
-                                class="absolute -bottom-10 left-10 right-10 overflow-hidden rounded-2xl shadow-xl"
-                        >
-                            <img
-                                    class="w-full object-cover transition duration-300 ease-out hover:brightness-110"
-                                    src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Diagnoză auto"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="pt-10 lg:pt-0">
-                        <h2 class="text-3xl font-semibold">
-                            12 ani <span class="text-orange-600">Experiență</span>
-                        </h2>
-                        <span class="mt-3 block h-1 w-14 bg-orange-600"></span>
-                        <div class="mt-6 space-y-5 leading-relaxed text-slate-600">
-                            <p>
-                                CSM Auto Service a fost înființat în anul 2009 ca service auto
-                                multimarcă. În anul 2015 activitatea a fost mutată într-o
-                                locație mai accesibilă, respectiv în sediul modern din care ne
-                                desfășurăm și acum activitatea: Str. Balta Albina Nr. 8, Sector
-                                3, București.
-                            </p>
-                            <p>
-                                De-a lungul anilor, CSM Auto Service a evoluat atât din
-                                perspectiva experienței, cât și a extinderii serviciilor. În
-                                prezent oferim servicii complete de reparații și diagnostic,
-                                indiferent de autoturism.
-                            </p>
-                        </div>
-
-                        <!-- 3 coloane: Viziune / Calitate / Echipă -->
-                        <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                            <div>
-                                <h3 class="text-lg font-semibold">Viziunea Noastră</h3>
-                                <p class="mt-3 text-sm text-slate-600">
-                                    Suntem o echipă de profesioniști, pasionați de motoare și
-                                    onești în relația cu clientul. Am creat un loc unde clienții
-                                    sunt tratați cu respect și încredere.
-                                </p>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold">Calitate</h3>
-                                <p class="mt-3 text-sm text-slate-600">
-                                    Din 2019, sub un nou management, am parcurs un amplu proces
-                                    de retehnologizare și redefinire a procedurilor de control al
-                                    calității, atingând standarde înalte.
-                                </p>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold">Echipa CSM Auto</h3>
-                                <p class="mt-3 text-sm text-slate-600">
-                                    Ingineri și mecanici cu experiență în România și Europa de
-                                    Vest, gata să ofere soluții la cele mai înalte standarde.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div
+                  class="absolute -bottom-10 left-10 right-10 overflow-hidden rounded-2xl shadow-xl"
+                >
+                  <img
+                    class="w-full object-cover transition duration-300 ease-out hover:brightness-110"
+                    src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop"
+                    alt="Diagnoză auto"
+                  />
                 </div>
-            </div>
-        </section>
+              </div>
 
-        <!-- Avantaje -->
-        <section class="bg-slate-900 py-16 text-slate-200">
-            <div class="mx-auto max-w-7xl px-4">
-                <div class="grid gap-12 lg:grid-cols-4">
-                    <div>
-                        <h2 class="text-3xl font-semibold">
-                            Avantajele <span class="text-orange-500">CSM Auto Service</span>
-                        </h2>
-                        <span class="mt-3 block h-1 w-14 bg-orange-500"></span>
-                        <p class="mt-6 text-slate-400">
-                            Doriți servicii de calitate și profesionalism pentru autoturismul
-                            dumneavoastră?
-                        </p>
-                        <a
-                                href="#programare"
-                                class="mt-6 inline-block rounded-xl border border-orange-500 px-6 py-3 font-medium text-orange-500 transition hover:bg-orange-500 hover:text-slate-900"
-                        >Programează-te acum</a
-                        >
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="text-4xl">🎧</div>
-                        <h3 class="text-xl font-semibold">Servicii orientate spre client</h3>
-                        <p class="text-slate-400">
-                            Avem grijă de serviciile oferite, iar clienții noștri fideli se
-                            pot aștepta la aprecieri și beneficii pentru serviciile viitoare.
-                        </p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="text-4xl">🏷️</div>
-                        <h3 class="text-xl font-semibold">Prețuri competitive</h3>
-                        <p class="text-slate-400">
-                            Transparanță, corectitudine și eficiență — menținerea unor prețuri
-                            competitive este obiectiv primar.
-                        </p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="text-4xl">🛞</div>
-                        <h3 class="text-xl font-semibold">Piese auto de înaltă calitate</h3>
-                        <p class="text-slate-400">
-                            Colaborăm cu distribuitori și producători renumiți și garantăm
-                            pentru piesele furnizate.
-                        </p>
-                    </div>
+              <div class="pt-10 lg:pt-0">
+                <h2 class="text-3xl font-semibold">
+                  12 ani <span class="text-orange-600">Experiență</span>
+                </h2>
+                <span class="mt-3 block h-1 w-14 bg-orange-600"></span>
+                <div class="mt-6 space-y-5 leading-relaxed text-slate-600">
+                  <p>
+                    CSM Auto Service a fost înființat în anul 2009 ca service
+                    auto multimarcă. În anul 2015 activitatea a fost mutată
+                    într-o locație mai accesibilă, respectiv în sediul modern
+                    din care ne desfășurăm și acum activitatea: Str. Balta
+                    Albina Nr. 8, Sector 3, București.
+                  </p>
+                  <p>
+                    De-a lungul anilor, CSM Auto Service a evoluat atât din
+                    perspectiva experienței, cât și a extinderii serviciilor. În
+                    prezent oferim servicii complete de reparații și diagnostic,
+                    indiferent de autoturism.
+                  </p>
                 </div>
-            </div>
-        </section>
 
-        <!-- Galerie -->
-        <section class="py-16">
-            <div class="mx-auto max-w-7xl px-4">
-                <div class="text-center">
-                    <h2 class="text-4xl font-bold">
-                        Galeria <span class="text-orange-600">CSM Auto Service</span>
-                    </h2>
-                    <p class="mt-3 text-slate-600">
-                        Aceste fotografii vă vor ajuta să aflați mai multe despre
-                        service-ul nostru auto și serviciile oferite
+                <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  <div>
+                    <h3 class="text-lg font-semibold">Viziunea Noastră</h3>
+                    <p class="mt-3 text-sm text-slate-600">
+                      Suntem o echipă de profesioniști, pasionați de motoare și
+                      onești în relația cu clientul. Am creat un loc unde
+                      clienții sunt tratați cu respect și încredere.
                     </p>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold">Calitate</h3>
+                    <p class="mt-3 text-sm text-slate-600">
+                      Din 2019, sub un nou management, am parcurs un amplu
+                      proces de retehnologizare și redefinire a procedurilor de
+                      control al calității, atingând standarde înalte.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold">Echipa CSM Auto</h3>
+                    <p class="mt-3 text-sm text-slate-600">
+                      Ingineri și mecanici cu experiență în România și Europa de
+                      Vest, gata să ofere soluții la cele mai înalte standarde.
+                    </p>
+                  </div>
                 </div>
-
-                <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <!-- Card imagine -->
-                    <a
-                            href="#"
-                            class="group relative block overflow-hidden rounded-2xl"
-                            aria-label="Galerie 1"
-                    >
-                        <img
-                                class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                th:src="@{/image/despre-noi/masina-descompusa.png}"
-                                alt="Detaliu motor"
-                        />
-                    </a>
-
-                    <a
-                            href="#"
-                            class="group relative block overflow-hidden rounded-2xl"
-                            aria-label="Galerie 2"
-                    >
-                        <img
-                                class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                th:src="@{/image/despre-noi/imagine-service.png}"
-                                alt="Mașină în service"
-                        />
-                    </a>
-
-                    <a
-                            href="#"
-                            class="group relative block overflow-hidden rounded-2xl"
-                            aria-label="Galerie 3"
-                    >
-                        <img
-                                class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                th:src="@{/image/despre-noi/disc-frana.png}"
-                                alt="Disc frână"
-                        />
-                    </a>
-
-                    <a
-                            href="#"
-                            class="group relative block overflow-hidden rounded-2xl"
-                            aria-label="Galerie 4"
-                    >
-                        <img
-                                class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
-                                th:src="@{/image/despre-noi/bloc-motor.png}"
-                                alt="Compartiment motor"
-                        />
-                    </a>
-                </div>
+              </div>
             </div>
+          </div>
         </section>
-    </div>
-</section>
 
-</body>
+        <section class="bg-slate-900 py-16 text-slate-200">
+          <div class="mx-auto max-w-7xl px-4">
+            <div class="grid gap-12 lg:grid-cols-4">
+              <div>
+                <h2 class="text-3xl font-semibold">
+                  Avantajele
+                  <span class="text-orange-500">CSM Auto Service</span>
+                </h2>
+                <span class="mt-3 block h-1 w-14 bg-orange-500"></span>
+                <p class="mt-6 text-slate-400">
+                  Doriți servicii de calitate și profesionalism pentru
+                  autoturismul dumneavoastră?
+                </p>
+                <a
+                  href="#programare"
+                  class="mt-6 inline-block rounded-xl border border-orange-500 px-6 py-3 font-medium text-orange-500 transition hover:bg-orange-500 hover:text-slate-900"
+                  >Programează-te acum</a
+                >
+              </div>
+
+              <div class="space-y-3">
+                <div class="text-4xl">🎧</div>
+                <h3 class="text-xl font-semibold">
+                  Servicii orientate spre client
+                </h3>
+                <p class="text-slate-400">
+                  Avem grijă de serviciile oferite, iar clienții noștri fideli
+                  se pot aștepta la aprecieri și beneficii pentru serviciile
+                  viitoare.
+                </p>
+              </div>
+
+              <div class="space-y-3">
+                <div class="text-4xl">🏷️</div>
+                <h3 class="text-xl font-semibold">Prețuri competitive</h3>
+                <p class="text-slate-400">
+                  Transparanță, corectitudine și eficiență — menținerea unor
+                  prețuri competitive este obiectiv primar.
+                </p>
+              </div>
+
+              <div class="space-y-3">
+                <div class="text-4xl">🛞</div>
+                <h3 class="text-xl font-semibold">
+                  Piese auto de înaltă calitate
+                </h3>
+                <p class="text-slate-400">
+                  Colaborăm cu distribuitori și producători renumiți și garantăm
+                  pentru piesele furnizate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="py-16">
+          <div class="mx-auto max-w-7xl px-4">
+            <div class="text-center">
+              <h2 class="text-4xl font-bold">
+                Galeria <span class="text-orange-600">CSM Auto Service</span>
+              </h2>
+              <p class="mt-3 text-slate-600">
+                Aceste fotografii vă vor ajuta să aflați mai multe despre
+                service-ul nostru auto și serviciile oferite
+              </p>
+            </div>
+
+            <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <a
+                href="#"
+                class="group relative block overflow-hidden rounded-2xl"
+                aria-label="Galerie 1"
+              >
+                <img
+                  class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
+                  th:src="@{/image/despre-noi/masina-descompusa.png}"
+                  alt="Detaliu motor"
+                />
+              </a>
+
+              <a
+                href="#"
+                class="group relative block overflow-hidden rounded-2xl"
+                aria-label="Galerie 2"
+              >
+                <img
+                  class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
+                  th:src="@{/image/despre-noi/imagine-service.png}"
+                  alt="Mașină în service"
+                />
+              </a>
+
+              <a
+                href="#"
+                class="group relative block overflow-hidden rounded-2xl"
+                aria-label="Galerie 3"
+              >
+                <img
+                  class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
+                  th:src="@{/image/despre-noi/disc-frana.png}"
+                  alt="Disc frână"
+                />
+              </a>
+
+              <a
+                href="#"
+                class="group relative block overflow-hidden rounded-2xl"
+                aria-label="Galerie 4"
+              >
+                <img
+                  class="aspect-[4/3] w-full object-cover grayscale transition duration-300 ease-out group-hover:grayscale-0 group-hover:brightness-110"
+                  th:src="@{/image/despre-noi/bloc-motor.png}"
+                  alt="Compartiment motor"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </body>
 </html>
