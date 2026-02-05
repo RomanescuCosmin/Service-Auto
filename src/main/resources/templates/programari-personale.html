@@ -204,96 +204,102 @@
 
 
         <div class="mt-8 px-4 sm:px-6 lg:px-10">
-        <div th:each="programare : ${programareList}"
-             class="grid
-            grid-cols-[110px_minmax(0,1.5fr)_minmax(0,1.5fr)_minmax(0,1fr)_140px_160px]
-            items-start gap-4
-            border-b border-slate-200 py-4
-            hover:bg-slate-50 transition">
+            <div class="relative">
+                <div class="pointer-events-none absolute left-4 top-0 hidden h-full w-px bg-slate-200 sm:block"></div>
 
-            <div class="text-right whitespace-nowrap">
-                <p class="text-xs text-slate-500"
-                   th:text="${#temporals.format(programare.dataProgramare, 'dd MMM yyyy')}"></p>
-                <p class="text-sm font-semibold text-slate-900"
-                   th:text="|${#numbers.formatInteger(programare.oraProgramare,2)}:${#numbers.formatInteger(programare.minutProgramare,2)}|"></p>
+                <div th:each="programare : ${programareList}"
+                     class="relative mb-8 pl-0 sm:pl-12">
+                    <div class="hidden sm:flex absolute left-0 top-6 h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+                        <span class="h-2.5 w-2.5 rounded-full"
+                              th:classappend="
+                                  ${programare.confirmed() == true} ? 'bg-emerald-500' :
+                                  (${programare.canceled() == true} ? 'bg-rose-500' : 'bg-amber-500')">
+                        </span>
+                    </div>
+
+                    <div class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur lg:flex-row lg:items-start lg:justify-between">
+                        <div class="flex flex-col gap-4 lg:flex-row lg:gap-10">
+                            <div class="flex flex-col gap-1">
+                                <p class="text-xs uppercase tracking-wide text-slate-400">Programare</p>
+                                <p class="text-lg font-semibold text-slate-900"
+                                   th:text="${#temporals.format(programare.dataProgramare, 'dd MMM yyyy')}"></p>
+                                <p class="text-sm font-medium text-slate-600"
+                                   th:text="|${#numbers.formatInteger(programare.oraProgramare,2)}:${#numbers.formatInteger(programare.minutProgramare,2)}|"></p>
+                            </div>
+
+                            <div class="min-w-0">
+                                <p class="text-xs uppercase tracking-wide text-slate-400">Client</p>
+                                <p class="text-base font-semibold text-slate-900 truncate"
+                                   th:text="${programare.nume()}"></p>
+                                <p class="mt-2 text-xs uppercase tracking-wide text-slate-400">Mașină</p>
+                                <p class="text-sm text-slate-700 truncate">
+                                    <span th:text="${programare.marcaNume()}"></span>
+                                    <span th:text="${programare.modelNume()}"></span>
+                                </p>
+                            </div>
+
+                            <div class="min-w-0">
+                                <p class="text-xs uppercase tracking-wide text-slate-400">Document</p>
+                                <p th:if="${programare.fileStorageId() != null}"
+                                   class="text-sm text-slate-700 truncate"
+                                   th:title="${programare.fileOriginalName}"
+                                   th:text="${programare.fileOriginalName}"></p>
+                                <p th:unless="${programare.fileOriginalName() != null}"
+                                   class="text-sm italic text-slate-400">
+                                    Fără document
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-center lg:flex-col lg:items-end">
+                            <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold"
+                                  th:classappend="
+                                      ${programare.confirmed() == true} ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
+                                      (${programare.canceled() == true} ? 'bg-rose-100 text-rose-800 border-rose-300' :
+                                      'bg-amber-100 text-amber-900 border-amber-300')">
+                                <span class="h-2 w-2 rounded-full"
+                                      th:classappend="
+                                          ${programare.confirmed() == true} ? 'bg-emerald-600' :
+                                          (${programare.canceled() == true} ? 'bg-rose-600' : 'bg-amber-600')">
+                                </span>
+                                <span th:text="
+                                      ${programare.confirmed() == true} ? 'Confirmată' :
+                                      (${programare.canceled() == true} ? 'Anulată' : 'În așteptare')">
+                                </span>
+                            </span>
+
+                            <div class="flex gap-2">
+                                <a th:if="${programare.fileStorageId() != null}"
+                                   th:href="@{|/files/${programare.fileStorageId()}|}"
+                                   class="px-3 py-1.5 text-[11px] font-semibold uppercase
+                                  rounded-full border border-slate-300
+                                  text-slate-700 hover:bg-slate-100 transition">
+                                    Descarcă
+                                </a>
+
+                                <button th:if="${!programare.canceled}"
+                                        th:attr="onclick=|openModal('cancelModal-${programare.id}')|"
+                                        class="px-3 py-1.5 text-[11px] font-semibold uppercase
+                                       rounded-full bg-red-600 text-white
+                                       hover:bg-red-700 transition">
+                                    Anulează
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div th:replace="~{fragments/anulare-programare :: anulare-programare(${programare.id})}"></div>
+                </div>
             </div>
-
-            <div class="min-w-0">
-                <p class="text-xs text-slate-500">Client</p>
-                <p class="font-semibold text-slate-900 truncate"
-                   th:text="${programare.nume()}"></p>
-            </div>
-
-            <div class="min-w-0">
-                <p class="text-xs text-slate-500">Mașină</p>
-                <p class="text-sm text-slate-800 truncate">
-                    <span th:text="${programare.marcaNume()}"></span>
-                    <span th:text="${programare.modelNume()}"></span>
-                </p>
-            </div>
-
-            <div class="min-w-0">
-                <p class="text-xs text-slate-500">Document</p>
-                <p th:if="${programare.fileStorageId() != null}"
-                   class="text-sm text-slate-700 truncate"
-                   th:title="${programare.fileOriginalName}"
-                   th:text="${programare.fileOriginalName}"></p>
-                <p th:unless="${programare.fileOriginalName() != null}"
-                   class="text-sm italic text-slate-400 whitespace-nowrap">
-                    Fără document
-                </p>
-            </div>
-
-            <div class="flex justify-start">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1
-                             text-xs font-semibold rounded-full border"
-                      th:classappend="
-                          ${programare.confirmed() == true} ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
-                          (${programare.canceled() == true} ? 'bg-rose-100 text-rose-800 border-rose-300' :
-                          'bg-amber-100 text-amber-900 border-amber-300')">
-
-                    <span class="h-1.5 w-1.5 rounded-full"
-                          th:classappend="
-                              ${programare.confirmed() == true} ? 'bg-emerald-600' :
-                              (${programare.canceled() == true} ? 'bg-rose-600' : 'bg-amber-600')">
-                    </span>
-
-                    <span th:text="
-                          ${programare.confirmed() == true} ? 'Confirmată' :
-                          (${programare.canceled() == true} ? 'Anulată' : 'În așteptare')">
-                    </span>
-                </span>
-            </div>
-
-
-            <div class="flex gap-2 justify-end whitespace-nowrap">
-                <a th:if="${programare.fileStorageId() != null}"
-                   th:href="@{|/files/${programare.fileStorageId()}|}"
-                   class="px-3 py-1.5 text-[11px] font-semibold uppercase
-                  rounded-md border border-slate-300
-                  text-slate-700 hover:bg-slate-100 transition">
-                    Descarcă
-                </a>
-
-                <button th:if="${!programare.canceled}"
-                        th:attr="onclick=|openModal('cancelModal-${programare.id}')|"
-                        class="px-3 py-1.5 text-[11px] font-semibold uppercase
-                       rounded-md bg-red-600 text-white
-                       hover:bg-red-700 transition">
-                    Anulează
-                </button>
-            </div>
-
-            <div th:replace="~{fragments/anulare-programare :: anulare-programare(${programare.id})}"></div>
         </div>
-    </div>
-        <div class="mt-6 flex items-center justify-between px-6">
+
+        <div class="mt-6 flex flex-col gap-4 px-6 sm:flex-row sm:items-center sm:justify-between">
             <div class="text-sm text-slate-500">
-                Pagina <span th:text="${page.page}"></span>
-                din <span th:text="${page.totalPages()}"></span>
+                Pagina <span class="font-semibold text-slate-700" th:text="${page.page}"></span>
+                din <span class="font-semibold text-slate-700" th:text="${page.totalPages()}"></span>
             </div>
 
-            <div class="flex gap-2">
+            <div class="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-2 py-1 shadow-sm">
                 <a th:if="${page.page > 1}"
                    th:href="@{/programari-personale(
                page=${page.page - 1},
@@ -301,9 +307,18 @@
                sort=${filter.sort},
                order=${filter.order}
            )}"
-                   class="px-3 py-1.5 border rounded-md text-sm">
-                    ‹ Înapoi
+                   class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                    <span class="text-base">‹</span>
+                    Înapoi
                 </a>
+
+                <div class="hidden h-6 w-px bg-slate-200 sm:block"></div>
+
+                <span class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                    Pagina <span th:text="${page.page}"></span>
+                </span>
+
+                <div class="hidden h-6 w-px bg-slate-200 sm:block"></div>
 
                 <a th:if="${page.page < page.totalPages()}"
                    th:href="@{/programari-personale(
@@ -312,8 +327,9 @@
                sort=${filter.sort},
                order=${filter.order}
            )}"
-                   class="px-3 py-1.5 border rounded-md text-sm">
-                    Înainte ›
+                   class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                    Înainte
+                    <span class="text-base">›</span>
                 </a>
             </div>
         </div>
