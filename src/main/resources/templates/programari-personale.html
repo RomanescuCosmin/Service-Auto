@@ -119,19 +119,69 @@
                             </div>
 
                             <div class="flex flex-wrap gap-2">
-                                <button class="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+
+                                <!-- TOATE -->
+                                <a th:href="@{/programari-personale(
+            page=1,
+            size=${page.size},
+            sort=${filter.sort},
+            order=${filter.order}
+        )}"
+                                   class="rounded-md border px-3 py-2 text-sm font-semibold
+              text-slate-700 hover:bg-slate-100"
+                                   th:classappend="${filter.confirmed == null and filter.canceled == null}
+            ? ' bg-slate-200'">
                                     Toate
-                                </button>
-                                <button class="rounded-md border border-emerald-300 bg-emerald-100 px-3 py-2 text-sm font-semibold text-emerald-800">
+                                </a>
+
+                                <!-- CONFIRMATE -->
+                                <a th:href="@{/programari-personale(
+            page=1,
+            size=${page.size},
+            sort=${filter.sort},
+            order=${filter.order},
+            confirmed=true
+        )}"
+                                   class="rounded-md border border-emerald-300 px-3 py-2 text-sm font-semibold
+              text-emerald-800 hover:bg-emerald-100"
+                                   th:classappend="${filter.confirmed == true}
+            ? ' bg-emerald-100'">
                                     Confirmate
-                                </button>
-                                <button class="rounded-md border border-amber-300 bg-amber-100 px-3 py-2 text-sm font-semibold text-amber-900">
+                                </a>
+
+                                <!-- ÎN AȘTEPTARE -->
+                                <a th:href="@{/programari-personale(
+            page=1,
+            size=${page.size},
+            sort=${filter.sort},
+            order=${filter.order},
+            confirmed=false,
+            canceled=false
+        )}"
+                                   class="rounded-md border border-amber-300 px-3 py-2 text-sm font-semibold
+              text-amber-900 hover:bg-amber-100"
+                                   th:classappend="${filter.confirmed == false and filter.canceled == false}
+            ? ' bg-amber-100'">
                                     În așteptare
-                                </button>
-                                <button class="rounded-md border border-rose-300 bg-rose-100 px-3 py-2 text-sm font-semibold text-rose-800">
+                                </a>
+
+                                <!-- ANULATE -->
+                                <a th:href="@{/programari-personale(
+            page=1,
+            size=${page.size},
+            sort=${filter.sort},
+            order=${filter.order},
+            canceled=true
+        )}"
+                                   class="rounded-md border border-rose-300 px-3 py-2 text-sm font-semibold
+              text-rose-800 hover:bg-rose-100"
+                                   th:classappend="${filter.canceled == true}
+            ? ' bg-rose-100'">
                                     Anulate
-                                </button>
+                                </a>
+
                             </div>
+
                         </div>
 
                         <div class="flex items-center gap-2">
@@ -171,24 +221,24 @@
             <div class="min-w-0">
                 <p class="text-xs text-slate-500">Client</p>
                 <p class="font-semibold text-slate-900 truncate"
-                   th:text="${programare.getNume()}"></p>
+                   th:text="${programare.nume()}"></p>
             </div>
 
             <div class="min-w-0">
                 <p class="text-xs text-slate-500">Mașină</p>
                 <p class="text-sm text-slate-800 truncate">
-                    <span th:text="${programare.marca?.nume}"></span>
-                    <span th:text="${programare.modelAuto?.numeModel}"></span>
+                    <span th:text="${programare.marcaNume()}"></span>
+                    <span th:text="${programare.modelNume()}"></span>
                 </p>
             </div>
 
             <div class="min-w-0">
                 <p class="text-xs text-slate-500">Document</p>
-                <p th:if="${programare.fileStorage != null}"
+                <p th:if="${programare.fileStorageId() != null}"
                    class="text-sm text-slate-700 truncate"
-                   th:title="${programare.fileStorage.fileOriginalName}"
-                   th:text="${programare.fileStorage.fileOriginalName}"></p>
-                <p th:unless="${programare.fileStorage != null}"
+                   th:title="${programare.fileOriginalName}"
+                   th:text="${programare.fileOriginalName}"></p>
+                <p th:unless="${programare.fileOriginalName() != null}"
                    class="text-sm italic text-slate-400 whitespace-nowrap">
                     Fără document
                 </p>
@@ -198,27 +248,27 @@
                 <span class="inline-flex items-center gap-1 px-2.5 py-1
                              text-xs font-semibold rounded-full border"
                       th:classappend="
-                          ${programare.isConfirmed() == true} ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
-                          (${programare.isCanceled() == true} ? 'bg-rose-100 text-rose-800 border-rose-300' :
+                          ${programare.confirmed() == true} ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
+                          (${programare.canceled() == true} ? 'bg-rose-100 text-rose-800 border-rose-300' :
                           'bg-amber-100 text-amber-900 border-amber-300')">
 
                     <span class="h-1.5 w-1.5 rounded-full"
                           th:classappend="
-                              ${programare.isConfirmed() == true} ? 'bg-emerald-600' :
-                              (${programare.isCanceled() == true} ? 'bg-rose-600' : 'bg-amber-600')">
+                              ${programare.confirmed() == true} ? 'bg-emerald-600' :
+                              (${programare.canceled() == true} ? 'bg-rose-600' : 'bg-amber-600')">
                     </span>
 
                     <span th:text="
-                          ${programare.isConfirmed() == true} ? 'Confirmată' :
-                          (${programare.isCanceled() == true} ? 'Anulată' : 'În așteptare')">
+                          ${programare.confirmed() == true} ? 'Confirmată' :
+                          (${programare.canceled() == true} ? 'Anulată' : 'În așteptare')">
                     </span>
                 </span>
             </div>
 
 
             <div class="flex gap-2 justify-end whitespace-nowrap">
-                <a th:if="${programare.fileStorage != null}"
-                   th:href="@{|/files/${programare.fileStorage.id}|}"
+                <a th:if="${programare.fileStorageId() != null}"
+                   th:href="@{|/files/${programare.fileStorageId()}|}"
                    class="px-3 py-1.5 text-[11px] font-semibold uppercase
                   rounded-md border border-slate-300
                   text-slate-700 hover:bg-slate-100 transition">
@@ -235,6 +285,37 @@
             </div>
 
             <div th:replace="~{fragments/anulare-programare :: anulare-programare(${programare.id})}"></div>
+        </div>
+    </div>
+        <div class="mt-6 flex items-center justify-between px-6">
+            <div class="text-sm text-slate-500">
+                Pagina <span th:text="${page.page}"></span>
+                din <span th:text="${page.totalPages()}"></span>
+            </div>
+
+            <div class="flex gap-2">
+                <a th:if="${page.page > 1}"
+                   th:href="@{/programari-personale(
+               page=${page.page - 1},
+               size=${page.size},
+               sort=${filter.sort},
+               order=${filter.order}
+           )}"
+                   class="px-3 py-1.5 border rounded-md text-sm">
+                    ‹ Înapoi
+                </a>
+
+                <a th:if="${page.page < page.totalPages()}"
+                   th:href="@{/programari-personale(
+               page=${page.page + 1},
+               size=${page.size},
+               sort=${filter.sort},
+               order=${filter.order}
+           )}"
+                   class="px-3 py-1.5 border rounded-md text-sm">
+                    Înainte ›
+                </a>
+            </div>
         </div>
     </div>
 </section>

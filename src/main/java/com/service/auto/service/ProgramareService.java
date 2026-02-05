@@ -1,9 +1,12 @@
 package com.service.auto.service;
 
 import com.service.auto.dto.ProgramareDto;
+import com.service.auto.dto.ProgramareListDto;
 import com.service.auto.dto.ProgramareSlotDto;
 import com.service.auto.entity.FileStorage;
 import com.service.auto.entity.Programare;
+import com.service.auto.filter.PageResult;
+import com.service.auto.filter.ProgramareFilter;
 import com.service.auto.mapper.ProgramareMapper;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
@@ -22,6 +25,14 @@ public class ProgramareService extends BaseService {
 
     private final Logger logger = LoggerFactory.getLogger(ProgramareService.class);
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
+
+    public PageResult<ProgramareListDto> list (ProgramareFilter filter, int page, int size) {
+
+        long count = programareRepository.count(filter);
+        List<ProgramareListDto> programareListDtos = programareRepository.find(filter, page, size);
+
+        return new PageResult<>(programareListDtos, count, page, size);
+    }
 
     public Programare create(ProgramareDto programareDto, Long userId, FileStorage fileStorage) throws MessagingException {
         logger.info("creare programare cu parametrii: ", programareDto);
@@ -46,11 +57,6 @@ public class ProgramareService extends BaseService {
         Integer hour = slot.getOraProgramare();
         Integer minute = slot.getMinutProgramare();
         return String.format("%s %02d:%02d", DATE_FORMAT.format(date), hour, minute);
-    }
-
-    public List<Programare> findProgramareByUserId(Long userId) {
-        logger.info("findProgramareByUserId cu userId: {} ", userId);
-        return programareRepository.findProgramareByUserId(userId);
     }
 
     public Programare findProgramareByIdAndUser(Long programareId, Long userId) {

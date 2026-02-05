@@ -46,8 +46,6 @@ public class ProgramareMapper extends BaseMapper {
                 .minutProgramare(dto.getMinutProgramare())
                 .serieSasiu(dto.getSerieSasiu())
                 .observatii(dto.getObservatii())
-                .confirmed(true)
-                .canceled(false)
                 .createdAt(LocalDateTime.now())
                 .version(dto.getVersion())
                 .build();

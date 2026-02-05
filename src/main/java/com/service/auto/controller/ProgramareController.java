@@ -2,9 +2,12 @@ package com.service.auto.controller;
 
 import com.service.auto.dto.FileStorageTypeEnum;
 import com.service.auto.dto.ProgramareDto;
+import com.service.auto.dto.ProgramareListDto;
 import com.service.auto.entity.FileStorage;
 import com.service.auto.entity.Programare;
 import com.service.auto.exception.InvalidInputException;
+import com.service.auto.filter.PageResult;
+import com.service.auto.filter.ProgramareFilter;
 import com.service.auto.security.CustomUserPrincipal;
 import groovy.util.logging.Slf4j;
 import io.micrometer.common.util.StringUtils;
@@ -35,7 +38,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -94,16 +96,27 @@ public class ProgramareController extends BaseController {
 
 
     @GetMapping(value = "/programari-personale", produces = "text/html")
-    public String getProgramarePersonala(Model model) {
+    public String programariPersonaleList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "dataProgramare") String sort,
+            @RequestParam(defaultValue = "desc") String order,
+            @RequestParam(required = false) Boolean confirmed,
+            @RequestParam(required = false) Boolean canceled,
+            Model model) {
         logger.info("programare personala page");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
 
-        // TODO: Folosește parametrul `authentication` în loc de SecurityContextHolder sau elimină-l dacă nu este necesar.
-        // TODO: Dacă ai nevoie de detalii pentru o singură programare, adaugă un endpoint separat cu PathVariable și validări.
-        List<Programare> programareList = programareService.findProgramareByUserId(principal.getId());
-        model.addAttribute("programareList", programareList);
+        ProgramareFilter filter = new ProgramareFilter(principal.getId(), sort, order, confirmed,canceled, null);
+
+        PageResult<ProgramareListDto> programareList = programareService.list(filter, page, size);
+
+        model.addAttribute("programareList", programareList.content());
+
+        model.addAttribute("page", programareList);
+        model.addAttribute("filter", filter);
 
         return "programari-personale";
     }
@@ -125,7 +138,7 @@ public class ProgramareController extends BaseController {
             uiModel.asMap().clear();
 
             redirAttrs.addFlashAttribute("saveResult", "ok-add");
-            redirAttrs.addFlashAttribute("succesMessage", "Programarea a fost anulată cu succes!");
+            redirAttrs.addFlashAttribute("succesMessage", "Programarea a fost anulată!");
             return "redirect:/programari-personale";
         } catch (Exception ex) {
             logger.error("--------------------failed to anulareProgramare: ", ex);
