@@ -136,16 +136,6 @@
                       name="canceled"
                       th:value="${filter.canceled}"
                     />
-                    <div class="relative w-full sm:w-[160px]">
-                      <select
-                        name="year"
-                        class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 focus:border-slate-400 focus:outline-none"
-                      >
-                        <option value="2026" th:selected="${filter.year == 2026}">
-                          An 2026
-                        </option>
-                      </select>
-                    </div>
                     <div class="relative w-full sm:w-[320px]">
                       <svg
                         class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
@@ -173,9 +163,9 @@
                     </button>
                   </form>
 
-                  <div class="flex flex-nowrap gap-2 overflow-x-auto">
+                  <div class="flex flex-wrap gap-2">
                     <a
-                      th:href="@{/programari-personale(  page=1,size=${page.size}, sort=${filter.sort},order=${filter.order},year=${filter.year},search=${filter.search})}"
+                      th:href="@{/programari-personale(  page=1,size=${page.size}, sort=${filter.sort},order=${filter.order},search=${filter.search})}"
                       class="rounded-md border px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
                       th:classappend="${filter.confirmed == null and filter.canceled == null} ? ' bg-slate-200'"
                     >
@@ -183,19 +173,19 @@
                     </a>
 
                     <a
-                      th:href="@{/programari-personale(page=1,size=${page.size},sort=${filter.sort},order=${filter.order},year=${filter.year},confirmed=true,search=${filter.search})}"
+                      th:href="@{/programari-personale(page=1,size=${page.size},sort=${filter.sort},order=${filter.order},confirmed=true,search=${filter.search})}"
                       class="rounded-md border border-emerald-300 px-3 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-100"
                       th:classappend="${filter.confirmed == true}  ? ' bg-emerald-100'">Confirmate
                     </a>
 
-                    <a th:href="@{/programari-personale(page=1,   size=${page.size},sort=${filter.sort},order=${filter.order},year=${filter.year},confirmed=false,canceled=false,search=${filter.search})}"
+                    <a th:href="@{/programari-personale(page=1,   size=${page.size},sort=${filter.sort},order=${filter.order},confirmed=false,canceled=false,search=${filter.search})}"
                       class="rounded-md border border-amber-300 px-3 py-2 text-sm font-semibold text-amber-900 hover:bg-amber-100"
                       th:classappend="${filter.confirmed == false and filter.canceled == false} ? ' bg-amber-100'">
                       În așteptare
                     </a>
 
                     <a
-                      th:href="@{/programari-personale( page=1, size=${page.size},sort=${filter.sort},order=${filter.order},year=${filter.year},canceled=true,search=${filter.search})}"
+                      th:href="@{/programari-personale( page=1, size=${page.size},sort=${filter.sort},order=${filter.order},canceled=true,search=${filter.search})}"
                       class="rounded-md border border-rose-300 px-3 py-2 text-sm font-semibold text-rose-800 hover:bg-rose-100"
                       th:classappend="${filter.canceled == true}  ? ' bg-rose-100'">
                       Anulate
