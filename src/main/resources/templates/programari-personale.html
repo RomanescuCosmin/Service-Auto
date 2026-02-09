@@ -111,27 +111,61 @@
                 class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between"
               >
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-                  <div class="relative w-full sm:w-[320px]">
-                    <svg
-                      class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <circle cx="11" cy="11" r="7" />
-                      <path d="M21 21l-4.3-4.3" />
-                    </svg>
+                  <form
+                    th:action="@{/programari-personale}"
+                    method="get"
+                    class="flex w-full flex-wrap items-center gap-2"
+                  >
+                    <input type="hidden" name="page" value="1" />
+                    <input type="hidden" name="size" th:value="${page.size}" />
+                    <input type="hidden" name="sort" th:value="${filter.sort}" />
                     <input
-                      type="text"
-                      placeholder="Caută după client, mașină, document..."
-                      class="w-full rounded-md border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none"
+                      type="hidden"
+                      name="order"
+                      th:value="${filter.order}"
                     />
-                  </div>
+                    <input
+                      th:if="${filter.confirmed != null}"
+                      type="hidden"
+                      name="confirmed"
+                      th:value="${filter.confirmed}"
+                    />
+                    <input
+                      th:if="${filter.canceled != null}"
+                      type="hidden"
+                      name="canceled"
+                      th:value="${filter.canceled}"
+                    />
+                    <div class="relative w-full sm:w-[320px]">
+                      <svg
+                        class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="M21 21l-4.3-4.3" />
+                      </svg>
+                      <input
+                        type="text"
+                        name="search"
+                        placeholder="Caută după client, marcă sau model..."
+                        th:value="${filter.search}"
+                        class="w-full rounded-md border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      class="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+                    >
+                      Caută
+                    </button>
+                  </form>
 
                   <div class="flex flex-wrap gap-2">
                     <a
-                      th:href="@{/programari-personale(  page=1,size=${page.size}, sort=${filter.sort},order=${filter.order})}"
+                      th:href="@{/programari-personale(  page=1,size=${page.size}, sort=${filter.sort},order=${filter.order},search=${filter.search})}"
                       class="rounded-md border px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
                       th:classappend="${filter.confirmed == null and filter.canceled == null} ? ' bg-slate-200'"
                     >
@@ -139,19 +173,19 @@
                     </a>
 
                     <a
-                      th:href="@{/programari-personale(page=1,size=${page.size},sort=${filter.sort},order=${filter.order},confirmed=true)}"
+                      th:href="@{/programari-personale(page=1,size=${page.size},sort=${filter.sort},order=${filter.order},confirmed=true,search=${filter.search})}"
                       class="rounded-md border border-emerald-300 px-3 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-100"
                       th:classappend="${filter.confirmed == true}  ? ' bg-emerald-100'">Confirmate
                     </a>
 
-                    <a th:href="@{/programari-personale(page=1,   size=${page.size},sort=${filter.sort},order=${filter.order},confirmed=false,canceled=false)}"
+                    <a th:href="@{/programari-personale(page=1,   size=${page.size},sort=${filter.sort},order=${filter.order},confirmed=false,canceled=false,search=${filter.search})}"
                       class="rounded-md border border-amber-300 px-3 py-2 text-sm font-semibold text-amber-900 hover:bg-amber-100"
                       th:classappend="${filter.confirmed == false and filter.canceled == false} ? ' bg-amber-100'">
                       În așteptare
                     </a>
 
                     <a
-                      th:href="@{/programari-personale( page=1, size=${page.size},sort=${filter.sort},order=${filter.order},canceled=true)}"
+                      th:href="@{/programari-personale( page=1, size=${page.size},sort=${filter.sort},order=${filter.order},canceled=true,search=${filter.search})}"
                       class="rounded-md border border-rose-300 px-3 py-2 text-sm font-semibold text-rose-800 hover:bg-rose-100"
                       th:classappend="${filter.canceled == true}  ? ' bg-rose-100'">
                       Anulate
@@ -328,7 +362,8 @@
                page=${page.page - 1},
                size=${page.size},
                sort=${filter.sort},
-               order=${filter.order}
+               order=${filter.order},
+               search=${filter.search}
            )}"
               class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
             >
@@ -352,7 +387,8 @@
                page=${page.page + 1},
                size=${page.size},
                sort=${filter.sort},
-               order=${filter.order}
+               order=${filter.order},
+               search=${filter.search}
            )}"
               class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
             >
