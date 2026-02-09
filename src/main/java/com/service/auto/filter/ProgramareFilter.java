@@ -8,7 +8,8 @@ public record ProgramareFilter(
         String order,
         Boolean confirmed,
         Boolean canceled,
-        LocalDate data
+        LocalDate data,
+        String search
 ) {
     public boolean hasSort() {
         return sort != null && order != null;

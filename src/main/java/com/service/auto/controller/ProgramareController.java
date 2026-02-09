@@ -103,13 +103,15 @@ public class ProgramareController extends BaseController {
             @RequestParam(defaultValue = "desc") String order,
             @RequestParam(required = false) Boolean confirmed,
             @RequestParam(required = false) Boolean canceled,
+            @RequestParam(required = false) String search,
             Model model) {
         logger.info("programare personala page");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
 
-        ProgramareFilter filter = new ProgramareFilter(principal.getId(), sort, order, confirmed,canceled, null);
+        String normalizedSearch = StringUtils.isBlank(search) ? null : search.trim();
+        ProgramareFilter filter = new ProgramareFilter(principal.getId(), sort, order, confirmed, canceled, null, normalizedSearch);
 
         PageResult<ProgramareListDto> programareList = programareService.list(filter, page, size);
 
