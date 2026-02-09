@@ -23,6 +23,8 @@ public class ProgramareRepository extends BaseRepository<Programare> {
     private static final String CONFIRMED = "confirmed";
     private static final String CANCELED = "canceled";
     private static final String SEARCH = "search";
+    private static final String YEAR_START = "yearStart";
+    private static final String YEAR_END = "yearEnd";
 
 
     public List<ProgramareListDto> find(ProgramareFilter filter, int page, int size) {
@@ -60,6 +62,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
             jpql.append(" and p.canceled = :canceled");
         }
 
+        if (filter.year() != null) {
+            jpql.append(" and p.dataProgramare between :yearStart and :yearEnd");
+        }
+
         if (hasSearch(filter)) {
             jpql.append(" and (lower(p.nume) like :search")
                     .append(" or lower(m.nume) like :search")
@@ -87,6 +93,11 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
         if (filter.canceled() != null) {
             query.setParameter(CANCELED, filter.canceled());
+        }
+
+        if (filter.year() != null) {
+            query.setParameter(YEAR_START, yearStart(filter.year()));
+            query.setParameter(YEAR_END, yearEnd(filter.year()));
         }
 
         if (hasSearch(filter)) {
@@ -120,6 +131,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
             jpql.append(" and p.canceled = :canceled");
         }
 
+        if (filter.year() != null) {
+            jpql.append(" and p.dataProgramare between :yearStart and :yearEnd");
+        }
+
         if (hasSearch(filter)) {
             jpql.append(" and (lower(p.nume) like :search")
                     .append(" or lower(m.nume) like :search")
@@ -138,6 +153,11 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
         if (filter.canceled() != null) {
             query.setParameter(CANCELED, filter.canceled());
+        }
+
+        if (filter.year() != null) {
+            query.setParameter(YEAR_START, yearStart(filter.year()));
+            query.setParameter(YEAR_END, yearEnd(filter.year()));
         }
 
         if (hasSearch(filter)) {
@@ -194,5 +214,13 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
     private static String likeValue(String search) {
         return "%" + search.toLowerCase(Locale.ROOT) + "%";
+    }
+
+    private static LocalDate yearStart(int year) {
+        return LocalDate.of(year, 1, 1);
+    }
+
+    private static LocalDate yearEnd(int year) {
+        return LocalDate.of(year, 12, 31);
     }
 }

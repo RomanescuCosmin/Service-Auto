@@ -9,6 +9,7 @@ public record ProgramareFilter(
         Boolean confirmed,
         Boolean canceled,
         LocalDate data,
+        Integer year,
         String search
 ) {
     public boolean hasSort() {
