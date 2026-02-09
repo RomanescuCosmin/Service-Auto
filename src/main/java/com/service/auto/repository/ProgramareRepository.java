@@ -4,7 +4,6 @@ import com.service.auto.dto.ProgramareListDto;
 import com.service.auto.dto.ProgramareSlotDto;
 import com.service.auto.entity.Programare;
 import com.service.auto.filter.ProgramareFilter;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +17,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
             List.of("dataProgramare", "oraProgramare", "createdAt");
 
     private static final String USER_ID = "userId";
+    private static final String FILE_STORAGE_ID = "fileStorageId";
     private static final String CONFIRMED = "confirmed";
     private static final String CANCELED = "canceled";
 
@@ -27,10 +27,15 @@ public class ProgramareRepository extends BaseRepository<Programare> {
         StringBuilder jpql = new StringBuilder(
                 "select new com.service.auto.dto.ProgramareListDto(" +
                         " p.id, p.nume, p.email, " +
-                        " p.dataProgramare, p.oraProgramare, p.minutProgramare, " +
-                        " p.confirmed, p.canceled, " +
-                        " m.nume, mo.numeModel, " +
-                        " fs.id, fs.fileOriginalName" +
+                        " p.dataProgramare," +
+                        " p.oraProgramare," +
+                        " p.minutProgramare, " +
+                        " p.confirmed," +
+                        " p.canceled, " +
+                        " m.nume," +
+                        " mo.numeModel, " +
+                        " fs.id, " +
+                        " fs.fileOriginalName" +
                         ") " +
                         " FROM Programare p " +
                         " LEFT JOIN p.marca m " +
@@ -83,9 +88,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
 
     public long count(ProgramareFilter filter) {
-        StringBuilder jpql = new StringBuilder(
-                " select count(p.id) from Programare p where 1=1 "
-        );
+        StringBuilder jpql = new StringBuilder(" select count(p.id) from Programare p where 1=1 ");
 
         if (filter.userId() != null) {
             jpql.append(" and p.user.id = :userId");
@@ -130,38 +133,30 @@ public class ProgramareRepository extends BaseRepository<Programare> {
     }
 
     public List<Programare> findProgramareByUserId(Long userId) {
-        return entityManager.createQuery(
+        TypedQuery<Programare> query = entityManager.createQuery(
                         "select p from Programare p where p.user.id = :userId order by p.dataProgramare desc, p.oraProgramare desc, p.minutProgramare desc",
                         Programare.class)
-                .setParameter(USER_ID, userId)
-                .getResultList();
+                .setParameter(USER_ID, userId);
 
+        return query.getResultList();
     }
 
     public Programare getProgramareByFileStorageId(Long fileStorageId) {
-        try {
-            return entityManager.createQuery(
-                            "select p from Programare p where p.fileStorage.id = :fileStorageId",
-                            Programare.class)
-                    .setParameter("fileStorageId", fileStorageId)
-                    .setMaxResults(1)
-                    .getSingleResult();
-        } catch (NoResultException ex) {
-            return null;
-        }
+        TypedQuery<Programare> query = entityManager.createQuery(
+                        "select p from Programare p where p.fileStorage.id = :fileStorageId",
+                        Programare.class)
+                .setParameter(FILE_STORAGE_ID, fileStorageId);
+
+        return query.getSingleResult();
     }
 
     public Programare findProgramareByIdAndUser(Long programareId, Long userId) {
-        try {
-            return entityManager.createQuery(
-                            "select p from Programare p where p.id = :programareId and p.user.id = :userId",
-                            Programare.class)
-                    .setParameter("programareId", programareId)
-                    .setParameter(USER_ID, userId)
-                    .getSingleResult();
-        } catch (NoResultException ex) {
-            return null;
-        }
+        TypedQuery<Programare> query = entityManager.createQuery(
+                        "select p from Programare p where p.id = :programareId and p.user.id = :userId",
+                        Programare.class)
+                .setParameter("programareId", programareId)
+                .setParameter(USER_ID, userId);
 
+        return query.getSingleResult();
     }
 }
