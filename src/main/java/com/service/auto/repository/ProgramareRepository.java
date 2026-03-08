@@ -23,6 +23,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
     private static final String CONFIRMED = "confirmed";
     private static final String CANCELED = "canceled";
     private static final String SEARCH = "search";
+    private static final String DATA = "data";
 
 
     public List<ProgramareListDto> find(ProgramareFilter filter, int page, int size) {
@@ -66,6 +67,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                     .append(" or lower(mo.numeModel) like :search)");
         }
 
+        if (filter.data() != null) {
+            jpql.append(" and p.dataProgramare = :data");
+        }
+
         if (filter.hasSort() && ALLOWED_SORTS.contains(filter.sort())) {
             jpql.append(" order by p.")
                     .append(filter.sort())
@@ -91,6 +96,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
         if (hasSearch(filter)) {
             query.setParameter(SEARCH, likeValue(filter.search()));
+        }
+
+        if (filter.data() != null) {
+            query.setParameter(DATA, filter.data());
         }
 
         query.setFirstResult((page - 1) * size);
@@ -126,6 +135,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                     .append(" or lower(mo.numeModel) like :search)");
         }
 
+        if ( filter.data() != null) {
+            jpql.append(" and p.dataProgramare = :data");
+        }
+
         TypedQuery<Long> query = entityManager.createQuery(jpql.toString(), Long.class);
 
         if (filter.userId() != null) {
@@ -142,6 +155,10 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
         if (hasSearch(filter)) {
             query.setParameter(SEARCH, likeValue(filter.search()));
+        }
+
+        if (filter.data() != null) {
+            query.setParameter(DATA, filter.data());
         }
 
         return query.getSingleResult();
