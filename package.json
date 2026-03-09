@@ -1,0 +1,24 @@
+{
+  "name": "auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "flatpickr": "^4.6.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanescuCosmin/Service-Auto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomanescuCosmin/Service-Auto/issues"
+  },
+  "homepage": "https://github.com/RomanescuCosmin/Service-Auto#readme"
+}

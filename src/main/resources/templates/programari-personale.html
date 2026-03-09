@@ -168,14 +168,13 @@
                       </svg>
 
                       <input
-                              type="date"
+                              type="text"
                               name="data"
                               th:value="${filter.data}"
                               class="w-full rounded-md border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-900 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300"
                       />
 
                     </div>
-                    <!-- FILTER BUTTONS -->
 
                     <div class="flex items-center gap-2">
 
@@ -183,8 +182,8 @@
                               type="submit"
                               name="confirmed"
                               value=""
-                              class="rounded-md border px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-                              th:classappend="${filter.confirmed == null and filter.canceled == null} ? ' bg-slate-200'"
+                              class="rounded-md border border-amber-300 px-8 py-2 text-sm font-semibold text-amber-900 hover:bg-amber-100"
+                              th:classappend="${filter.confirmed == null and filter.canceled == null} ? ' bg-slate-100'"
                       >
                         Toate
                       </button>
@@ -221,7 +220,7 @@
 
                       <a
                               th:href="@{/programare/programari-personale}"
-                              class="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
+                              class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
                       >
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
