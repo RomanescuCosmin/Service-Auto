@@ -74,11 +74,10 @@ public class ProgramareController extends BaseController {
     }
 
     @PostMapping(value = "/programare", produces = "text/html")
-    public String add(ProgramareDto programareDto,
-                      Model uiModel, BindingResult bindingResult,
-                      RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public String add(ProgramareDto programareDto,BindingResult bindingResult,
+                      Model uiModel, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
-        logger.info("post create Programare cu parametrii : ", programareDto);
+        logger.info("post create Programare cu parametrii : {}", programareDto);
 
         try {
 
@@ -92,8 +91,12 @@ public class ProgramareController extends BaseController {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             CustomUserPrincipal principal = (CustomUserPrincipal) auth.getPrincipal();
 
+            FileStorage fileStorage = null;
             MultipartFile file = ((StandardMultipartHttpServletRequest) request).getFile("fisier");
-            FileStorage fileStorage = fileStorageService.create(file, FileStorageTypeEnum.PROGRAMARE_AUTO, principal);
+
+            if (file != null && !file.isEmpty()) {
+                fileStorage = fileStorageService.create(file, FileStorageTypeEnum.PROGRAMARE_AUTO, principal);
+            }
 
             programareService.create(programareDto, principal.getId(), fileStorage);
 

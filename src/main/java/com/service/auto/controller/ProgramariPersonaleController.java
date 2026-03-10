@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +30,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 
+import static com.service.auto.util.DataBaseConstant.DATE_PATTERN;
+
 
 @Controller
 @RequestMapping("/programare")
@@ -45,7 +48,8 @@ public class ProgramariPersonaleController extends BaseController {
             @RequestParam(required = false) Boolean confirmed,
             @RequestParam(required = false) Boolean canceled,
             @RequestParam(required = false) String search,
-            @RequestParam(required = false) LocalDate data,
+            @RequestParam(required = false)
+            @DateTimeFormat(pattern = DATE_PATTERN)LocalDate data,
             Model model) {
         logger.info("programare personala page");
 

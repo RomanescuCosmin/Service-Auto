@@ -1,3 +1,21 @@
+function initDatePickers(scope = document) {
+
+    scope.querySelectorAll(".datepicker").forEach(function (element) {
+
+        if (element._flatpickr) return;
+
+        flatpickr(element, {
+            dateFormat: "d.m.Y",
+            allowInput: false
+        });
+
+    });
+
+}
+
+initDatePickers();
+
+
 function applyInvalidAppearence(element) {
     element.classList.remove('valid-class');
     element.classList.add('invalid-class')
