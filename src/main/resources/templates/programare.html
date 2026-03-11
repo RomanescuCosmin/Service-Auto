@@ -426,11 +426,12 @@
                     x-show="modalOpen"
                     x-cloak
                     class="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-900/50 px-4 py-6"
+                    @click.self="closeModal()"
                   >
                     <div
                       class="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-200/70"
                       x-transition
-                      @click.away="closeModal()"
+                      @click.stop
                       @keydown.escape.window="closeModal()"
                     >
                       <div class="flex items-center justify-between">
@@ -465,7 +466,7 @@
                             x-model="selectedDate"
                             @change="onDateChange()"
                             :min="minDate"
-                            class="date-input w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:bg-white focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
+                            class="datepicker w-full cursor-pointer rounded-xl border border-slate-300 bg-white py-3 pl-9 pr-3 text-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100"
                           />
                         </label>
 
