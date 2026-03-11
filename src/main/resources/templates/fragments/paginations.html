@@ -1,0 +1,57 @@
+<div th:fragment="paginations"
+        class="mt-6 flex flex-col gap-4 px-6 sm:flex-row sm:items-center sm:justify-between">
+    <div class="text-sm text-slate-500">
+        Pagina
+        <span
+                class="font-semibold text-slate-700"
+                th:text="${page.page}"
+        ></span>din<span
+            class="font-semibold text-slate-700"
+            th:text="${page.totalPages()}"
+    ></span>
+    </div>
+
+    <div
+            class="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-2 py-1 shadow-sm"
+    >
+        <a
+                th:if="${page.page > 1}"
+                th:href="@{/programare/programari-personale(
+               page=${page.page - 1},
+               size=${page.size},
+               sort=${filter.sort},
+               order=${filter.order},
+               search=${filter.search}
+           )}"
+                class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+        >
+            <span class="text-base">‹</span>
+            Înapoi
+        </a>
+
+        <div class="hidden h-6 w-px bg-slate-200 sm:block"></div>
+
+        <span
+                class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+        >
+              Pagina <span th:text="${page.page}"></span>
+            </span>
+
+        <div class="hidden h-6 w-px bg-slate-200 sm:block"></div>
+
+        <a
+                th:if="${page.page < page.totalPages()}"
+                th:href="@{/programare/programari-personale(
+               page=${page.page + 1},
+               size=${page.size},
+               sort=${filter.sort},
+               order=${filter.order},
+               search=${filter.search}
+           )}"
+                class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+        >
+            Înainte
+            <span class="text-base">›</span>
+        </a>
+    </div>
+</div>

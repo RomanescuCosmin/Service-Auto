@@ -6,27 +6,31 @@ import com.service.auto.security.CustomUserPrincipal;
 import jakarta.transaction.Transactional;
 import org.apache.commons.io.FilenameUtils;
 import org.hibernate.service.spi.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.io.InputStream;
+import java.nio.file.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Service
 @Transactional
 public class FileStorageService extends BaseService {
 
-    public FileStorage create(MultipartFile file, FileStorageTypeEnum fileStorageTypeEnum, CustomUserPrincipal principal) {
+    private final Logger logger = LoggerFactory.getLogger(FileStorageService.class);
+    private static final Set<String> ALLOWED_EXTENSIONS = Set.of("pdf", "doc", "docx", "jpg", "png");
 
-        try {
-            byte[] bytes = file.getBytes();
+    public FileStorage create(MultipartFile multipartFile, FileStorageTypeEnum fileStorageTypeEnum, CustomUserPrincipal principal) {
+
+
+        try (InputStream inputStream = multipartFile.getInputStream()){
             // create document on disk
             // 2. Calculam md5 pe bytes
-            String fileMd5 = DigestUtils.md5DigestAsHex(bytes);
+            String fileMd5 = DigestUtils.md5DigestAsHex(multipartFile.getInputStream());
 
             // 3. Citim calea din properties
             String fileRoot = environment.getProperty("file.storage.path");
@@ -38,14 +42,18 @@ public class FileStorageService extends BaseService {
             // 5. Cream directoarele daca nu exista
             Files.createDirectories(targetFile.getParent());
 
+            String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
+            String baseName = FilenameUtils.getBaseName(multipartFile.getOriginalFilename());
+
+            if (!ALLOWED_EXTENSIONS.contains(extension.toLowerCase())) {
+                throw  new ServiceException("Tip de fisier nepermis: " + extension);
+            }
+
             // 6. scriem fisierul pe disc
-            Files.write(targetFile, bytes, StandardOpenOption.CREATE);
+            Files.copy(inputStream, targetFile, StandardCopyOption.REPLACE_EXISTING);
 
             // 7. Contruim inregistrarea pentru salvarea in db
             FileStorage fileStorage = new FileStorage();
-
-            String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-            String baseName = FilenameUtils.getBaseName(file.getOriginalFilename());
 
             fileStorage.setFileMd5(fileMd5);
             fileStorage.setFileOriginalName(baseName + "." + extension);
@@ -57,6 +65,7 @@ public class FileStorageService extends BaseService {
             return fileStorageRepository.merge(fileStorage);
 
         } catch (Exception exception) {
+            logger.error("Eroare la salvarea fisierului pe disc: ", exception);
             throw new ServiceException(exception.getMessage());
         }
 

@@ -43,10 +43,6 @@ public class Programare implements BaseEntity {
     private ModelAuto modelAuto;
 
     @NotNull
-    @Column(name = PROGRAMARE_NUME, length = 100)
-    private String nume;
-
-    @NotNull
     @Column(name = PROGRAMARE_TELEFON)
     private int telefon;
 

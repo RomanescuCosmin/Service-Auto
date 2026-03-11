@@ -16,7 +16,6 @@ public class ProgramareMapper extends BaseMapper {
                 .marcaId(programare.getMarca() != null ? programare.getMarca().getId() : null)
                 .modelId(programare.getModelAuto() != null ? programare.getModelAuto().getId() : null)
                 .modelNume(programare.getModelAuto() != null ? programare.getModelAuto().getNumeModel() : null)
-                .nume(programare.getNume())
                 .telefon(programare.getTelefon())
                 .email(programare.getEmail())
                 .dataProgramare(programare.getDataProgramare())
@@ -38,7 +37,6 @@ public class ProgramareMapper extends BaseMapper {
                 .fileStorage(fileStorage)
                 .marca(marcaRepository.findById(dto.getMarcaId()))
                 .modelAuto(modelAutoRepository.findById(dto.getModelId()))
-                .nume(dto.getNume())
                 .telefon(dto.getTelefon())
                 .email(dto.getEmail())
                 .dataProgramare(dto.getDataProgramare())
@@ -57,7 +55,6 @@ public class ProgramareMapper extends BaseMapper {
         programare.setFileStorage(fileStorageRepository.findById(dto.getFileStorageId()));
         programare.setMarca(marcaRepository.findById(dto.getMarcaId()));
         programare.setModelAuto(modelAutoRepository.findById(dto.getModelId()));
-        programare.setNume(dto.getNume());
         programare.setTelefon(dto.getTelefon());
         programare.setEmail(dto.getEmail());
         programare.setDataProgramare(dto.getDataProgramare());
