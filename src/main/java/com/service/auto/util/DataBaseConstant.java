@@ -54,7 +54,6 @@ public class DataBaseConstant {
     public static final String PROGRAMARE_ORA = "ora_programare";
     public static final String PROGRAMARE_MINUT = "minut_programare";
     public static final String PROGRAMARE_SERIE_SASIU = "serie_sasiu";
-    public static final String PROGRAMARE_NUME = "nume";
     public static final String PROGRAMARE_TELEFON = "telefon";
     public static final String PROGRAMARE_EMAIL = "email";
     public static final String PROGRAMARE_OBSERVATII = "observatii";

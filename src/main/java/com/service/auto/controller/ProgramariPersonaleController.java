@@ -71,7 +71,7 @@ public class ProgramariPersonaleController extends BaseController {
 
 
     @PostMapping(value = "/programari-personale/anulare-programare/{id}", produces = "text/html")
-    public String anulareProgramare(HttpServletRequest httpServletRequest, @PathVariable("id") Long programareId,
+    public String anulareProgramare(@PathVariable("id") Long programareId,
                                     Model uiModel,
                                     RedirectAttributes redirAttrs) {
 
@@ -87,10 +87,10 @@ public class ProgramariPersonaleController extends BaseController {
 
             redirAttrs.addFlashAttribute("saveResult", "ok-add");
             redirAttrs.addFlashAttribute("succesMessage", "Programarea a fost anulată!");
-            return "redirect:/programari-personale";
+            return "redirect:/programare/programari-personale";
         } catch (Exception ex) {
             logger.error("--------------------failed to anulareProgramare: ", ex);
-            return  "redirect:/programari-personale";
+            return  "redirect:/programare/programari-personale";
         }
     }
 

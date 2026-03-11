@@ -38,7 +38,7 @@ public class ProgramareService extends BaseService {
         logger.info("creare programare cu parametrii: ", programareDto);
         Programare programare = ProgramareMapper.toEntity(programareDto, userId, fileStorage);
         try {
-            emailService.sendEmailForAppointment(programareDto);
+            emailService.sendEmailForAppointment(programareDto, userId);
         } catch (MessagingException e) {
             logger.info("eroare la trimiterea email-ului ", e.getMessage());
         }

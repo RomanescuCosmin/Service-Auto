@@ -30,7 +30,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
 
         StringBuilder jpql = new StringBuilder(
                 "select new com.service.auto.dto.ProgramareListDto(" +
-                        " p.id, p.nume, p.email, " +
+                        " p.id, u.nume, p.email, " +
                         " p.dataProgramare," +
                         " p.oraProgramare," +
                         " p.minutProgramare, " +
@@ -45,6 +45,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                         " LEFT JOIN p.marca m " +
                         " LEFT JOIN p.modelAuto mo " +
                         " LEFT JOIN p.fileStorage fs " +
+                        " LEFT JOIN p.user u " +
                         " where 1=1 "
         );
 
@@ -62,7 +63,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
         }
 
         if (hasSearch(filter)) {
-            jpql.append(" and (lower(p.nume) like :search")
+            jpql.append(" and (lower(u.nume) like :search")
                     .append(" or lower(m.nume) like :search")
                     .append(" or lower(mo.numeModel) like :search)");
         }
@@ -114,6 +115,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
                 " select count(p.id) from Programare p " +
                         " left join p.marca m " +
                         " left join p.modelAuto mo " +
+                        " left join p.user u " +
                         " where 1=1 "
         );
 
@@ -130,7 +132,7 @@ public class ProgramareRepository extends BaseRepository<Programare> {
         }
 
         if (hasSearch(filter)) {
-            jpql.append(" and (lower(p.nume) like :search")
+            jpql.append(" and (lower(u.nume) like :search")
                     .append(" or lower(m.nume) like :search")
                     .append(" or lower(mo.numeModel) like :search)");
         }
